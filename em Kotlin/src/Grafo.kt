@@ -8,11 +8,11 @@ class Grafo(var N: MutableList<Char>, var A: MutableMap<String, String>) {
 
     init {
         this.N.forEach {
-            v -> if ( !(this.verticeValido(v)) ) throw VerticeInvalidoException("O vértice $v é inválido!")
+                v -> if ( !(this.verticeValido(v)) ) throw VerticeInvalidoException("O vértice $v é inválido!")
         }
 
         this.A.values.forEach {
-            a -> if ( !(this.arestaValida(a)) ) throw ArestaInvalidaException("A aresta $a é inválida!")
+                a -> if ( !(this.arestaValida(a)) ) throw ArestaInvalidaException("A aresta $a é inválida!")
         }
     }
 
@@ -58,7 +58,7 @@ class Grafo(var N: MutableList<Char>, var A: MutableMap<String, String>) {
         var existe = false
         if ( this.arestaValida(aresta) ) {
             this.A.forEach {
-                k, v -> if (aresta == k) existe = true
+                    k, v -> if (aresta == k) existe = true
             }
         }
 
@@ -90,27 +90,116 @@ class Grafo(var N: MutableList<Char>, var A: MutableMap<String, String>) {
         val listaDeArestas = this.A.values
         val listaDeVertices = this.N
 
-        var listaDeNaoAdjacentes = mutableListOf<String>()
+        val listaDeNaoAdjacentes = mutableListOf<String>()
 
         listaDeVertices.forEach {
-            v1 -> listaDeVertices.forEach {
-                    v2 ->
-                    val arestaIndo = "$v1${this.separadorDeArestas}$v2"
-                    val arestaVindo = "$v2${this.separadorDeArestas}$v1"
-                    if ( !(listaDeArestas.contains(arestaIndo)) and !(listaDeArestas.contains(arestaVindo)) )
-                        listaDeNaoAdjacentes.add(arestaIndo)
-                    }
+                v1 -> listaDeVertices.forEach {
+                v2 ->
+            val arestaIndo = "$v1${this.separadorDeArestas}$v2"
+            val arestaVindo = "$v2${this.separadorDeArestas}$v1"
+            if ( !(listaDeArestas.contains(arestaIndo)) and !(listaDeArestas.contains(arestaVindo)) )
+                listaDeNaoAdjacentes.add(arestaIndo)
+        }
         }
 
         return listaDeNaoAdjacentes
     }
 
-    fun testeListaDeArestas() {
+    fun haLaco(): Boolean {
 
-        var listaDeArestas = this.A.values
+        val listaDeArestas = this.A.values
 
         listaDeArestas.forEach {
-            v1 -> println(v1[0])
+                vertice ->
+            if ( vertice[0] == vertice[2] )
+                return true
+        }
+
+        return false
+    }
+
+    fun haParalelas(): Boolean {
+
+        val listaDeArestas = this.A.values
+        val sep = this.separadorDeArestas
+
+        val arestaIndoVerificadas = mutableListOf<String>()
+        val arestaVindoVerificadas = mutableListOf<String>()
+
+        listaDeArestas.forEach { aresta ->
+            val arestaIndo = "${aresta[0]}$sep${aresta[2]}"
+            val arestaVindo = "${aresta[2]}$sep${aresta[1]}"
+
+            if ((arestaIndoVerificadas.contains(arestaIndo)) or (arestaVindoVerificadas.contains(arestaVindo))) {
+                return true
+            } else {
+                arestaIndoVerificadas.add(arestaIndo)
+                arestaVindoVerificadas.add(arestaVindo)
+            }
+        }
+
+        return false
+    }
+
+    fun grau(v: Char): Int {
+
+        val listaDeArestas = this.A.values
+        var grau: Int = 0
+
+        listaDeArestas.forEach {
+                vertice ->
+            if ( (vertice[0] == v) or (vertice[2] == v) )
+                grau++
+        }
+
+        return grau
+    }
+
+    fun arestasSobreVertice(v: Char): MutableCollection<String> {
+
+        val listaDeArestas = this.A
+        val arestasSobreV = mutableListOf<String>()
+
+        for ( (aresta, vertice) in listaDeArestas ) {
+            if ( (vertice[0] == v) or (vertice[2] == v) )
+                arestasSobreV.add(aresta)
+        }
+
+        return arestasSobreV
+    }
+
+    fun ehCompleto(): Boolean {
+
+        val listaDeVertices = this.N
+        val listaDeArestas = this.A.values
+
+        val n = listaDeVertices.size
+
+        if (n == 1) return true
+
+        val maxDeArestas: Int = (n * (n - 1)) / 2
+
+        val arestasVerificadas = mutableListOf<String>()
+
+        listaDeArestas.forEach { vertice ->
+            val verticeContrario = "$vertice[2]$vertice[1]$vertice[0]"
+
+            if ((arestasVerificadas.contains(vertice)) or (arestasVerificadas.contains(verticeContrario))) {
+                return false
+            } else {
+                arestasVerificadas.add(vertice)
+            }
+        }
+
+        return ( (arestasVerificadas.size == maxDeArestas) or (arestasVerificadas.size == 2) )
+    }
+
+    fun testeListaDeArestas() {
+
+        val listaDeArestas = this.A.values
+
+        listaDeArestas.forEach {
+                v1 -> println(v1[0])
         }
     }
 
