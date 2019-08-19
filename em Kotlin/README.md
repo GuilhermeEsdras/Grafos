@@ -10,7 +10,7 @@
 
 <!-- Screenshot -->
 <p align="center">
-  <img src="screenshots/Grafo class.png" width="500" />
+  <img src="screenshots/Grafo class.png" />
 </p>
 
 <!-- Subtítulo -->
