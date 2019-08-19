@@ -1,7 +1,7 @@
 class VerticeInvalidoException(messagem: String): Exception(messagem)
 class ArestaInvalidaException(mensagem: String): Exception(mensagem)
 
-class Grafo(private var N: MutableList<Char>, private var A: MutableMap<String, String>) {
+class Grafo(var N: MutableList<Char>, var A: MutableMap<String, String>) {
 
     private var qtdMaxDeSeparador: Int = 1
     private var separadorDeArestas: Char = '-'
@@ -83,6 +83,35 @@ class Grafo(private var N: MutableList<Char>, private var A: MutableMap<String, 
             throw ArestaInvalidaException("A aresta ${this.A[a]} é inválida!")
         }
 
+    }
+
+    fun verticesNaoAdjacentes(): Collection<String> {
+
+        val listaDeArestas = this.A.values
+        val listaDeVertices = this.N
+
+        var listaDeNaoAdjacentes = mutableListOf<String>()
+
+        listaDeVertices.forEach {
+            v1 -> listaDeVertices.forEach {
+                    v2 ->
+                    val arestaIndo = "$v1${this.separadorDeArestas}$v2"
+                    val arestaVindo = "$v2${this.separadorDeArestas}$v1"
+                    if ( !(listaDeArestas.contains(arestaIndo)) and !(listaDeArestas.contains(arestaVindo)) )
+                        listaDeNaoAdjacentes.add(arestaIndo)
+                    }
+        }
+
+        return listaDeNaoAdjacentes
+    }
+
+    fun testeListaDeArestas() {
+
+        var listaDeArestas = this.A.values
+
+        listaDeArestas.forEach {
+            v1 -> println(v1[0])
+        }
     }
 
     override fun toString(): String {
