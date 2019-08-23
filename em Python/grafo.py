@@ -333,28 +333,69 @@ class Grafo:
     (Copyright © Guilherme Esdras 2019.2)
     '''
 
-    # Em construção... ._.
     def __DFS_Auxiliar(self, grafo, vertice, verificados):
+
+        '''
+        Função auxiliar à DFS que percorre o grafo recursivamente verificando se os vértices e arestas vizinhos já foram
+        verificados, e em caso negativo, adicionando-os a lista de retorno, que representa a árvore DFS.
+        :param grafo: Um dicionário de vértices/arestas representando o grafo.
+        :param vertice: O vértice a ser verificado.
+        :param verificados: A lista que representa a árvore DFS que será retornada pela função principal.
+        :return: Uma lista representando a árvore DFS.
+        '''
+
         for g in grafo:
+
             # g = ('a1', 'X-Y')
             # g[0] = aresta ('a1')
             # g[1] = vertices ('X-Y')
             # g[1][0] = vertice 1
             # g[1][2] = vertice 2
+
+            # Se o vértice do parâmetro for igual ao vértice 1...
             if g[1][0] == vertice:
+                # Se o vértice atual (do parâmetro / vértice 1) ainda não foi verificado...
                 if g[1][0] not in verificados:
+                    # Adiciona-o a lista de verificados.
                     verificados.append(g[1][0])
-                if g[0] not in verificados:
-                    verificados.append(g[0])
+
+                # Se o vértice vizinho (conectado à ele) ainda não foi verificado...
                 if g[1][2] not in verificados:
+                    # Adiciona a aresta e ele à lista de verificados...
+                    verificados.append(g[0])
                     verificados.append(g[1][2])
+                    # e percorre o grafo recursivamente em busca das instâncias deste mesmo vértice na "posição 1".
                     self.__DFS_Auxiliar(grafo, g[1][2], verificados)
+
+            # Se o vértice do parâmetro for igual ao vértice 2...
+            elif g[1][2] == vertice:
+                # Se o vértice atual (do parâmetro / vértice 2) ainda não foi verificado...
+                if g[1][2] not in verificados:
+                    # Adiciona-o a lista de verificados.
+                    verificados.append(g[1][2])
+
+                # Se o vértice vizinho (conectado à ele) ainda não foi verificado...
+                if g[1][0] not in verificados:
+                    # Adiciona a aresta e ele à lista de verificados...
+                    verificados.append(g[0])
+                    verificados.append(g[1][0])
+                    # e percorre o grafo recursivamente em busca das instâncias deste mesmo vértice na "posição 1".
+                    self.__DFS_Auxiliar(grafo, g[1][0], verificados)
 
         return verificados
 
-    def DFS(self, v):
+    def DFS(self, vertice_raiz):
+
+        '''
+        Função DFS principal que retorna uma Árvore DFS do Grafo/objeto.
+        :param vertice_raiz: Vértice/raiz. Ponto de partida da busca.
+        :return: Uma lista representando a Árvore DFS do Grafo.
+        '''
+
+        # Dicionário de itens (arestas e vértices) do Grafo/objeto
         grafo = self.A.items()
-        return self.__DFS_Auxiliar(grafo, v, [])
+
+        return self.__DFS_Auxiliar(grafo, vertice_raiz, [])
 
     '''
     - Soluções do Roteiro 2, Fim -

@@ -7,7 +7,7 @@ PB_arestas = {
     'a7': 'C-T', 'a8': 'M-T', 'a9': 'T-Z'
 }
 paraiba = Grafo(PB_vertices, PB_arestas)
-print(paraiba.DFS('J'))
+# print(paraiba.DFS('J'))
 
 ###
 
