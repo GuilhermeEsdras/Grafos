@@ -16,7 +16,7 @@ class Grafo:
         Constrói um objeto do tipo Grafo. Se nenhum parâmetro for passado, cria um Grafo vazio.
         Se houver alguma aresta ou algum vértice inválido, uma exceção é lançada.
         :param N: Uma lista dos vértices (ou nodos) do grafo.
-        :param V: Uma dicionário que guarda as arestas do grafo. A chave representa o nome da aresta e o valor é uma string que contém dois vértices separados por um traço.
+        :param V: Uma dicionário que guarda as grafo do grafo. A chave representa o nome da aresta e o valor é uma string que contém dois vértices separados por um traço.
         '''
         for v in N:
             if not(Grafo.verticeValido(v)):
@@ -53,7 +53,7 @@ class Grafo:
         if i_traco == 0 or aresta[-1] == Grafo.SEPARADOR_ARESTA:
             return False
 
-        # Verifica se as arestas antes de depois do elemento separador existem no Grafo
+        # Verifica se as grafo antes de depois do elemento separador existem no Grafo
         if not(self.existeVertice(aresta[:i_traco])) or not(self.existeVertice(aresta[i_traco+1:])):
             return False
 
@@ -127,7 +127,7 @@ class Grafo:
         :return: Uma lista com todos os vértices não adjacentes do objeto/grafo.
         '''
 
-        # Valores/arestas do dicionário de arestas do objeto/grafo
+        # Valores/grafo do dicionário de grafo do objeto/grafo
         lista_de_arestas = self.A.values()
 
         # Lista que armazenará os vértices não adjacentes
@@ -152,7 +152,7 @@ class Grafo:
 
         lista_de_arestas = self.A.values()
 
-        # Para cada um dos conjuntos de vértices (valores) da lista de arestas do objeto/grafo (dicionário)...
+        # Para cada um dos conjuntos de vértices (valores) da lista de grafo do objeto/grafo (dicionário)...
         for vertice in lista_de_arestas:
 
             # vertice[x] == 'XXX' (Caracter X do valor/aresta)
@@ -165,11 +165,11 @@ class Grafo:
         # Caso saia do loop sem retornar nada...
         return False  # Não foram encontrados laços.
 
-    # 2-c) Há arestas paralelas? (Retorne True ou False)
+    # 2-c) Há grafo paralelas? (Retorne True ou False)
     def ha_paralelas(self):
 
         '''
-        Verifica se há arestas paralelas (duas arestas partindo do mesmo vértice para outro vértice) no grafo.
+        Verifica se há grafo paralelas (duas grafo partindo do mesmo vértice para outro vértice) no grafo.
         :return: Valor booleano. True caso houver ou False caso contrário.
         '''
 
@@ -177,11 +177,11 @@ class Grafo:
         lista_de_arestas = self.A.values()
         sep = self.SEPARADOR_ARESTA
 
-        # Listas que armazenam as arestas verificadas.
+        # Listas que armazenam as grafo verificadas.
         arestas_indo_verificadas = []
         arestas_vindo_verificadas = []
 
-        # Para cada aresta na lista de arestas do objeto/grafo...
+        # Para cada aresta na lista de grafo do objeto/grafo...
         for aresta in lista_de_arestas:
 
             # aresta[x] == 'XXX' (caracter X do valor/aresta)
@@ -192,16 +192,16 @@ class Grafo:
 
             # Se esta aresta já está em uma das listas de verificadas...
             if (aresta_indo in arestas_indo_verificadas) or (aresta_vindo in arestas_vindo_verificadas):
-                # é porque o grafo em questão possui duas arestas partindo do mesmo vértice, então...
+                # é porque o grafo em questão possui duas grafo partindo do mesmo vértice, então...
                 return True  # é paralela.
 
             # Caso contrário...
             else:
-                # Adiciona as arestas nas listas de verificadas.
+                # Adiciona as grafo nas listas de verificadas.
                 arestas_indo_verificadas.append(aresta_indo)
                 arestas_vindo_verificadas.append(aresta_vindo)
 
-        # Caso o loop não encontre duas arestas...
+        # Caso o loop não encontre duas grafo...
         return False  # não possui paralelas.
 
     # 2-d) Qual o grau de um vértice arbitrário?
@@ -213,13 +213,13 @@ class Grafo:
         :return: Valor Inteiro, indicando o grau do vértice do parâmetro.
         '''
 
-        # Variável que armazena a lista de arestas&vértices do grafo/objeto
+        # Variável que armazena a lista de grafo&vértices do grafo/objeto
         lista_de_arestas = self.A.values()
 
         # Variável contador auxiliar que armazenará o grau do vértice v
         grau = 0
 
-        # Para cada um dos conjuntos de vértices (valores) da lista de arestas do objeto/grafo (dicionário)...
+        # Para cada um dos conjuntos de vértices (valores) da lista de grafo do objeto/grafo (dicionário)...
         for vertice in lista_de_arestas:
 
             # vertice[x] == 'XXX' (Caracter X do valor/aresta)
@@ -233,19 +233,19 @@ class Grafo:
         # Retorna o grau do vértice v
         return grau
 
-    # 2-e) Quais arestas incidem sobre um vértice N arbitrário?
+    # 2-e) Quais grafo incidem sobre um vértice N arbitrário?
     def arestas_sobre_vertice(self, vertice):
 
         '''
-        Verifica todas as arestas que incidem sobre o vértice passado como argumento da função
+        Verifica todas as grafo que incidem sobre o vértice passado como argumento da função
         :param vertice: Vértice em questão
-        :return: Uma lista com todas as arestas
+        :return: Uma lista com todas as grafo
         '''
 
-        # Lista que armazena as arestas
+        # Lista que armazena as grafo
         lista_de_arestas = []
 
-        # Para cada aresta no Dicionário de arestas do grafo...
+        # Para cada aresta no Dicionário de grafo do grafo...
         for aresta in self.A.items():
 
             # aresta[0] == 'a1'... (chave do dicionário)
@@ -255,17 +255,17 @@ class Grafo:
             # Se um dos vértices for igual ao vértice do parâmetro...
             if aresta[1][0] == vertice or aresta[1][2] == vertice:
 
-                # Adiciona a aresta em questão a lista de arestas.
+                # Adiciona a aresta em questão a lista de grafo.
                 lista_de_arestas.append(aresta[0])
 
-        # Retorna a lista de arestas
+        # Retorna a lista de grafo
         return lista_de_arestas
 
     # 2-f) Esse grafo é completo?
     def eh_completo(self):
 
         '''
-        Verifica se o grafo objeto é completo, analisando as combinações de arestas.
+        Verifica se o grafo objeto é completo, analisando as combinações de grafo.
         :return: Valor Booleano. True se for verdadeiro, ou False caso contrário.
         '''
 
@@ -278,13 +278,13 @@ class Grafo:
         if n == 1:
             return True
 
-        # Quantidade máxima de arestas permitidas em um grafo completo
+        # Quantidade máxima de grafo permitidas em um grafo completo
         max_de_arestas = (n * (n - 1)) // 2
 
-        # Lista que armazenará as arestas verificadas
+        # Lista que armazenará as grafo verificadas
         arestas_verificadas = []
 
-        # Para cada par de vértice na lista de arestas...
+        # Para cada par de vértice na lista de grafo...
         for vertice in lista_de_arestas:
 
             # vertice[x] == 'XXX' (Caracter X do valor/aresta)
@@ -298,7 +298,7 @@ class Grafo:
 
             # se por acaso o par de vértice já tiver sido verificado...
             if (vertice in arestas_verificadas) or (vertice_contrario in arestas_verificadas):
-                return False  # Retorna falso, pois grafos completos não possuem arestas paralelas
+                return False  # Retorna falso, pois grafos completos não possuem grafo paralelas
 
             # caso contrário, adiciona na lista de verificadas.
             else:
@@ -312,7 +312,7 @@ class Grafo:
         # if grau_dos_vertices.count(grau_dos_vertices[0]) != len(grau_dos_vertices):
         #     return False
 
-        # Se sair do loop, verifica se a quantidade de arestas verificadas está de acordo com a quantidade permitida
+        # Se sair do loop, verifica se a quantidade de grafo verificadas está de acordo com a quantidade permitida
         if len(arestas_verificadas) == max_de_arestas or len(arestas_verificadas) == 2:
             return True  # Se sim, é um grafo completo, retorna True
 
@@ -326,10 +326,41 @@ class Grafo:
     (Copyright © Guilherme Esdras 2019.2)
     '''
 
+    # ---
+
+    '''
+    - Inicio -
+    - Minhas Soluções do Roteiro 2 -
+    (Copyright © Guilherme Esdras 2019.2)
+    '''
+
+    # Em construção... ._.
+    def __DFS_Auxiliar(self, grafo, vertice, verificados):
+        for g in grafo:
+            # g = ('a1', 'X-Y')
+            # g[0] = aresta ('a1')
+            # g[1] = vertices ('X-Y')
+            # g[1][0] = vertice 1
+            # g[1][2] = vertice 2
+            if g[1][0] == vertice:
+                if g[1][0] not in verificados:
+                    verificados.append(g[1][0])
+                if g[0] not in verificados:
+                    verificados.append(g[0])
+                if g[1][2] not in verificados:
+                    verificados.append(g[1][2])
+                    self.__DFS_Auxiliar(grafo, g[1][2], verificados)
+
+        return verificados
+
+    def DFS(self, v):
+        grafo = self.A.items()
+        return self.__DFS_Auxiliar(grafo, v, [])
+
     def __str__(self):
         '''
         Fornece uma representação do tipo String do grafo.
-        O String contém um sequência dos vértices separados por vírgula, seguido de uma sequência das arestas no formato padrão.
+        O String contém um sequência dos vértices separados por vírgula, seguido de uma sequência das grafo no formato padrão.
         :return: Uma string que representa o grafo
         '''
         grafo_str = ''

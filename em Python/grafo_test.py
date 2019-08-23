@@ -1,5 +1,5 @@
 import unittest
-from grafotemp import *
+from grafo import *
 
 
 class TestGrafo(unittest.TestCase):
@@ -10,7 +10,7 @@ class TestGrafo(unittest.TestCase):
                          {'a1': 'J-C', 'a2': 'C-E', 'a3': 'C-E', 'a4': 'C-P', 'a5': 'C-P', 'a6': 'C-M', 'a7': 'C-T',
                           'a8': 'M-T', 'a9': 'T-Z'})
 
-        # Grafo da Paraíba sem arestas paralelas
+        # Grafo da Paraíba sem grafo paralelas
         self.g_p_sem_paralelas = Grafo(['J', 'C', 'E', 'P', 'M', 'T', 'Z'],
                                        {'a1': 'J-C', 'a3': 'C-E', 'a4': 'C-P', 'a6': 'C-M', 'a7': 'C-T', 'a8': 'M-T',
                                         'a9': 'T-Z'})

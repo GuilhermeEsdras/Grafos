@@ -2,8 +2,11 @@ from grafo import Grafo
 from grafo_test import TestGrafo
 
 vertices = ['J', 'C', 'E', 'P', 'M', 'T', 'Z']
-arestas = {'a1': 'J-C', 'a2': 'C-E', 'a3': 'C-E', 'a4': 'C-P', 'a5': 'C-P', 'a6': 'C-M', 'a7': 'C-T',
-                 'a8': 'M-T', 'a9': 'T-Z'}
+arestas = {
+    'a1': 'J-C', 'a2': 'C-E', 'a3': 'C-E',
+    'a4': 'C-P', 'a5': 'C-P', 'a6': 'C-M',
+    'a7': 'C-T', 'a8': 'M-T', 'a9': 'T-Z'
+}
 
 paraiba = Grafo(vertices, arestas)
 
@@ -28,7 +31,7 @@ print('2 - b) Há Vértices Adjacentes a ele mesmo/Laços? - {}'.format('Sim' if
 
 print()
 # Teste 2-c)
-print('2 - c) Há arestas paralelas? - {}'.format('Sim' if paraiba.ha_paralelas() else 'Não'))
+print('2 - c) Há grafo paralelas? - {}'.format('Sim' if paraiba.ha_paralelas() else 'Não'))
 
 print()
 # Teste 2-d)
