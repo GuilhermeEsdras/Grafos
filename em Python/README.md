@@ -1,6 +1,6 @@
-<!-- Título do Repô -->
+﻿<!-- Título do Repô -->
 <h1 align="center">
-  Grafos em Java
+  Grafos em Python
 </h1>
 
 <!-- Badge da Linguagem -->
