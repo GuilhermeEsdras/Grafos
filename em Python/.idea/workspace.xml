@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="352eeb84-7cec-4625-a9e4-dd861069e1db" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Roteiro2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Roteiro2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grafo.py" beforeDir="false" afterPath="$PROJECT_DIR$/grafo.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -183,7 +181,7 @@
       <updated>1566161623761</updated>
       <workItem from="1566161626057" duration="674000" />
       <workItem from="1566514201431" duration="334000" />
-      <workItem from="1566515596148" duration="14587000" />
+      <workItem from="1566515596148" duration="14832000" />
     </task>
     <servers />
   </component>
@@ -206,6 +204,6 @@
     <SUITE FILE_PATH="coverage/em_Python$tests2.coverage" NAME="tests2 Coverage Results" MODIFIED="1566520163349" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/em_Python$tests.coverage" NAME="tests Coverage Results" MODIFIED="1566523379297" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/em_Python$geeks.coverage" NAME="geeks Coverage Results" MODIFIED="1566515851856" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/em_Python$Roteiro2.coverage" NAME="Roteiro2 Coverage Results" MODIFIED="1566530098339" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/em_Python$Roteiro2.coverage" NAME="Roteiro2 Coverage Results" MODIFIED="1566531166437" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
