@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.*;
 
 class VerticeInvalidoException extends Exception {
@@ -117,11 +118,181 @@ public class Grafo {
         }
     }
 
+    //--//
+
+    /**
+     * Minhas soluções dos exercícios e questões dos Roteiros
+     *
+     * @autor       Guilherme Esdras
+     * @curso       Engenharia de Computação - IFPB
+     * @período     3º - 2019.2
+     * @disciplina  Teoria dos Grafos
+     * @professor   Henrique Cunha
+     *
+     */
+
+    /*  - Roteiro 1, Ínicio -
+        (Copyright © Guilherme Esdras 2019.2)  */
+
+    public ArrayList<String> verticesNaoAdjacentes() {
+
+        ArrayList<String> listaDeNaoAdjacentes = new ArrayList<>();
+
+        for (Character v1 : this.getN()) {
+            for (Character v2 : this.getN()) {
+                String arestaIndo = String.format("%c%c%c", v1, this.separadorDeAresta, v2);
+                String arestaVindo = String.format("%c%c%c", v2, this.separadorDeAresta, v1);
+                if ( !(this.getA().containsValue(arestaIndo)) && !(this.getA().containsValue(arestaVindo)) ) {
+                    listaDeNaoAdjacentes.add(arestaIndo);
+                }
+            }
+        }
+
+        return listaDeNaoAdjacentes;
+    }
+
+    public Boolean haLaco() {
+
+        for (String vertice : this.getA().values()) {
+            if (vertice.charAt(0) == vertice.charAt(2)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public Boolean haParalelas() {
+
+        ArrayList<String> arestasIndoVerificadas = new ArrayList<>();
+        ArrayList<String> arestasVindoVerificadas = new ArrayList<>();
+
+        for (String aresta : this.getA().values()) {
+
+            String arestaIndo = String.format("%c%c%c", aresta.charAt(0), this.separadorDeAresta, aresta.charAt(2));
+            String arestaVindo = String.format("%c%c%c", aresta.charAt(2), this.separadorDeAresta, aresta.charAt(0));
+
+            if ( (arestasIndoVerificadas.contains(arestaIndo)) && (arestasVindoVerificadas.contains(arestaVindo)) ) {
+                return true;
+            } else {
+                arestasIndoVerificadas.add(arestaIndo);
+                arestasVindoVerificadas.add(arestaVindo);
+            }
+        }
+
+        return false;
+    }
+
+    public int grau(Character v) {
+
+        Collection<String> listaDeArestas = this.getA().values();
+
+        int grau = 0;
+
+        for (String vertice : listaDeArestas) {
+            if ( (vertice.charAt(0) == v) || (vertice.charAt(2) == v) ) {
+                grau++;
+            }
+        }
+
+        return grau;
+    }
+
+    public ArrayList<String> arestasSobreVertice(Character vertice) {
+
+        ArrayList<String> listaDeArestas = new ArrayList<>();
+
+        for (Map.Entry<String, String> aresta : this.getA().entrySet()) {
+            if ( (aresta.getValue().charAt(0) == vertice) ||
+                    (aresta.getValue().charAt(2) == vertice) ) {
+                listaDeArestas.add(aresta.getKey());
+            }
+        }
+
+        return listaDeArestas;
+    }
+
+    public Boolean ehCompleto() {
+
+        int n = this.N.size();
+        if (n == 1) return true;
+
+        int maxDeArestas = (n * (n-1)) / 2;
+
+        ArrayList<String> arestasVerificadas = new ArrayList<>();
+
+        for (String vertice : this.getA().values()) {
+            String verticeContrario = String.format("%c%c%c", vertice.charAt(2), this.separadorDeAresta, vertice.charAt(0));
+            if ( (arestasVerificadas.contains(vertice)) || (arestasVerificadas.contains(verticeContrario)) ) {
+                return false;
+            } else {
+                arestasVerificadas.add(vertice);
+            }
+        }
+
+        return (arestasVerificadas.size() == maxDeArestas) || (arestasVerificadas.size() == 2);
+    }
+
+    /*  - Roteiro 1, Fim -
+        (Copyright © Guilherme Esdras 2019.2)  */
+
+    //--//
+
+    /*  - Roteiro 2, Ínicio -
+        (Copyright © Guilherme Esdras 2019.2)  */
+
+    private List<String> DFSAuxiliar(Collection<Map.Entry<String, String>> grafo, Character vertice,
+                                          List<String> verificados) {
+        for (Map.Entry<String, String> g : grafo) {
+
+            if (g.getValue().charAt(0) == vertice) {
+
+                String vertice1 = Character.toString(g.getValue().charAt(0));
+                String vertice2 = Character.toString(g.getValue().charAt(2));
+
+                if ( !(verificados.contains(vertice1)) ) {
+                    verificados.add(vertice1);
+                }
+
+                if ( !(verificados.contains(vertice2)) ) {
+                    verificados.add(g.getKey());
+                    verificados.add(vertice2);
+                    DFSAuxiliar(grafo, g.getValue().charAt(2), verificados);
+                }
+            }
+
+            else if (g.getValue().charAt(2) == vertice) {
+
+                String vertice1 = Character.toString(g.getValue().charAt(0));
+                String vertice2 = Character.toString(g.getValue().charAt(2));
+
+                if ( !(verificados.contains(vertice2)) ) {
+                    verificados.add(vertice2);
+                }
+
+                if ( !(verificados.contains(vertice1)) ) {
+                    verificados.add(g.getKey());
+                    verificados.add(vertice1);
+                    DFSAuxiliar(grafo, g.getValue().charAt(0), verificados);
+                }
+            }
+        }
+
+        return verificados;
+    }
+
+    public List<String> DFS(Character verticeRaiz) {
+        Set<Map.Entry<String, String>> grafo = this.getA().entrySet();
+        return DFSAuxiliar(grafo, verticeRaiz, Collections.emptyList());
+    }
+
+    /*  - Roteiro 2, Fim -
+            (Copyright © Guilherme Esdras 2019.2)  */
+
+
     @Override
     public String toString() {
-        return "Grafo {" + "\n" +
-                "N (Vértices) = " + this.getN() + ",\n" +
-                "A (Arestas) = " + this.getA() + "\n" +
-                "}";
+        return "N (Vértices) = " + this.getN() + ",\n" +
+                "A (Arestas) = " + this.getA();
     }
 }

@@ -27,12 +27,16 @@ public class Main {
         arestas.put("a8", "M-T");
         arestas.put("a9", "T-Z");
 
-        char[] v = new char[] {
-                'A', 'B', 'C'
-        };
-
         Grafo paraiba = new Grafo(vertices, arestas);
 
         System.out.println(paraiba);
+        System.out.println(paraiba.verticesNaoAdjacentes());
+        System.out.println(paraiba.haLaco());
+        System.out.println(paraiba.haParalelas());
+        System.out.println(paraiba.grau('J'));
+        System.out.println(paraiba.grau('C'));
+        System.out.println(paraiba.arestasSobreVertice('P'));
+        System.out.println(paraiba.ehCompleto());
+//        System.out.println(paraiba.DFS('J'));
     }
 }
