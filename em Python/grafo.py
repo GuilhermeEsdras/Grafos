@@ -113,9 +113,10 @@ class Grafo:
         else:
             ArestaInvalidaException('A aresta ' + self.A[a] + ' é inválida')
 
+    ###
+
     '''
-    - Inicio -
-    - Minhas Soluções do Roteiro 1 -
+    - Soluções do Roteiro 1, Inicio -
     (Copyright © Guilherme Esdras 2019.2)
     '''
 
@@ -321,16 +322,14 @@ class Grafo:
             return False  # Retorna False
 
     '''
-    - Fim - 
-    - Minhas Soluções do Roteiro 1 -
+    - Soluções do Roteiro 1, Fim -
     (Copyright © Guilherme Esdras 2019.2)
     '''
 
     # ---
 
     '''
-    - Inicio -
-    - Minhas Soluções do Roteiro 2 -
+    - Soluções do Roteiro 2, Inicio -
     (Copyright © Guilherme Esdras 2019.2)
     '''
 
@@ -356,6 +355,11 @@ class Grafo:
     def DFS(self, v):
         grafo = self.A.items()
         return self.__DFS_Auxiliar(grafo, v, [])
+
+    '''
+    - Soluções do Roteiro 2, Fim -
+    (Copyright © Guilherme Esdras 2019.2)
+    '''
 
     def __str__(self):
         '''
