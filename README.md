@@ -8,16 +8,16 @@
 </p>
 
 
-<h5 align="center"> Grafos na prática! </h5>
+<h4 align="center"> Grafos na prática! </h5>
 
 <!-- Links do Repositório -->
 <p align="center">
     <a href="em C++">Em C++</a>
-    ·
+    •
     <a href="em Java">Em Java</a>
-    ·
+    •
     <a href="em Kotlin">Em Kotlin</a>
-    ·
+    •
     <a href="em Python">Em Python</a>
 </p>
 <!-- -->

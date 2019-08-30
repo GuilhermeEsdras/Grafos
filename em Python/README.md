@@ -1,4 +1,9 @@
-﻿<!-- Título do Repô -->
+﻿<!-- Gif -->
+<p align="center">
+  <img src="../images/graph.gif" width="150">
+</p>
+
+<!-- Título do Repô -->
 <h1 align="center">
   Grafos em Python
 </h1>
