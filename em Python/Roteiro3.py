@@ -7,7 +7,7 @@ PB_arestas = {
     'a7': 'C-T', 'a8': 'M-T', 'a9': 'T-Z'
 }
 paraiba = Grafo(PB_vertices, PB_arestas)
-print(paraiba.DFS('T'))
+print(paraiba.encontraCaminho(4))
 
 ###
 
@@ -22,4 +22,4 @@ ex_arestas = {
     '17': 'B-E'
 }
 grafo_ex = Grafo(ex_vertices, ex_arestas)
-print(grafo_ex.DFS('K'))
+print(grafo_ex.encontraCaminho(4))

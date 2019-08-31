@@ -1,3 +1,6 @@
+import this
+
+
 class VerticeInvalidoException(Exception):
     pass
 
@@ -123,10 +126,10 @@ class Grafo:
     # 2-a) Encontre todos os pares de vértices não adjacentes.
     def vertices_nao_adjacentes(self):
 
-        '''
+        """
         Armazena todos os vértices não adjacentes (que "não estão conectados") de um grafo em uma lista.
         :return: Uma lista com todos os vértices não adjacentes do objeto/grafo.
-        '''
+        """
 
         # Valores/grafo do dicionário de grafo do objeto/grafo
         lista_de_arestas = self.A.values()
@@ -146,10 +149,10 @@ class Grafo:
     # 2-b) Há algum vértice adjacente a ele mesmo? (Retorne True ou False)
     def ha_laco(self):
 
-        '''
+        """
         Verifica se há algum laço no grafo.
         :return: Valor booleano. True caso houver ou False caso contrário.
-        '''
+        """
 
         lista_de_arestas = self.A.values()
 
@@ -169,10 +172,10 @@ class Grafo:
     # 2-c) Há grafo paralelas? (Retorne True ou False)
     def ha_paralelas(self):
 
-        '''
+        """
         Verifica se há grafo paralelas (duas grafo partindo do mesmo vértice para outro vértice) no grafo.
         :return: Valor booleano. True caso houver ou False caso contrário.
-        '''
+        """
 
         # Variáveis iniciais
         lista_de_arestas = self.A.values()
@@ -208,11 +211,11 @@ class Grafo:
     # 2-d) Qual o grau de um vértice arbitrário?
     def grau(self, v):
 
-        '''
+        """
         Verifica o grau de um determinado vértice (passado como argumento desta função) do objeto grafo.
         :param v: Vértice na qual procura-se o grau.
         :return: Valor Inteiro, indicando o grau do vértice do parâmetro.
-        '''
+        """
 
         # Variável que armazena a lista de grafo&vértices do grafo/objeto
         lista_de_arestas = self.A.values()
@@ -237,11 +240,11 @@ class Grafo:
     # 2-e) Quais grafo incidem sobre um vértice N arbitrário?
     def arestas_sobre_vertice(self, vertice):
 
-        '''
+        """
         Verifica todas as grafo que incidem sobre o vértice passado como argumento da função
         :param vertice: Vértice em questão
         :return: Uma lista com todas as grafo
-        '''
+        """
 
         # Lista que armazena as grafo
         lista_de_arestas = []
@@ -265,10 +268,10 @@ class Grafo:
     # 2-f) Esse grafo é completo?
     def eh_completo(self):
 
-        '''
+        """
         Verifica se o grafo objeto é completo, analisando as combinações de grafo.
         :return: Valor Booleano. True se for verdadeiro, ou False caso contrário.
-        '''
+        """
 
         # Variáveis iniciais
         lista_de_vertices = self.N
@@ -329,22 +332,21 @@ class Grafo:
     # ---
 
     '''
-    - Soluções do Roteiro 2, Inicio -
+    - Solução do Roteiro 2, Inicio -
     (Copyright © Guilherme Esdras 2019.2)
     '''
 
-    def __DFS_Auxiliar(self, grafo, vertice, verificados):
+    def __DFS_Auxiliar(self, vertice, verificados):
 
-        '''
+        """
         Função auxiliar à DFS que percorre o grafo recursivamente verificando se os vértices e arestas vizinhos já foram
         verificados, e em caso negativo, adicionando-os a lista de retorno, que representa a árvore DFS.
-        :param grafo: Um dicionário de vértices/arestas representando o grafo.
         :param vertice: O vértice a ser verificado.
         :param verificados: A lista que representa a árvore DFS que será retornada pela função principal.
         :return: Uma lista representando a árvore DFS.
-        '''
+        """
 
-        for g in grafo:
+        for g in self.A.items():
 
             # g = ('a1', 'X-Y')
             # g[0] = aresta ('a1')
@@ -365,7 +367,7 @@ class Grafo:
                     verificados.append(g[0])
                     verificados.append(g[1][2])
                     # e percorre o grafo recursivamente em busca das instâncias deste mesmo vértice na "posição 1".
-                    self.__DFS_Auxiliar(grafo, g[1][2], verificados)
+                    self.__DFS_Auxiliar(g[1][2], verificados)
 
             # Se o vértice do parâmetro for igual ao vértice 2...
             elif g[1][2] == vertice:
@@ -380,25 +382,100 @@ class Grafo:
                     verificados.append(g[0])
                     verificados.append(g[1][0])
                     # e percorre o grafo recursivamente em busca das instâncias deste mesmo vértice na "posição 1".
-                    self.__DFS_Auxiliar(grafo, g[1][0], verificados)
+                    self.__DFS_Auxiliar(g[1][0], verificados)
 
         return verificados
 
     def DFS(self, vertice_raiz):
 
-        '''
+        """
         Função DFS principal que retorna uma Árvore DFS do Grafo/objeto.
         :param vertice_raiz: Vértice/raiz. Ponto de partida da busca.
         :return: Uma lista representando a Árvore DFS do Grafo.
-        '''
+        """
 
-        # Dicionário de itens (arestas e vértices) do Grafo/objeto
-        grafo = self.A.items()
-
-        return self.__DFS_Auxiliar(grafo, vertice_raiz, [])
+        # Retorna o resultado da função auxiliar recursiva, onde é passado como argumento:
+        # o Vértice Raiz e uma Lista vazia que será a Árvore DFS retornada.
+        return self.__DFS_Auxiliar(vertice_raiz, [])
 
     '''
-    - Soluções do Roteiro 2, Fim -
+    - Solução do Roteiro 2, Fim -
+    (Copyright © Guilherme Esdras 2019.2)
+    '''
+
+    ###
+
+    '''
+    - Soluções do Roteiro 3, Inicio -
+    (Copyright © Guilherme Esdras 2019.2)
+    '''
+
+    # EM CONSTRUÇÃO... #
+
+    def haCiclo(self):
+
+        """
+        Verifica se há um ciclo no objeto grafo.
+        :return: Uma lista com a sequência de vértices e arestas do ciclo, caso houver, ou False caso contrário.
+        """
+        return False
+
+    def __encontraCaminhoAux(self, n, v, cont=0, caminho=None, proibido=None):
+
+        if proibido is None:
+            proibido = []
+        if caminho is None:
+            caminho = []
+
+        for g in self.A.items():
+
+            # g = ('a1', 'X-Y')
+            # g[0] = aresta ('a1')
+            # g[1] = vertices ('X-Y')
+            # g[1][0] = vertice 1
+            # g[1][2] = vertice 2
+
+            if g[1][0] == v:
+                if g[0] not in caminho or g[0] not in proibido:
+                    caminho.append(g[1][0])  # Adiciona vértice 1
+
+                if cont == n:
+                    return caminho
+
+                if g[0] not in caminho or g[0] not in proibido:
+                    caminho.append(g[0])  # Adiciona aresta
+                    caminho.append(g[1][2])  # Adiciona vértice 2
+                    cont += 1  # Incrementa o contador
+                    self.__encontraCaminhoAux(n, g[1][2], cont, caminho, proibido)
+
+        return caminho
+
+    def encontraCaminho(self, n):
+
+        """
+        Verifica se há um caminho de tamanho n no objeto grafo.
+        :param n: Comprimento do caminho a ser buscado.
+        :return: Uma lista com a sequência de vértices e arestas do caminho encontrado.
+        """
+
+        import random
+        vertice = random.choice(self.N)
+        caminho_final = self.__encontraCaminhoAux(n, vertice, 0, [])
+
+        # Caso contrário, retorna Falso pois não há um caminho de tal comprimento
+        return False
+
+    def ehConexo(self):
+
+        """
+        Verifica se o objeto grafo é conexo.
+        :return: Valor Booleano. True se for, False se não for.
+        """
+
+        return True
+
+    '''
+    - Soluções do Roteiro 3, Fim -
     (Copyright © Guilherme Esdras 2019.2)
     '''
 
