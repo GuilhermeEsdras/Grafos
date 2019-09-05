@@ -10,8 +10,9 @@ ex_arestas = {
     '17': 'B-E'
 }
 grafo_ex = Grafo(ex_vertices, ex_arestas)
-print('grafo_ex {} um caminho entre E e I'.format(
-    'possui' if grafo_ex.caminho_dois_vertices('E', 'I') else 'não possui'))
+v1, v2 = 'A', 'A'
+print('grafo_ex {} um caminho entre '.format('possui' if grafo_ex.caminho_dois_vertices(v1, v2) else 'não possui')
+      + v1 + ' e ' + v2)
 print('grafo_ex {} conexo'.format('é' if grafo_ex.conexo() else 'não é'))
 
 ##
@@ -30,3 +31,8 @@ grafo_desconexo = Grafo([
 })
 print('grafo_conexo {} conexo'.format('é' if grafo_conexo.conexo() else 'não é'))
 print('grafo_desconexo {} conexo'.format('é' if grafo_desconexo.conexo() else 'não é'))
+
+print(grafo_conexo.caminho(2))
+print(grafo_ex.caminho(6))
+print(grafo_ex.caminho(7))
+print(grafo_ex.caminho(8))

@@ -135,6 +135,19 @@ class TestGrafo(unittest.TestCase):
         self.assertTrue(self.k4.eh_completo())
         self.assertTrue(self.k5.eh_completo())
 
+    def test_caminho_dois_vertices(self):
+        self.assertTrue(self.grafo_ex_conexo.caminho_dois_vertices('A', 'A'))
+        self.assertTrue(self.grafo_ex_conexo.caminho_dois_vertices('G', 'C'))
+        self.assertTrue(self.grafo_ex_conexo.caminho_dois_vertices('D', 'J'))
+        self.assertTrue(self.grafo_conexo.caminho_dois_vertices('1', '1'))
+        self.assertTrue(self.grafo_conexo.caminho_dois_vertices('5', '2'))
+        self.assertTrue(self.grafo_conexo.caminho_dois_vertices('7', '3'))
+
+        self.assertFalse(self.grafo_ex_desconexo.caminho_dois_vertices('A', 'M'))
+        self.assertFalse(self.grafo_ex_conexo.caminho_dois_vertices('A', 'X'))
+        self.assertFalse(self.grafo_ex_conexo.caminho_dois_vertices('Q', 'Z'))
+        self.assertFalse(self.grafo_desconexo.caminho_dois_vertices('2', '6'))
+
     def test_conexo(self):
         self.assertTrue(self.grafo_conexo.conexo())
         self.assertTrue(self.grafo_ex_conexo.conexo())
