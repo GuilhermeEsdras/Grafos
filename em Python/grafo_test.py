@@ -10,7 +10,7 @@ class TestGrafo(unittest.TestCase):
                          {'a1': 'J-C', 'a2': 'C-E', 'a3': 'C-E', 'a4': 'C-P', 'a5': 'C-P', 'a6': 'C-M', 'a7': 'C-T',
                           'a8': 'M-T', 'a9': 'T-Z'})
 
-        # Grafo da Paraíba sem grafo paralelas
+        # Grafo da Paraíba sem arestas paralelas
         self.g_p_sem_paralelas = Grafo(['J', 'C', 'E', 'P', 'M', 'T', 'Z'],
                                        {'a1': 'J-C', 'a3': 'C-E', 'a4': 'C-P', 'a6': 'C-M', 'a7': 'C-T', 'a8': 'M-T',
                                         'a9': 'T-Z'})
@@ -39,6 +39,22 @@ class TestGrafo(unittest.TestCase):
         self.k5 = Grafo(['A', 'B', 'C', 'D', 'E'],
                         {'a1': 'A-B', 'a2': 'B-C', 'a3': 'C-D', 'a4': 'D-E', 'a5': 'E-A',
                          'a6': 'A-C', 'a7': 'A-D', 'a8': 'B-D', 'a9': 'E-C', 'a10': 'E-B'})
+
+        # Grafo's DesConexo's
+        self.grafo_conexo = Grafo(['1', '2', '3', '5', '6', '7'],
+                                  {'a1': '1-2', 'a2': '2-3', 'a3': '1-5', 'a4': '2-6', 'a5': '3-7'})
+        self.grafo_desconexo = Grafo(['1', '2', '3', '5', '6', '7'],
+                                     {'a1': '1-2', 'a2': '2-3', 'a3': '1-5', 'a4': '3-7'})
+        self.grafo_ex_conexo = Grafo(['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K'],
+                                     {'1': 'A-B', '2': 'A-G', '3': 'A-J', '4': 'G-K', '5': 'K-J', '6': 'J-G',
+                                      '7': 'J-I', '8': 'I-G', '9': 'G-H', '10': 'H-F', '11': 'F-B', '12': 'G-B',
+                                      '13': 'B-C', '14': 'C-D', '15': 'E-D', '16': 'B-D', '17': 'B-E'})
+        self.grafo_ex_desconexo = Grafo(['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K',
+                                         'L', 'M', 'N'],
+                                        {'1': 'A-B', '2': 'A-G', '3': 'A-J', '4': 'G-K', '5': 'K-J', '6': 'J-G',
+                                         '7': 'J-I', '8': 'I-G', '9': 'G-H', '10': 'H-F', '11': 'F-B', '12': 'G-B',
+                                         '13': 'B-C', '14': 'C-D', '15': 'E-D', '16': 'B-D', '17': 'B-E',
+                                         '18': 'L-M', '19': 'M-N', '20': 'N-L'})
 
     def test_vertices_nao_adjacentes(self):
         self.assertEqual(self.g_p.vertices_nao_adjacentes(), ['J-J', 'J-E', 'J-P', 'J-M', 'J-T', 'J-Z', 'C-C', 'C-Z',
@@ -118,3 +134,9 @@ class TestGrafo(unittest.TestCase):
         self.assertTrue(self.k3.eh_completo())
         self.assertTrue(self.k4.eh_completo())
         self.assertTrue(self.k5.eh_completo())
+
+    def test_conexo(self):
+        self.assertTrue(self.grafo_conexo.conexo())
+        self.assertTrue(self.grafo_ex_conexo.conexo())
+        self.assertFalse(self.grafo_desconexo.conexo())
+        self.assertFalse(self.grafo_ex_desconexo.conexo())

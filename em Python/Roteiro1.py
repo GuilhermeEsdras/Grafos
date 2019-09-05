@@ -1,14 +1,23 @@
 from grafo import Grafo
-from grafo_test import TestGrafo
 
-vertices = ['J', 'C', 'E', 'P', 'M', 'T', 'Z']
-arestas = {
-    'a1': 'J-C', 'a2': 'C-E', 'a3': 'C-E',
-    'a4': 'C-P', 'a5': 'C-P', 'a6': 'C-M',
-    'a7': 'C-T', 'a8': 'M-T', 'a9': 'T-Z'
-}
-
-paraiba = Grafo(vertices, arestas)
+paraiba = Grafo()
+paraiba.adicionaVertice('V')
+paraiba.adicionaVertice('J')
+paraiba.adicionaVertice('C')
+paraiba.adicionaVertice('E')
+paraiba.adicionaVertice('P')
+paraiba.adicionaVertice('M')
+paraiba.adicionaVertice('T')
+paraiba.adicionaVertice('Z')
+paraiba.adicionaAresta('a1', 'J-C')
+paraiba.adicionaAresta('a2', 'C-E')
+paraiba.adicionaAresta('a3', 'C-E')
+paraiba.adicionaAresta('a4', 'C-P')
+paraiba.adicionaAresta('a5', 'C-P')
+paraiba.adicionaAresta('a6', 'C-M')
+paraiba.adicionaAresta('a7', 'C-T')
+paraiba.adicionaAresta('a8', 'M-T')
+paraiba.adicionaAresta('a9', 'T-Z')
 
 print("Grafo da Paraíba:")
 print('Vértices (N): ', paraiba.N)

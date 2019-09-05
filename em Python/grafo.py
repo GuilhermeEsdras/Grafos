@@ -1,6 +1,3 @@
-import this
-
-
 class VerticeInvalidoException(Exception):
     pass
 
@@ -13,14 +10,20 @@ class Grafo:
 
     QTDE_MAX_SEPARADOR = 1
     SEPARADOR_ARESTA = '-'
+    caminhoContador = 0
 
-    def __init__(self, N=[], A={}):
-        '''
+    def __init__(self, N=None, A=None):
+        """
         Constrói um objeto do tipo Grafo. Se nenhum parâmetro for passado, cria um Grafo vazio.
         Se houver alguma aresta ou algum vértice inválido, uma exceção é lançada.
         :param N: Uma lista dos vértices (ou nodos) do grafo.
-        :param V: Uma dicionário que guarda as grafo do grafo. A chave representa o nome da aresta e o valor é uma string que contém dois vértices separados por um traço.
-        '''
+        :param A: Uma dicionário que guarda as grafo do grafo. A chave representa o nome da aresta e o valor é uma string que contém dois vértices separados por um traço.
+        """
+        if A is None:
+            A = {}
+        if N is None:
+            N = []
+
         for v in N:
             if not(Grafo.verticeValido(v)):
                 raise VerticeInvalidoException('O vértice ' + v + ' é inválido')
@@ -34,7 +37,7 @@ class Grafo:
         self.A = A
 
     def arestaValida(self, aresta=''):
-        '''
+        """
         Verifica se uma aresta passada como parâmetro está dentro do padrão estabelecido.
         Uma aresta é representada por um string com o formato a-b, onde:
         a é um substring de aresta que é o nome de um vértice adjacente à aresta.
@@ -43,7 +46,7 @@ class Grafo:
         Além disso, uma aresta só é válida se conectar dois vértices existentes no grafo.
         :param aresta: A aresta que se quer verificar se está no formato correto.
         :return: Um valor booleano que indica se a aresta está no formato correto.
-        '''
+        """
 
         # Não pode haver mais de um caractere separador
         if aresta.count(Grafo.SEPARADOR_ARESTA) != Grafo.QTDE_MAX_SEPARADOR:
@@ -64,28 +67,28 @@ class Grafo:
 
     @classmethod
     def verticeValido(self, vertice=''):
-        '''
+        """
         Verifica se um vértice passado como parâmetro está dentro do padrão estabelecido.
         Um vértice é um string qualquer que não pode ser vazio e nem conter o caractere separador.
         :param vertice: Um string que representa o vértice a ser analisado.
         :return: Um valor booleano que indica se o vértice está no formato correto.
-        '''
+        """
         return vertice != '' and vertice.count(Grafo.SEPARADOR_ARESTA) == 0
 
     def existeVertice(self, vertice=''):
-        '''
+        """
         Verifica se um vértice passado como parâmetro pertence ao grafo.
         :param vertice: O vértice que deve ser verificado.
         :return: Um valor booleano que indica se o vértice existe no grafo.
-        '''
+        """
         return Grafo.verticeValido(vertice) and self.N.count(vertice) > 0
 
     def existeAresta(self, aresta=''):
-        '''
+        """
         Verifica se uma aresta passada como parâmetro pertence ao grafo.
         :param aresta: A aresta a ser verificada
         :return: Um valor booleano que indica se a aresta existe no grafo.
-        '''
+        """
         existe = False
         if Grafo.arestaValida(self, aresta):
             for k in self.A:
@@ -95,22 +98,23 @@ class Grafo:
         return existe
 
     def adicionaVertice(self, v):
-        '''
+        """
         Adiciona um vértice no Grafo caso o vértice seja válido e não exista outro vértice com o mesmo nome
         :param v: O vértice a ser adicionado
         :raises: VerticeInvalidoException se o vértice passado como parâmetro não puder ser adicionado
-        '''
+        """
         if self.verticeValido(v) and not self.existeVertice(v):
             self.N.append(v)
         else:
             raise VerticeInvalidoException('O vértice ' + v + ' é inválido')
 
     def adicionaAresta(self, nome, a):
-        '''
+        """
         Adiciona uma aresta no Grafo caso a aresta seja válida e não exista outra aresta com o mesmo nome
-        :param v: A aresta a ser adicionada
+        :param nome: O nome da aresta a ser adicionada
+        :param a: Os vértices que a aresta interliga separados pelo separador de arestas
         :raises: ArestaInvalidaException se a aresta passada como parâmetro não puder ser adicionada
-        '''
+        """
         if self.arestaValida(a):
             self.A[nome] = a
         else:
@@ -220,7 +224,7 @@ class Grafo:
         # Variável que armazena a lista de grafo&vértices do grafo/objeto
         lista_de_arestas = self.A.values()
 
-        # Variável contador auxiliar que armazenará o grau do vértice v
+        # Variável contador auxiliar que armazenará o grau do vértice verticeParam
         grau = 0
 
         # Para cada um dos conjuntos de vértices (valores) da lista de grafo do objeto/grafo (dicionário)...
@@ -234,7 +238,7 @@ class Grafo:
                 # Incrementa o "contador de grau"
                 grau += 1
 
-        # Retorna o grau do vértice v
+        # Retorna o grau do vértice verticeParam
         return grau
 
     # 2-e) Quais grafo incidem sobre um vértice N arbitrário?
@@ -412,20 +416,26 @@ class Grafo:
 
     # EM CONSTRUÇÃO... #
 
-    def haCiclo(self):
+    def ha_ciclo(self):
 
         """
         Verifica se há um ciclo no objeto grafo.
         :return: Uma lista com a sequência de vértices e arestas do ciclo, caso houver, ou False caso contrário.
         """
+
         return False
 
-    def __encontraCaminhoAux(self, n, v, cont=0, caminho=None, proibido=None):
+    def __caminhoAux(self, n, verticeParam, caminho=[], proibidos=[]):
 
-        if proibido is None:
-            proibido = []
-        if caminho is None:
-            caminho = []
+        """
+        Função auxiliar à função caminho. Percorre o grafo recursivamente verificando se há um caminho de tamanho n, e,
+        em caso positivo, retorna uma lista contendo a sequencia de vértices e arestas com tamanho n do Grafo.
+        :param n: Tamanho do caminho
+        :param verticeParam: Vértice raiz usado como ponto de partida para a função
+        :param caminho: Lista com o caminho de tamanho n
+        :param proibidos: Lista contendo vértices e arestas na qual a verificação não pode acontecer
+        :return: Uma Lista com o caminho de tamanho n ou um valor Booleano False caso não haja caminho de tal tamanho.
+        """
 
         for g in self.A.items():
 
@@ -435,22 +445,31 @@ class Grafo:
             # g[1][0] = vertice 1
             # g[1][2] = vertice 2
 
-            if g[1][0] == v:
-                if g[0] not in caminho or g[0] not in proibido:
-                    caminho.append(g[1][0])  # Adiciona vértice 1
+            aresta = g[0]
+            vertice1 = g[1][0]
+            vertice2 = g[1][2]
 
-                if cont == n:
-                    return caminho
+            if self.caminhoContador < n:
+                if vertice1 == verticeParam:
+                    if vertice1 not in caminho and vertice1 not in proibidos:
+                        caminho.append(vertice1)
+                    if aresta not in caminho and aresta not in proibidos:
+                        caminho.append(aresta)
+                        self.caminhoContador += 1
+                        if vertice2 not in caminho and vertice2 not in proibidos:
+                            caminho.append(vertice2)
+                            self.__caminhoAux(n, vertice2, caminho, proibidos)
+                        else:
+                            proibidos.append(caminho.pop())  # Adiciona a aresta em proibidos e remove da lista
+                            self.caminhoContador -= 1
+                            self.__caminhoAux(n, vertice2, caminho, proibidos)
 
-                if g[0] not in caminho or g[0] not in proibido:
-                    caminho.append(g[0])  # Adiciona aresta
-                    caminho.append(g[1][2])  # Adiciona vértice 2
-                    cont += 1  # Incrementa o contador
-                    self.__encontraCaminhoAux(n, g[1][2], cont, caminho, proibido)
 
-        return caminho
+            else:
+                return caminho
+        return False
 
-    def encontraCaminho(self, n):
+    def caminho(self, n):
 
         """
         Verifica se há um caminho de tamanho n no objeto grafo.
@@ -460,18 +479,98 @@ class Grafo:
 
         import random
         vertice = random.choice(self.N)
-        caminho_final = self.__encontraCaminhoAux(n, vertice, 0, [])
+        # caminho_final = self.__caminhoAux(n, vertice, 0, [])
+        caminho_final = self.__caminhoAux(n, 'A', [], [])
+        self.caminhoContador = 0
 
         # Caso contrário, retorna Falso pois não há um caminho de tal comprimento
-        return False
+        return caminho_final
 
-    def ehConexo(self):
+    def caminho_dois_vertices(self, x, y):
+
+        """
+        Função que verifica se há um caminho entre dois vértices.
+        :param x: Vértice 1.
+        :param y: Vértice 2.
+        :return: Valor booleano. True se há, False caso contrário.
+        """
+        grafo = self.A.items()
+        lista_de_vertices = self.N
+
+        if x not in lista_de_vertices or y not in lista_de_vertices:
+            return False
+
+        caminho = []
+        vertices_proibidos = []
+        arestas_proibidas = []
+        vertice_a_ser_buscado = None
+        while True:
+            if vertice_a_ser_buscado is None:
+                vertice_a_ser_buscado = x
+
+            if len(caminho) > 0 and caminho[0] == x and caminho[-1] == y:
+                return True
+
+            encontrou = False
+            for item in grafo:
+                aresta = item[0]
+                vertice1 = item[1][0]
+                vertice2 = item[1][2]
+                if vertice1 == vertice_a_ser_buscado:
+                    if vertice1 not in caminho and vertice1 not in vertices_proibidos:
+                        caminho.append(vertice1)
+                        encontrou = True
+                    if aresta not in caminho and aresta not in arestas_proibidas:
+                        caminho.append(aresta)
+                        if vertice2 not in caminho and vertice2 not in vertices_proibidos:
+                            caminho.append(vertice2)
+                            vertice_a_ser_buscado = vertice2
+                            encontrou = True
+                            break
+                        else:
+                            arestas_proibidas.append(caminho.pop())
+
+            if not encontrou:
+                for item in grafo:
+                    aresta = item[0]
+                    vertice1 = item[1][0]
+                    vertice2 = item[1][2]
+                    if vertice2 == vertice_a_ser_buscado:
+                        if vertice2 not in caminho and vertice2 not in vertices_proibidos:
+                            caminho.append(vertice2)
+                            encontrou = True
+                        if aresta not in caminho and aresta not in arestas_proibidas:
+                            caminho.append(aresta)
+                            if vertice1 not in caminho and vertice1 not in vertices_proibidos:
+                                caminho.append(vertice1)
+                                vertice_a_ser_buscado = vertice1
+                                encontrou = True
+                                break
+                            else:
+                                arestas_proibidas.append(caminho.pop())
+
+            if not encontrou:
+                if len(caminho) > 1:
+                    vertices_proibidos.append(caminho.pop())
+                    arestas_proibidas.append(caminho.pop())
+                    vertice_a_ser_buscado = caminho[-1]
+                else:
+                    return False
+
+    def conexo(self):
 
         """
         Verifica se o objeto grafo é conexo.
         :return: Valor Booleano. True se for, False se não for.
         """
 
+        lista_de_vertices = self.N
+
+        for vertice1 in lista_de_vertices:
+            for vertice2 in lista_de_vertices:
+                if vertice1 != vertice2:
+                    if not self.caminho_dois_vertices(vertice1, vertice2):
+                        return False
         return True
 
     '''

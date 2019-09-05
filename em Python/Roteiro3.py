@@ -1,16 +1,4 @@
 from grafo import Grafo
-
-PB_vertices = ['J', 'C', 'E', 'P', 'M', 'T', 'Z']
-PB_arestas = {
-    'a1': 'J-C', 'a2': 'C-E', 'a3': 'C-E',
-    'a4': 'C-P', 'a5': 'C-P', 'a6': 'C-M',
-    'a7': 'C-T', 'a8': 'M-T', 'a9': 'T-Z'
-}
-paraiba = Grafo(PB_vertices, PB_arestas)
-print(paraiba.encontraCaminho(4))
-
-###
-
 ex_vertices = ['A', 'B', 'C', 'D', 'E',
                'F', 'G', 'H', 'I', 'J',
                'K']
@@ -22,4 +10,23 @@ ex_arestas = {
     '17': 'B-E'
 }
 grafo_ex = Grafo(ex_vertices, ex_arestas)
-print(grafo_ex.encontraCaminho(4))
+print('grafo_ex {} um caminho entre E e I'.format(
+    'possui' if grafo_ex.caminho_dois_vertices('E', 'I') else 'não possui'))
+print('grafo_ex {} conexo'.format('é' if grafo_ex.conexo() else 'não é'))
+
+##
+
+grafo_conexo = Grafo([
+    '1', '2', '3', '5', '6', '7'
+], {
+    'a1': '1-2', 'a2': '2-3', 'a3': '1-5',
+    'a4': '2-6', 'a5': '3-7'
+})
+grafo_desconexo = Grafo([
+    '1', '2', '3', '5', '6', '7'
+], {
+    'a1': '1-2', 'a2': '2-3', 'a3': '1-5',
+    'a4': '3-7'
+})
+print('grafo_conexo {} conexo'.format('é' if grafo_conexo.conexo() else 'não é'))
+print('grafo_desconexo {} conexo'.format('é' if grafo_desconexo.conexo() else 'não é'))
