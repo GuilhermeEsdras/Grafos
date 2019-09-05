@@ -483,17 +483,18 @@ class Grafo:
         :return: Uma lista com a sequência de vértices e arestas do ciclo, caso houver, ou False caso contrário.
         """
 
-        ha_laco = self.__ciclo_aux()
-        caminho_laco = []
-        inicio = False
-        if ha_laco:
-            for item in ha_laco:
-                if item == ha_laco[-1]:
-                    inicio = True
-                if inicio:
-                    caminho_laco.append(item)
-            return caminho_laco
-        return False
+        ha_ciclo = self.__ciclo_aux()  # Variável que vai guardar: ou uma Lista com o ciclo ou False
+        caminho_ciclo = []  # Sequência de vértices e arestas do ciclo
+        inicio_do_ciclo = False  # Marcador de início do ciclo na lista ha_ciclo
+        if ha_ciclo:  # Se a variável ha_ciclo não estiver com valor falso e sim com a lista contendo o ciclo...
+            for item in ha_ciclo:  # Percorre os items da lista em busca do primeiro elemento parecido com o último
+                if item == ha_ciclo[-1]:  # Ao encontrar...
+                    inicio_do_laco = True  # Marca como o Início do Ciclo
+                if inicio_do_ciclo:
+                    # E então começa adicionar os elementos a lista do caminho do ciclo
+                    caminho_ciclo.append(item)
+            return caminho_ciclo  # e retorna o caminho
+        return False  # Caso a função ciclo_aux retorne falso, armazena falso na variável ha_ciclo
 
     def caminho_dois_vertices(self, x, y):
 
@@ -592,12 +593,14 @@ class Grafo:
 
         lista_de_vertices = self.N  # Lista de vértices do grafo
 
+        # Loop que verifica o tamanho entre todos os vértices do grafo e compara com o tamanho n do parâmetro.
         for vertice1 in lista_de_vertices:
             for vertice2 in lista_de_vertices:
                 caminho = self.caminho_dois_vertices(vertice1, vertice2)
+                # Se por acaso existir um caminho de tamanho...
                 if n * 2 + 1 == len(caminho):
-                    return caminho
-        return False
+                    return caminho  # retorna-o
+        return False  # Ou falso caso contrário.
 
     def conexo(self):
 
