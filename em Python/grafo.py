@@ -119,7 +119,7 @@ class Grafo:
         else:
             ArestaInvalidaException('A aresta ' + self.A[a] + ' é inválida')
 
-    ###
+    # ---
 
     '''
     - Soluções do Roteiro 1, Inicio -
@@ -406,14 +406,75 @@ class Grafo:
     (Copyright © Guilherme Esdras 2019.2)
     '''
 
-    ###
+    # ---
 
     '''
     - Soluções do Roteiro 3, Inicio -
     (Copyright © Guilherme Esdras 2019.2)
     '''
 
-    # EM CONSTRUÇÃO... #
+    def __ciclo_aux(self):
+        """
+        Função auxiliar de ha_ciclo, semelhante a função de busca de caminho entre dois vértices, que encerra ao
+        encontrar um laço no grafo.
+        :return:
+        """
+        grafo = self.A.items()  # Dicionário do grafo contendo a aresta como chave e a ligação de vértices como valor
+        lista_de_vertices = self.N  # Lista de vértices do grafo
+
+        import random  # Biblioteca auxiliar que irá definir o vértice a ser usado como raiz inicialmente
+
+        caminho = []  # Lista final contendo um caminho que possui um laço
+        vertices_proibidos = []  # Lista com os vértices na qual a busca deve desconsiderar
+        arestas_proibidas = []  # Lista com as arestas na qual a busca deve desconsiderar
+        vertice_a_ser_buscado = random.choice(lista_de_vertices)  # Vértice a ser buscado
+        while True:
+            encontrou = False  # Variável auxiliar que indica se irá buscar o vertice_a_ser_buscado no segundo loop
+
+            for item in grafo:
+                aresta = item[0]
+                vertice1 = item[1][0]
+                vertice2 = item[1][2]
+                if vertice1 == vertice_a_ser_buscado:
+                    if vertice1 not in caminho and vertice1 not in vertices_proibidos:
+                        caminho.append(vertice1)
+                    if aresta not in caminho and aresta not in arestas_proibidas:
+                        caminho.append(aresta)
+                        if vertice2 not in caminho and vertice2 not in vertices_proibidos:
+                            caminho.append(vertice2)
+                            vertice_a_ser_buscado = vertice2
+                            encontrou = True
+                            break
+                        else:
+                            caminho.append(vertice2)
+                            return caminho
+
+            if not encontrou:
+                for item in grafo:
+                    aresta = item[0]
+                    vertice1 = item[1][0]
+                    vertice2 = item[1][2]
+                    if vertice2 == vertice_a_ser_buscado:
+                        if vertice2 not in caminho and vertice2 not in vertices_proibidos:
+                            caminho.append(vertice2)
+                        if aresta not in caminho and aresta not in arestas_proibidas:
+                            caminho.append(aresta)
+                            if vertice1 not in caminho and vertice1 not in vertices_proibidos:
+                                caminho.append(vertice1)
+                                vertice_a_ser_buscado = vertice1
+                                encontrou = True
+                                break
+                            else:
+                                caminho.append(vertice1)
+                                return caminho
+
+            if not encontrou:
+                if len(caminho) > 1:
+                    vertices_proibidos.append(caminho.pop())
+                    arestas_proibidas.append(caminho.pop())
+                    vertice_a_ser_buscado = caminho[-1]
+                else:
+                    return False
 
     def ha_ciclo(self):
 
@@ -422,84 +483,17 @@ class Grafo:
         :return: Uma lista com a sequência de vértices e arestas do ciclo, caso houver, ou False caso contrário.
         """
 
-        return
-
-    def caminho(self, n):
-
-        """
-        Verifica se há um caminho de tamanho n no objeto grafo.
-        :param n: Comprimento do caminho a ser buscado.
-        :return: Uma lista com a sequência de vértices e arestas do caminho encontrado.
-        """
-        import random
-        grafo = self.A.items()  # Dicionário do grafo contendo a aresta como chave e a ligação de vértices como valor
-        lista_de_vertices = self.N  # Lista de vértices do grafo
-
-        caminho = []  # Lista com o caminho entre os dois vértices
-        vertices_proibidos = []  # Lista com os vértices na qual a busca deve desconsiderar
-        arestas_proibidas = []  # Lista com as arestas na qual a busca deve desconsiderar
-        vertice_a_ser_buscado = random.choice(lista_de_vertices)  # Vértice a ser buscado
-        while True:
-            if n*2+1 == len(caminho):
-                return caminho
-
-            else:
-                encontrou = False  # Variável auxiliar que indica se irá buscar o vertice_a_ser_buscado no segundo loop
-                # A primeira busca ocorre neste loop, verificando se encontra o vertice_a_ser_buscado nos vértices 1
-                for item in grafo:
-                    aresta = item[0]
-                    vertice1 = item[1][0]
-                    vertice2 = item[1][2]
-                    if vertice1 == vertice_a_ser_buscado:
-                        if vertice1 not in caminho and vertice1 not in vertices_proibidos:
-                            caminho.append(vertice1)
-                        if aresta not in caminho and aresta not in arestas_proibidas:
-                            caminho.append(aresta)
-                            if vertice2 not in caminho and vertice2 not in vertices_proibidos:
-                                caminho.append(vertice2)
-                                vertice_a_ser_buscado = vertice2
-                                encontrou = True
-                                break
-                            else:
-                                arestas_proibidas.append(caminho.pop())
-
-                if not encontrou:
-                    # Caso o vértice não seja encontrado no primeiro loop e a variável auxiliar ainda estiver com valor
-                    # falso, busca neste segundo loop verificando os vértices 2
-                    for item in grafo:
-                        aresta = item[0]
-                        vertice1 = item[1][0]
-                        vertice2 = item[1][2]
-                        if vertice2 == vertice_a_ser_buscado:
-                            if vertice2 not in caminho and vertice2 not in vertices_proibidos:
-                                caminho.append(vertice2)
-                            if aresta not in caminho and aresta not in arestas_proibidas:
-                                caminho.append(aresta)
-                                if vertice1 not in caminho and vertice1 not in vertices_proibidos:
-                                    caminho.append(vertice1)
-                                    vertice_a_ser_buscado = vertice1
-                                    encontrou = True
-                                    break
-                                else:
-                                    arestas_proibidas.append(caminho.pop())
-
-                # Se por acaso nenhum dos dois loops encontrar o vértice a ser buscado é porque este caminho não é
-                # viável, então...
-                if not encontrou:
-
-                    # Caso o caminho seja maior que 2 elementos...
-                    if len(caminho) > 1:
-                        # Adiciona o último vértice e a última aresta encontrados na lista de proibidos,
-                        vertices_proibidos.append(caminho.pop())
-                        arestas_proibidas.append(caminho.pop())
-                        vertice_a_ser_buscado = caminho[-1]
-                        # e inicia a busca no penúltimo vértice encontrado, porém, em um caminho diferente, já que
-                        # as listas de vértices e arestas proibidos foram atualizadas.
-
-                    # Caso todos os caminhos possiveis entre os dois vertices tenham sido buscados e as listas de
-                    # proibidos estejam cheias, é porque não existe caminho de tamanho n, então...
-                    else:
-                        return False  # Retorna False
+        ha_laco = self.__ciclo_aux()
+        caminho_laco = []
+        inicio = False
+        if ha_laco:
+            for item in ha_laco:
+                if item == ha_laco[-1]:
+                    inicio = True
+                if inicio:
+                    caminho_laco.append(item)
+            return caminho_laco
+        return False
 
     def caminho_dois_vertices(self, x, y):
 
@@ -525,7 +519,8 @@ class Grafo:
             if len(caminho) > 0 and caminho[0] == x and caminho[-1] == y:
                 # Se a lista contendo o caminho não estiver vazia e o primeiro elemento dela for igual ao x do parâmetro
                 # e o último for igual ao y do parâmetro...
-                return True  # retorna True pois encontrou um caminho entre os dois.
+                return caminho
+                # return True  # retorna True pois encontrou um caminho entre os dois.
 
             else:  # Caso contrário, continua a busca pois ainda não encontrou um caminho entre os dois
 
@@ -586,6 +581,23 @@ class Grafo:
                     # proibidos estejam cheias, é porque não existe caminho entre os dois, então...
                     else:
                         return False  # Retorna False
+
+    def caminho(self, n):
+
+        """
+        Verifica se há um caminho de tamanho n no objeto grafo.
+        :param n: Comprimento do caminho a ser buscado.
+        :return: Uma lista com a sequência de vértices e arestas do caminho encontrado.
+        """
+
+        lista_de_vertices = self.N  # Lista de vértices do grafo
+
+        for vertice1 in lista_de_vertices:
+            for vertice2 in lista_de_vertices:
+                caminho = self.caminho_dois_vertices(vertice1, vertice2)
+                if n * 2 + 1 == len(caminho):
+                    return caminho
+        return False
 
     def conexo(self):
 

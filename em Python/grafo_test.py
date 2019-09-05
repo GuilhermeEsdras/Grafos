@@ -130,10 +130,18 @@ class TestGrafo(unittest.TestCase):
         self.assertFalse((self.g_l3.eh_completo()))
         self.assertTrue((self.g_l4.eh_completo()))
         self.assertTrue((self.g_l5.eh_completo()))
-
         self.assertTrue(self.k3.eh_completo())
         self.assertTrue(self.k4.eh_completo())
         self.assertTrue(self.k5.eh_completo())
+
+    def test_ha_ciclo(self):
+        self.assertTrue(self.grafo_ex_conexo.ha_ciclo())
+        self.assertTrue(self.grafo_ex_desconexo.ha_ciclo())
+        self.assertTrue(self.g_p.ha_ciclo())
+        self.assertTrue(self.g_p_sem_paralelas.ha_ciclo())
+        self.assertTrue(self.k4.ha_ciclo())
+        self.assertFalse(self.grafo_conexo.ha_ciclo())
+        self.assertFalse(self.grafo_desconexo.ha_ciclo())
 
     def test_caminho_dois_vertices(self):
         self.assertTrue(self.grafo_ex_conexo.caminho_dois_vertices('A', 'A'))
