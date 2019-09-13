@@ -336,7 +336,6 @@ class Grafo:
                                     qtd += 1
         return vertices_incidentes
 
-    # EM CONSTRUÇÃO #
     def eh_completo(self):
 
         """
