@@ -29,7 +29,8 @@ class TestGrafo(unittest.TestCase):
         self.g_p_sem_paralelas.adicionaAresta('T-Z')
 
         # Grafos completos
-        # self.g_c = Grafo(['J', 'C', 'E', 'P'], {'a1':'J-C', 'a3':'J-E', 'a4':'J-P', 'a6':'C-E', 'a7':'C-P', 'a8':'E-P'})
+        # self.g_c = Grafo(['J', 'C', 'E', 'P'],
+        # {'a1':'J-C', 'a3':'J-E', 'a4':'J-P', 'a6':'C-E', 'a7':'C-P', 'a8':'E-P'})
         self.g_c = Grafo(['J', 'C', 'E', 'P'])
         self.g_c.adicionaAresta('J-C')
         self.g_c.adicionaAresta('J-E')
@@ -117,10 +118,10 @@ class TestGrafo(unittest.TestCase):
     def test_arestas_sobre_vertice(self):
         # {'a1': 'J-C', 'a2': 'C-E', 'a3': 'C-E', 'a4': 'C-P', 'a5': 'C-P', 'a6': 'C-M', 'a7': 'C-T', 'a8': 'M-T',
         # 'a9': 'T-Z'}
-        self.assertEqual(set(self.g_p.arestas_sobre_vertice('J')), set(['J-C']))
+        self.assertEqual(set(self.g_p.arestas_sobre_vertice('J')), {'J-C'})
         self.assertEqual(set(self.g_p.arestas_sobre_vertice('C')),
-                         set(['J-C', 'C-E', 'C-E', 'C-P', 'C-P', 'C-M', 'C-T']))
-        self.assertEqual(set(self.g_p.arestas_sobre_vertice('M')), set(['C-M', 'M-T']))
+                         {'J-C', 'C-E', 'C-E', 'C-P', 'C-P', 'C-M', 'C-T'})
+        self.assertEqual(set(self.g_p.arestas_sobre_vertice('M')), {'C-M', 'M-T'})
 
     def test_eh_completo(self):
         self.assertFalse(self.g_p.eh_completo())

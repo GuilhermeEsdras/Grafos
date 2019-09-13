@@ -362,7 +362,7 @@ class Grafo:
                     if arestas > 1:
                         return False
                     else:
-                        n_de_arestas = arestas
+                        n_de_arestas += arestas
 
         if n_de_arestas == max_de_arestas or n_de_arestas == 2:
             return True

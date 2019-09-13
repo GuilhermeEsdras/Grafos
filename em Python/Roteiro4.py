@@ -18,3 +18,15 @@ paraiba.adicionaAresta('M-T')
 paraiba.adicionaAresta('T-Z')
 print(paraiba)
 print(paraiba.eh_completo())
+
+grafo_completo = Grafo(
+    ['J', 'C', 'E', 'P']
+)
+grafo_completo.adicionaAresta('J-C')
+grafo_completo.adicionaAresta('J-P')
+grafo_completo.adicionaAresta('J-E')
+grafo_completo.adicionaAresta('C-E')
+grafo_completo.adicionaAresta('C-P')
+grafo_completo.adicionaAresta('P-E')
+print(grafo_completo)
+print(grafo_completo.eh_completo())
