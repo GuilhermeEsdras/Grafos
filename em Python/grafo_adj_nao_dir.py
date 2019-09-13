@@ -226,8 +226,6 @@ class Grafo:
     (Copyright © Guilherme Esdras 2019.2)
     '''
 
-    # EM CONSTRUÇÃO #
-
     def vertices_nao_adjacentes(self):
 
         """
@@ -338,7 +336,37 @@ class Grafo:
                                     qtd += 1
         return vertices_incidentes
 
+    # EM CONSTRUÇÃO #
     def eh_completo(self):
+
+        """
+        Função que verifica se o grafo é completo. Analisando se a quantidade de arestas está dentro do permitido.
+        :return: Valor Booleano. True se for, False caso contrário
+        """
+        # Primeiro obtém-se a quantidade de vértices do grafo (n), para saber a quantidade máxima de arestas através do
+        # Teorema que diz que o número de arestas em um grafo completo é n(n-1)/2.
+        # Depois percorre a matriz verificando a quantidade de arestas do grafo.
+        # Caso não encontre nenhuma aresta paralela e a quantidade de arestas esteja de acordo com o número máximo de
+        # arestas permitidas para um grafo completo, retorna True. Caso contrário, retorna False
+
+        n = len(self.N)
+        if n == 1:
+            return True
+
+        max_de_arestas = (n * (n - 1)) // 2
+        n_de_arestas = 0
+
+        for lista_de_arestas in self.M:
+            for arestas in lista_de_arestas:
+                if arestas != '-':
+                    if arestas > 1:
+                        return False
+                    else:
+                        n_de_arestas = arestas
+
+        if n_de_arestas == max_de_arestas or n_de_arestas == 2:
+            return True
+
         return False
 
     '''

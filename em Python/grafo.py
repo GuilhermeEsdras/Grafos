@@ -272,7 +272,7 @@ class Grafo:
     def eh_completo(self):
 
         """
-        Verifica se o grafo objeto é completo, analisando as combinações de grafo.
+        Verifica se o grafo objeto é completo, analisando as combinações de arestas.
         :return: Valor Booleano. True se for verdadeiro, ou False caso contrário.
         """
 
@@ -285,7 +285,7 @@ class Grafo:
         if n == 1:
             return True
 
-        # Quantidade máxima de grafo permitidas em um grafo completo
+        # Quantidade máxima de arestas permitidas em um grafo completo
         max_de_arestas = (n * (n - 1)) // 2
 
         # Lista que armazenará as arestas verificadas
