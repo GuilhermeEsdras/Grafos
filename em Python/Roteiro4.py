@@ -1,5 +1,5 @@
 import random
-from grafo_adj_nao_dir import Grafo
+from Roteiro4__grafo_adj_nao_dir import Grafo
 
 # k3 = Grafo(['A', 'B', 'C'])
 # for aresta in ['A-B', 'B-C', 'C-A']:

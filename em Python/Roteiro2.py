@@ -1,4 +1,4 @@
-from grafo import Grafo
+from Roteiro3_2_1__grafo import Grafo
 
 PB_vertices = ['J', 'C', 'E', 'P', 'M', 'T', 'Z']
 PB_arestas = {

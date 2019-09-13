@@ -1,4 +1,4 @@
-from grafo import Grafo
+from Roteiro3_2_1__grafo import Grafo
 ex_vertices = ['A', 'B', 'C', 'D', 'E',
                'F', 'G', 'H', 'I', 'J',
                'K']
