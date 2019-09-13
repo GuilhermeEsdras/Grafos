@@ -17,7 +17,4 @@ paraiba.adicionaAresta('C-T')
 paraiba.adicionaAresta('M-T')
 paraiba.adicionaAresta('T-Z')
 print(paraiba)
-for ls in paraiba.M:
-    for i, v in enumerate(ls):
-        if v != '-' and v > 0:
-            print(paraiba.N[i])
+print(paraiba.arestas_sobre_vertice('C'))

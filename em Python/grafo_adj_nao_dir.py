@@ -229,13 +229,64 @@ class Grafo:
     # EM CONSTRUÇÃO #
 
     def vertices_nao_adjacentes(self):
-        return list()
+
+        """
+        Função que percorre a matriz do grafo em busca de pares de vértices não adjacentes.
+        :return: Uma lista com todos os pares de vértices não adjacentes
+        """
+        # O loop percorre cada linha e verifica cada item desta linha.
+        # Ao encontrar o valor 0, isso significa ausência de aresta entre os dois vértices, ou seja,
+        # uma combinação de vértices não-adjacentes, então adiciona-os a lista de vertices_nao_adjacentes. E retorna-a.
+
+        vertices_nao_adjacentes = []
+        for x, lista_de_arestas in enumerate(self.M):
+            for y, arestas in enumerate(lista_de_arestas):
+                if arestas == 0:
+                    vertices_nao_adjacentes.append('{}{}{}'.format(self.N[x], self.SEPARADOR_ARESTA, self.N[y]))
+        return vertices_nao_adjacentes
 
     def ha_laco(self):
+
+        """
+        Função que verifica se o grafo possui um laço.
+        :return: Valor booleano. True se sim, False caso contrário.
+        """
+        # O loop percorre a diagonal principal da matriz (ou seja, apenas o primeiro elemento após o traço '-' de cada
+        # linha).
+        # Se encontrar uma aresta (valor maior que 0) é porque possui laço, então retorna True.
+        # Caso contrário, retorna False.
+
+        for lista_de_arestas in self.M:
+            for arestas in lista_de_arestas:
+                if arestas != '-':
+                    if arestas > 0:
+                        return True
+                    break
         return False
 
     def grau(self, v):
-        return 0
+
+        """
+        Função que retorna o grau de um vértice dado como parâmetro.
+        :param v: Vértice.
+        :return: Um inteiro que representa o grau do vértice.
+        """
+        # O loop percorre cada linha e cada coluna da matriz até a posição do vértice do parâmetro.
+        # Então, soma o valor/quantidade das arestas conectadas aquele vértice, e adiciona-o a variável grau para depois
+        # retorná-la.
+
+        pos = self.N.index(v)
+        grau = 0
+        for x, lista_de_arestas in enumerate(self.M):
+            if x <= pos:
+                for y, aresta in enumerate(lista_de_arestas):
+                    if x != pos:
+                        if y == pos:
+                            grau += aresta
+                    else:
+                        if aresta != '-':
+                            grau += aresta
+        return grau
 
     def ha_paralelas(self):
 
@@ -243,6 +294,7 @@ class Grafo:
         Verifica se há arestas paralelas no grafo.
         :return: True se houver, ou False caso contrário.
         """
+        # O loop verifica se há mais de uma aresta conectadas entre dois vértices, e em caso positivo retorna True.
 
         for lista_de_arestas in self.M:
             for arestas in lista_de_arestas:
@@ -251,7 +303,40 @@ class Grafo:
         return False
 
     def arestas_sobre_vertice(self, v):
-        return list()
+
+        """
+        Função que verifica todos os vértices conectados ao vértice do parâmetro.
+        :param v: Vértice.
+        :return: Uma lista com todas as conexões do vértice do parâmetro
+        """
+        # O loop percorre a matriz do grafo em busca de conexões de outros vértices com o vértice do parâmetro.
+        # Ou seja, ao encontrar um valor maior que 0 na posição em que se encontra o vértice do parâmetro, é adicionado
+        # essa "conexão" a lista de vertices_incidentes
+
+        pos = self.N.index(v)
+        vertices_incidentes = []
+        for x, lista_de_arestas in enumerate(self.M):
+            if x <= pos:
+                for y, arestas in enumerate(lista_de_arestas):
+                    if x != pos:
+                        if y == pos:
+                            if arestas > 0:
+                                qtd = 0
+                                while qtd < arestas:
+                                    vertices_incidentes.append(
+                                        '{}{}{}'.format(self.N[x], self.SEPARADOR_ARESTA, self.N[y])
+                                    )
+                                    qtd += 1
+                    else:
+                        if arestas != '-':
+                            if arestas > 0:
+                                qtd = 0
+                                while qtd < arestas:
+                                    vertices_incidentes.append(
+                                        '{}{}{}'.format(self.N[x], self.SEPARADOR_ARESTA, self.N[y])
+                                    )
+                                    qtd += 1
+        return vertices_incidentes
 
     def eh_completo(self):
         return False
