@@ -545,18 +545,30 @@ class Grafo:
 
         import random
         vertice_de_partida = random.choice(lista_de_vertices)
+        # vertice_de_partida = 'D'
         vertices_proibidos.append(vertice_de_partida)
 
         pos_v1 = lista_de_vertices.index(vertice_de_partida)
         while True:
             v1 = lista_de_vertices[pos_v1]
-            if len(caminho) > 0 and caminho[-1] != v1:
-                caminho.append(v1)
+            if len(caminho) > 0:
+                if caminho[-1] != v1:
+                    caminho.append(v1)
             else:
                 caminho.append(v1)
 
-            if sorted(arestas_visitadas) == sorted(todas_as_arestas):
-                return caminho
+            # Verifica se todas as arestas já foram visitadas:
+            if len(arestas_visitadas) == len(todas_as_arestas):
+                verificadas = []
+                for x in arestas_visitadas:
+                    x_reverse = x[::-1]
+                    if x in todas_as_arestas:
+                        verificadas.append(x)
+                    if x_reverse in todas_as_arestas:
+                        verificadas.append(x_reverse)
+
+                if sorted(verificadas) == sorted(todas_as_arestas):
+                    return caminho
 
             encontrou_caminho = False
             for linha, lista_de_aresta in enumerate(listas_de_arestas):
@@ -620,7 +632,7 @@ class Grafo:
                     arestas_visitadas.pop()
                     aresta_temporariamente_proibida.append(caminho.pop())
                     pos_v1 = lista_de_vertices.index(caminho[-1])
-                elif len(vertices_proibidos) < len(self.N):
+                elif len(vertices_proibidos) < len(lista_de_vertices):
                     while True:
                         vertice_de_partida = random.choice(lista_de_vertices)
                         if vertice_de_partida not in vertices_proibidos:
@@ -693,8 +705,7 @@ class Grafo:
         Verifica se o grafo é Hamiltoniano, ou seja, se existe um Ciclo Hamiltoniano.
         :return: Valor Booleano. True se for, False caso contrário.
         """
-
-        return False
+        return self.ciclo_hamiltoniano()
 
     '''
     - Soluções do Roteiro 5, Fim -
