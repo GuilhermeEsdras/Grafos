@@ -2,7 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="352eeb84-7cec-4625-a9e4-dd861069e1db" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/Guilherme.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/Guilherme.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Grafos - Roteiro 1 - Guilherme Esdras.rar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Grafos - Roteiro 2 - Guilherme Esdras.rar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Grafos - Roteiro 3 - Guilherme Esdras.rar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Grafos - Roteiro 4 - Guilherme Esdras.rar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Roteiro1.py" beforeDir="false" afterPath="$PROJECT_DIR$/Roteiro1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Roteiro3_2_1__grafo.py" beforeDir="false" afterPath="$PROJECT_DIR$/Roteiro3_2_1__grafo.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Roteiro3_2_1__grafo_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/Roteiro3_2_1__grafo_test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Roteiro5.py" beforeDir="false" afterPath="$PROJECT_DIR$/Roteiro5.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Roteiro5_4__grafo_adj_nao_dir.py" beforeDir="false" afterPath="$PROJECT_DIR$/Roteiro5_4__grafo_adj_nao_dir.py" afterDir="false" />
     </list>
@@ -23,8 +32,11 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="ProjectId" id="1PngrQBtvhLUqRXDdQZOI2EbCiW" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -34,6 +46,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Guilherme\Documents\Engenharia de Computação\Grafos\em Python\GrafosProntos" />
       <recent name="C:\Users\Guilherme\Documents\Engenharia de Computação\Grafos\em Python" />
     </key>
   </component>
@@ -49,8 +62,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.Roteiro5">
-    <configuration name="Roteiro3" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.Roteiro5__main">
+    <configuration name="Roteiro3__main" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="em Python" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -58,34 +71,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Roteiro 3" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Roteiro3.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Roteiro4 (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="em Python" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Roteiro4.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Roteiro 3/Roteiro3__main.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -116,7 +107,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Roteiro5_4__grafo_adj_nao_dir" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="Roteiro5__main" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="em Python" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -124,12 +115,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Roteiro5" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Roteiro5_4__grafo_adj_nao_dir.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Roteiro5/Roteiro5__main.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -138,28 +129,43 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for Roteiro4__grafo_test.TestGrafo.test_arestas_sobre_vertice" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests for Roteiro3.Roteiro3__tests.TestGrafo" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="em Python" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Roteiro3" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;Roteiro4__grafo_test.TestGrafo.test_arestas_sobre_vertice&quot;" />
+      <option name="_new_target" value="&quot;Roteiro3.Roteiro3__tests.TestGrafo&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unittests for Roteiro4.Roteiro4__tests.TestGrafo" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="em Python" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Roteiro4" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;Roteiro4.Roteiro4__tests.TestGrafo&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.Roteiro5__main" />
         <item itemvalue="Python.Roteiro5" />
-        <item itemvalue="Python.Roteiro5_4__grafo_adj_nao_dir" />
-        <item itemvalue="Python.Roteiro3" />
-        <item itemvalue="Python tests.Unittests for Roteiro4__grafo_test.TestGrafo.test_arestas_sobre_vertice" />
-        <item itemvalue="Python.Roteiro4 (1)" />
+        <item itemvalue="Python tests.Unittests for Roteiro4.Roteiro4__tests.TestGrafo" />
+        <item itemvalue="Python tests.Unittests for Roteiro3.Roteiro3__tests.TestGrafo" />
+        <item itemvalue="Python.Roteiro3__main" />
       </list>
     </recent_temporary>
   </component>
@@ -201,7 +207,16 @@
       <workItem from="1569099421479" duration="12207000" />
       <workItem from="1569265789918" duration="32659000" />
       <workItem from="1569363630113" duration="6620000" />
-      <workItem from="1569414018986" duration="1695000" />
+      <workItem from="1569414018986" duration="4650000" />
+      <workItem from="1569450168333" duration="172000" />
+      <workItem from="1569450814250" duration="807000" />
+      <workItem from="1569461602634" duration="614000" />
+      <workItem from="1569501703581" duration="18760000" />
+      <workItem from="1569590437772" duration="2385000" />
+      <workItem from="1569618136851" duration="26882000" />
+      <workItem from="1569680267503" duration="819000" />
+      <workItem from="1569682122162" duration="4458000" />
+      <workItem from="1569691811818" duration="4700000" />
     </task>
     <servers />
   </component>
@@ -221,51 +236,38 @@
       </map>
     </option>
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Roteiro5_4__grafo_adj_nao_dir.py</url>
-          <line>524</line>
-          <option name="timeStamp" value="273" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Roteiro5.py</url>
-          <line>33</line>
-          <option name="timeStamp" value="276" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Roteiro5_4__grafo_adj_nao_dir.py</url>
-          <line>551</line>
-          <option name="timeStamp" value="280" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/em_Python$Roteiro4__1_.coverage" NAME="Roteiro4 (1) Coverage Results" MODIFIED="1568343246239" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/em_Python$Unittests_for_grafo_test_roteiro_4_TestGrafo_test_grau.coverage" NAME="Unittests for grafo_test_roteiro_4.TestGrafo.test_grau Coverage Results" MODIFIED="1568335601625" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/em_Python$Roteiro1.coverage" NAME="Roteiro1 Coverage Results" MODIFIED="1567709745685" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/em_Python$Roteiro1__main.coverage" NAME="Roteiro1__main Coverage Results" MODIFIED="1569515488829" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Roteiro 1" />
+    <SUITE FILE_PATH="coverage/em_Python$Unittests_for_Roteiro3__tests_TestGrafo.coverage" NAME="Unittests for Roteiro3__tests.TestGrafo Coverage Results" MODIFIED="1569516131128" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Roteiro 3" />
     <SUITE FILE_PATH="coverage/em_Python$tests2.coverage" NAME="tests2 Coverage Results" MODIFIED="1566520163349" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/em_Python$Unittests_for_grafo_test_TestGrafo_test_ha_ciclo.coverage" NAME="Unittests for grafo_test.TestGrafo.test_ha_ciclo Coverage Results" MODIFIED="1567723395620" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/em_Python$Unittests_for_grafo_test_TestGrafo_test_conexo.coverage" NAME="Unittests for grafo_test.TestGrafo.test_conexo Coverage Results" MODIFIED="1567714349538" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/em_Python$geeks.coverage" NAME="geeks Coverage Results" MODIFIED="1566515851856" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/em_Python$Unittests_for_grafo_test_roteiro_4_TestGrafo_test_ha_laco.coverage" NAME="Unittests for grafo_test_roteiro_4.TestGrafo.test_ha_laco Coverage Results" MODIFIED="1568334284728" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/em_Python$Roteiro4.coverage" NAME="Roteiro4 Coverage Results" MODIFIED="1568306492683" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/em_Python$Unittests_for_grafo_test_roteiro_4_TestGrafo_test_vertices_nao_adjacentes.coverage" NAME="Unittests for grafo_test_roteiro_4.TestGrafo.test_vertices_nao_adjacentes Coverage Results" MODIFIED="1568336846002" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/em_Python$test.coverage" NAME="test Coverage Results" MODIFIED="1566529195025" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/em_Python$grafo.coverage" NAME="grafo Coverage Results" MODIFIED="1567692835773" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/em_Python$Unittests_for_grafo_test_roteiro_4_TestGrafo_test_eh_completo.coverage" NAME="Unittests for grafo_test_roteiro_4.TestGrafo.test_eh_completo Coverage Results" MODIFIED="1568340189719" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/em_Python$Roteiro5_4__grafo_adj_nao_dir.coverage" NAME="Roteiro5_4__grafo_adj_nao_dir Coverage Results" MODIFIED="1569280079689" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/em_Python$Unittests_for_grafo_test_roteiro_4_TestGrafo_test_arestas_sobre_vertice.coverage" NAME="Unittests for grafo_test_roteiro_4.TestGrafo.test_arestas_sobre_vertice Coverage Results" MODIFIED="1568340268115" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/em_Python$Unittests_for_grafo_test_TestGrafo.coverage" NAME="Unittests for grafo_test.TestGrafo Coverage Results" MODIFIED="1567722735074" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/em_Python$Roteiro3.coverage" NAME="Roteiro3 Coverage Results" MODIFIED="1569273809939" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/em_Python$Roteiro5.coverage" NAME="Roteiro5 Coverage Results" MODIFIED="1569381668093" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/em_Python$Unittests_for_Roteiro1__tests_TestGrafo.coverage" NAME="Unittests for Roteiro1__tests.TestGrafo Coverage Results" MODIFIED="1569515578237" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Roteiro 1" />
+    <SUITE FILE_PATH="coverage/em_Python$Roteiro5.coverage" NAME="Roteiro5 Coverage Results" MODIFIED="1569685632320" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/em_Python$Unittests_for_grafo_test_TestGrafo_test_caminho_dois_vertices.coverage" NAME="Unittests for grafo_test.TestGrafo.test_caminho_dois_vertices Coverage Results" MODIFIED="1567717066756" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/em_Python$Unittests_for_grafo_test_roteiro_4_TestGrafo_test_arestas_ha_paralelas.coverage" NAME="Unittests for grafo_test_roteiro_4.TestGrafo.test_arestas_ha_paralelas Coverage Results" MODIFIED="1568307497659" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/em_Python$Unittests_for_Roteiro4__grafo_test_TestGrafo_test_arestas_sobre_vertice.coverage" NAME="Unittests for Roteiro4__grafo_test.TestGrafo.test_arestas_sobre_vertice Coverage Results" MODIFIED="1569112993145" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/em_Python$Unittests_for_Roteiro4__tests_TestGrafo.coverage" NAME="Unittests for Roteiro4__tests.TestGrafo Coverage Results" MODIFIED="1569516186327" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Roteiro 4" />
+    <SUITE FILE_PATH="coverage/em_Python$Roteiro2.coverage" NAME="Roteiro2 Coverage Results" MODIFIED="1567293445580" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/em_Python$Roteiro2__main.coverage" NAME="Roteiro2__main Coverage Results" MODIFIED="1569515443213" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Roteiro 2" />
+    <SUITE FILE_PATH="coverage/em_Python$Roteiro4__1_.coverage" NAME="Roteiro4 (1) Coverage Results" MODIFIED="1568343246239" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/em_Python$Unittests_for_grafo_test_roteiro_4_TestGrafo_test_grau.coverage" NAME="Unittests for grafo_test_roteiro_4.TestGrafo.test_grau Coverage Results" MODIFIED="1568335601625" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/em_Python$Roteiro1.coverage" NAME="Roteiro1 Coverage Results" MODIFIED="1567709745685" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/em_Python$Unittests_for_grafo_test_TestGrafo_test_ha_ciclo.coverage" NAME="Unittests for grafo_test.TestGrafo.test_ha_ciclo Coverage Results" MODIFIED="1569515918376" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/em_Python$Unittests_for_grafo_test_TestGrafo_test_conexo.coverage" NAME="Unittests for grafo_test.TestGrafo.test_conexo Coverage Results" MODIFIED="1567714349538" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/em_Python$Unittests_for_grafo_test_roteiro_4_TestGrafo_test_ha_laco.coverage" NAME="Unittests for grafo_test_roteiro_4.TestGrafo.test_ha_laco Coverage Results" MODIFIED="1568334284728" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/em_Python$Roteiro5__main.coverage" NAME="Roteiro5__main Coverage Results" MODIFIED="1569696657035" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Roteiro5" />
+    <SUITE FILE_PATH="coverage/em_Python$Roteiro4.coverage" NAME="Roteiro4 Coverage Results" MODIFIED="1568306492683" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/em_Python$Unittests_for_grafo_test_roteiro_4_TestGrafo_test_vertices_nao_adjacentes.coverage" NAME="Unittests for grafo_test_roteiro_4.TestGrafo.test_vertices_nao_adjacentes Coverage Results" MODIFIED="1568336846002" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/em_Python$Roteiro3__main.coverage" NAME="Roteiro3__main Coverage Results" MODIFIED="1569516121891" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Roteiro 3" />
+    <SUITE FILE_PATH="coverage/em_Python$grafo.coverage" NAME="grafo Coverage Results" MODIFIED="1569504778102" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Grafos - Roteiro 1 - Guilherme Esdras" />
+    <SUITE FILE_PATH="coverage/em_Python$main.coverage" NAME="main Coverage Results" MODIFIED="1569504834181" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Grafos - Roteiro 1 - Guilherme Esdras" />
+    <SUITE FILE_PATH="coverage/em_Python$Roteiro5_4__grafo_adj_nao_dir.coverage" NAME="Roteiro5_4__grafo_adj_nao_dir Coverage Results" MODIFIED="1569280079689" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/em_Python$Unittests_for_grafo_test_roteiro_4_TestGrafo_test_arestas_sobre_vertice.coverage" NAME="Unittests for grafo_test_roteiro_4.TestGrafo.test_arestas_sobre_vertice Coverage Results" MODIFIED="1568340268115" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/em_Python$Roteiro3.coverage" NAME="Roteiro3 Coverage Results" MODIFIED="1569516053983" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/em_Python$Unittests_for_grafo_test_TestGrafo.coverage" NAME="Unittests for Roteiro3_2_1__grafo_test.TestGrafo Coverage Results" MODIFIED="1569516079495" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/em_Python$tests.coverage" NAME="tests Coverage Results" MODIFIED="1566523379297" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/em_Python$Unittests_for_grafo_test_TestGrafo_test_arestas_sobre_vertice.coverage" NAME="Unittests for grafo_test.TestGrafo.test_arestas_sobre_vertice Coverage Results" MODIFIED="1567709613032" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/em_Python$Roteiro2.coverage" NAME="Roteiro2 Coverage Results" MODIFIED="1567293445580" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

@@ -223,6 +223,135 @@ class Grafo:
             raise ArestaInvalidaException('A aresta {} é inválida'.format(a))
 
     '''
+    - Soluções do Roteiro 5, Inicio -
+    (Copyright © Guilherme Esdras 2019.2)
+    '''
+
+    def __caminho_euleriano_aux(self, v, caminho):
+        """
+        Função auxiliar recursiva que segue a lógica do Algoritmo de Fleury percorrendo uma aresta válida e excluindo-a
+        do grafo.
+        :param v: Vértice atual.
+        :param caminho: Lista contendo o caminho.
+        :return:
+        """
+        vizinhos = self.vizinhos_do_vertice(v)
+        if len(vizinhos) > 0:  # Se o vértice possuir vizinhos:
+            for vizinho in vizinhos:
+                if self.grau(vizinho) > 0:  # Se o vértice não for um vértice solitário:
+                    # Seguindo a lógica do Algoritmo de Fleury, uma aresta é válida:
+                    # 1 -
+                    if len(self.vizinhos_do_vertice(vizinho)) == 1 or not self.eh_uma_ponte_svs(vizinho, v):
+                        if len(caminho) > 0 and caminho[-1] != v or len(caminho) == 0:
+                            caminho.append(v)
+                        caminho.append('{}{}{}'.format(v, self.SEPARADOR_ARESTA, vizinho))
+                        caminho.append(vizinho)
+                        self.remove_aresta('{}{}{}'.format(v, self.SEPARADOR_ARESTA, vizinho))
+                        self.__caminho_euleriano_aux(vizinho, caminho)
+
+    def caminho_euleriano(self):
+        """
+        Verifica se o grafo possui um Caminho Euleriano e, em caso positivo, retorna uma lista contendo o caminho.
+        Um Caminho Euleriano é um caminho que passa exatamente uma vez por cada aresta do grafo (pode passar mais de
+        uma vez pelo mesmo vértice, mas não pela mesma aresta).
+        :return: Uma lista representando o caminho.
+        """
+        if not self.eh_semi_euleriano():  # Verifica se o grafo tem os requisitos para possuir um caminho euleriano.
+            return False
+
+        while True:  # Seleciona um vértice inicial aleatório que não seja um laço.
+            vertice_inicial = self.vertice_de_maior_grau()
+            if not self.eh_laco(vertice_inicial):
+                break
+
+        caminho = []
+        grafo_aux = Grafo(self.N, self.M)  # Cria uma cópia do grafo para excluir as arestas durante o processo.
+        grafo_aux.__caminho_euleriano_aux(vertice_inicial, caminho)  # Chama função recursiva para encontrar o caminho
+        return caminho
+
+    def ciclo_hamiltoniano(self):
+        """
+        Verifica se o grafo possui um Ciclo Hamiltoniano e em caso positivo, retorna uma lista contendo o ciclo.
+        Um Ciclo Hamiltoniano é um Caminho Hamiltoniano fechado, ou seja, começa e termina no mesmo vértice.
+        :return: Uma lista mostrando o ciclo, ou o valor Booleano False caso não exista.
+        """
+
+        return list()
+
+    '''
+    - Soluções do Roteiro 5, Fim -
+    (Copyright © Guilherme Esdras 2019.2)
+    '''
+
+    # Outras Funções Referentes ao Roteiro 5:
+
+    def ciclo_euleriano(self):
+        """
+        Verifica se o grafo possui um Ciclo Euleriano.
+        Um Ciclo Euleriano é um Caminho Euleriano fechado, ou seja, começa e termina no mesmo vértice.
+        :return: Uma Lista contendo o Ciclo, ou o valor Booleano False caso não contenha.
+        """
+        if not self.eh_euleriano():
+            return False
+        while True:
+            ciclo = self.caminho_euleriano()
+            if ciclo[0] == ciclo[-1]:
+                return ciclo
+
+    def eh_euleriano(self):
+        """
+        Verifica se o grafo é Euleriano, ou seja, se ele contém um Ciclo Euleriano.
+        Um Grafo é considerado Euleriano se, e somente se, ele for conexo e todos os seus vértices possuirem grau par.
+        :return: Valor Booleano. True se for, False em caso contrário.
+        """
+        if not self.eh_conexo():
+            return False
+        for vertice in self.N:
+            if self.grau(vertice) % 2 != 0:
+                return False
+        return True
+
+    def eh_laco(self, v):
+        return v in self.vizinhos_do_vertice(v)
+
+    def eh_semi_euleriano(self):
+        """
+        Verifica se o grafo é Semi-Euleriano.
+        Um Grafo Semi-Euleriano é um grafo que não contém um ciclo euleriano, mas contém um caminho Euleriano.
+        Um Grafo é considerado Semi-Euleriano se, e somente se, ele for conexo e possuir no máximo 2 vértices de
+        grau ímpar.
+        :return: Valor Booleano. True se for, False em caso contrário.
+        """
+        if not self.eh_conexo():
+            return False
+        vertices_grau_impar = 0
+        for vertice in self.N:
+            if self.grau(vertice) % 2 != 0 and not self.eh_laco(vertice):
+                vertices_grau_impar += 1
+            if vertices_grau_impar > 2:
+                return False
+        return True
+
+    def caminho_hamiltoniano(self):
+        """
+        Verifica se o grafo possui um Caminho Hamiltoniano.
+        Um Caminho Hamiltoniano é um caminho que passa exatamente uma vez por cada vértice (não importando se todas as
+        arestas forem visitadas).
+        :return: Uma Lista contendo o caminho, ou o valor Booleano False caso não exista.
+        """
+
+        return list()
+
+    def eh_hamiltoniano(self):
+        """
+        Verifica se o grafo é Hamiltoniano, ou seja, se existe um Ciclo Hamiltoniano.
+        :return: Valor Booleano. True se for, False caso contrário.
+        """
+        return self.ciclo_hamiltoniano()
+
+    # --- #
+
+    '''
     - Soluções do Roteiro 4, Inicio -
     (Copyright © Guilherme Esdras 2019.2)
     '''
@@ -373,99 +502,160 @@ class Grafo:
     # ---
 
     '''
-    - Soluções do Roteiro 5, Inicio -
-    (Copyright © Guilherme Esdras 2019.2)
+    - Funções Auxiliares, Inicio -
     '''
 
-    # EM CONSTRUÇÃO #
-
-    def caminho_dois_vertices(self, x, y):
+    def vertice_de_maior_grau(self):
         """
-        Verifica se existe um possível caminho entre dois vértices passados como argumento.
-        :param x: Vértice 1.
-        :param y: Vértice 2.
-        :return: Uma Lista contendo o caminho, ou o Valor Booleano False caso não exista.
+        Verifica qual(is) o(v1) vértice(v1) de maior grau.
+        :return: Um vértice de maior grau. Caso haja mais de um, é retornado um aleatoriamente.
         """
+        import random
 
-        lista_de_vertices = self.N
-        listas_de_arestas = self.M
+        maior_grau = 0
+        for vertice in self.N:
+            grau = self.grau(vertice)
+            if grau >= maior_grau:
+                maior_grau = grau
 
-        caminho = []
-        arestas_proibidas = []
+        vertices_de_maior_grau = []
+        for vertice in self.N:
+            if self.grau(vertice) == maior_grau:
+                vertices_de_maior_grau.append(vertice)
 
-        pos_x = lista_de_vertices.index(x)
-        while True:
-            v1 = lista_de_vertices[pos_x]
-            if len(caminho) > 0:
-                if caminho[-1] != v1:
-                    caminho.append(v1)
-                if caminho[-1] == y:
-                    return caminho
-            else:
-                caminho.append(v1)
+        return random.choice(vertices_de_maior_grau)
 
-            encontrou_caminho = False
-            for linha, lista_de_aresta in enumerate(listas_de_arestas):
-                if not encontrou_caminho:
-                    if linha <= pos_x:
-                        for coluna, qtd_de_arestas in enumerate(lista_de_aresta):
-                            if linha < pos_x:
-                                if coluna == pos_x:
-                                    if qtd_de_arestas != '-':
-                                        if qtd_de_arestas > 0:
-                                            v2 = lista_de_vertices[linha]
-                                            aresta = '{}{}{}'.format(v1, self.SEPARADOR_ARESTA, v2)
-                                            aresta_reverse = '{}{}{}'.format(v2, self.SEPARADOR_ARESTA, v1)
+    def todas_as_arestas_do_grafo(self):
+        """
+        :return: Uma Lista contendo todas as arestas do Grafo
+        """
+        arestas = []
+        for linha, lista_de_arestas in enumerate(self.M):
+            for coluna, qtd_de_arestas in enumerate(lista_de_arestas):
+                if qtd_de_arestas != '-' and qtd_de_arestas > 0:
+                    aresta = '{}{}{}'.format(self.N[linha], self.SEPARADOR_ARESTA, self.N[coluna])
+                    arestas.append(aresta)
+        return arestas
 
-                                            if v2 in caminho and v2 != y:
-                                                arestas_proibidas.append(aresta)
-                                                arestas_proibidas.append(aresta_reverse)
-                                                pos_x = lista_de_vertices.index(v1)
+    def pos(self, v):
+        """
+        :param v: Vértice.
+        :return: Int. Posição/index do vértice v na lista de vértices (N) do Grafo.
+        """
+        return self.N.index(v)
 
-                                            if (aresta in caminho) or (aresta_reverse in caminho) or \
-                                                    (aresta in arestas_proibidas) or (aresta_reverse in arestas_proibidas):
-                                                continue
-                                            else:
-                                                caminho.append(aresta)
-                                                pos_x = lista_de_vertices.index(v2)
-                                                encontrou_caminho = True
-                                                break
-                                elif coluna > pos_x:
-                                    break
-                            elif linha == pos_x:
-                                if qtd_de_arestas != '-':
-                                    if qtd_de_arestas > 0:
-                                        v2 = lista_de_vertices[coluna]
-                                        aresta = '{}{}{}'.format(v1, self.SEPARADOR_ARESTA, v2)
-                                        aresta_reverse = '{}{}{}'.format(v2, self.SEPARADOR_ARESTA, v1)
-
-                                        if v2 in caminho and v2 != y:
-                                            arestas_proibidas.append(aresta)
-                                            arestas_proibidas.append(aresta_reverse)
-                                            pos_x = lista_de_vertices.index(v1)
-
-                                        if (aresta in caminho) or (aresta_reverse in caminho) or \
-                                                (aresta in arestas_proibidas) or (aresta_reverse in arestas_proibidas):
-                                            continue
-                                        else:
-                                            caminho.append(aresta)
-                                            pos_x = lista_de_vertices.index(v2)
-                                            encontrou_caminho = True
-                                            break
-                            else:
-                                break
+    def vizinhos_do_vertice(self, v):
+        """
+        :param v: Vértice.
+        :return: Uma lista contendo os vértices vizinhos de v.
+        """
+        vertices = []
+        for linha, arestas in enumerate(self.M):
+            for coluna, qtd in enumerate(arestas):
+                if qtd != '-' and qtd > 0:
+                    if linha < self.pos(v):
+                        if coluna == self.pos(v):
+                            vertices.append(self.N[linha])
+                    elif linha == self.pos(v):
+                        vertices.append(self.N[coluna])
                     else:
                         break
-                else:
-                    break
+        return vertices
 
-            if not encontrou_caminho:
-                if len(caminho) > 1:
-                    caminho.pop()
-                    arestas_proibidas.append(caminho.pop())
-                    pos_x = lista_de_vertices.index(caminho[-1])
-                else:
-                    return False
+    def existe_caminho(self, v1, v2):
+        """
+        Verifica se existe um caminho entre os dois vértices v1 e v2.
+        :param v1: Vértice 1.
+        :param v2: Vértice 2.
+        :return: Valor Booleano. True se existir, False caso contrário.
+        """
+        if not self.existeVertice(v1) or not self.existeVertice(v2) or \
+                not self.vizinhos_do_vertice(v1) or not self.vizinhos_do_vertice(v2):
+            # Caso não exista um dos vértices no Grafo  ou  um dos vértices não possuir vizinhos:
+            return False
+
+        visitado = [False] * (len(self.N))  # Marca todos os vértices como não visitados
+        aux = []  # Lista auxiliar
+        aux.append(v1)  # Adiciona o vértice 1 a lista auxiliar para começar procurando a partir dos vizinhos dele
+
+        # Enquanto houverem vértices alcançáveis a partir de v1 [vértice 1] a serem verificados:
+        while aux:
+            # Retira o elemento adicionado da lista aux e o verifica:
+            vsv = aux.pop(0)  # vértice a ser verificado ( v.s.v )
+
+            if vsv == v2:  # Se o v.s.v for o vértice 2, existe um caminho entre v1 e v2.
+                return True
+
+            # Caso contrário, vai verificando os vizinhos e os vizinhos dos vizinhos do vértice 1:
+            for v in self.vizinhos_do_vertice(vsv):
+                # Para cada vizinho do v.s.v.:
+                if not visitado[self.pos(v)]:  # Se ainda não foi visitado:
+                    visitado[self.pos(v)] = True  # Marca-o como visitado
+                    aux.append(v)  # Coloca na lista aux para ser verificado no próximo loop
+
+        # Se todos os vértices alcançáveis a partir de v1 [vértice 1] foram visitados e não foi encontrado o v2:
+        return False  # Não existe um caminho entre v1 e v2.
+
+    def __caminhos_aux(self, v1, v2, visitado, caminho, caminhos):
+        """
+        Função auxiliar de "caminhos_entre_dois_vertices" que percorre o grafo recursivamente em busca de vários
+        caminhos entre os vértices v1 e v2.
+        :param v1: Vértice 1.
+        :param v2: Vértice 2
+        :param visitado: Lista com vértices visitados
+        :param caminho: Lista com um caminho
+        :param caminhos: Lista com todos os caminhos
+        :return: None
+        """
+        visitado[self.N.index(v1)] = True
+        caminho.append(v1)
+
+        if v1 == v2:
+            caminho_aux = [x for x in caminho]
+            caminho_com_aresta = []
+            for i, v in enumerate(caminho_aux):
+                caminho_com_aresta.append(v)
+                if i != len(caminho_aux) - 1:
+                    caminho_com_aresta.append(
+                        '{}{}{}'.format(v, self.SEPARADOR_ARESTA, caminho_aux[i + 1])
+                    )
+            caminhos.append(caminho_com_aresta)
+
+        else:
+            for i in self.vizinhos_do_vertice(v1):
+                if not visitado[self.N.index(i)]:
+                    self.__caminhos_aux(i, v2, visitado, caminho, caminhos)
+
+        caminho.pop()
+        visitado[self.N.index(v1)] = False
+
+    def caminhos_entre_dois_vertices(self, v1, v2):
+        """
+        Percorre o grafo recursivamente em busca de vários caminhos entre v1 e v2.
+        :param v1: Vértice 1.
+        :param v2: Vértice 2.
+        :return: Uma lista de listas com caminhos entre v1 e v2.
+        """
+        if not self.existe_caminho(v1, v2):
+            return False
+        if self.ha_laco():
+            if v1 == v2:
+                aresta = '{}{}{}'.format(v1, self.SEPARADOR_ARESTA, v2)
+                return [v1, aresta, v2]
+
+        visitado = [False] * (len(self.N))
+        caminhos = []
+        self.__caminhos_aux(v1, v2, visitado, [], caminhos)
+        return caminhos
+
+    def menor_caminho(self, v1, v2):
+        """
+        Retorna o caminho mais curto entre v1 e v2.
+        :param v1: Vértice 1
+        :param v2: Vértice 2
+        :return: Uma lista com o menor caminho
+        """
+        return self.caminhos_entre_dois_vertices(v1, v2)[-1]
 
     def eh_conexo(self):
         """
@@ -475,242 +665,77 @@ class Grafo:
         """
         for v1 in self.N:
             for v2 in self.N:
-                if not self.caminho_dois_vertices(v1, v2):
+                if not self.existe_caminho(v1, v2):
                     return False
         return True
 
-    def ah_ciclo(self):
+    def eh_uma_ponte(self, v1, v2):
         """
-        Verifica se o grafo possui um ciclo, ou seja, um caminho onde o vértice de início é o vértice de fim.
-        :return: Uma Lista contendo o ciclo, ou o valor Booleano False caso não encontre.
+        Verifica se uma aresta é uma ponte.
+        :param v1: Vértice 1.
+        :param v2: Vértice 2.
+        :return: Valor Booleano.
         """
-        # Analisa aleatoriamente duas combinações de vértices do grafo.
-        # Ao encontrar dois vértices iguais, verifica se há um ciclo.
-        # Caso exista retorna a lista com o caminho, caso contrário, tenta outra combinação.
-        # Caso as listas estejam cheias, retorna False, pois tentou todas as combinações possíveis e não encontrou um
-        # ciclo.
-        import random
+        aresta = '{}{}{}'.format(v1, self.SEPARADOR_ARESTA, v2)
+        self.remove_aresta(aresta)
+        eh_uma_ponte = not self.eh_conexo()
+        self.adicionaAresta(aresta)
+        return eh_uma_ponte
 
-        lista_de_vertices = self.N
-
-        v1_verificados = []
-        v2_verificados = []
-        while True:
-            v1 = random.choice(lista_de_vertices)
-            if v1 not in v1_verificados:
-                v1_verificados.append(v1)
-
-            v2 = random.choice(lista_de_vertices)
-            if v2 not in v1_verificados:
-                v2_verificados.append(v2)
-
-            if v1 == v2:
-                if self.caminho_dois_vertices(v1, v2):
-                    return self.caminho_dois_vertices(v1, v2)
-
-            if len(v1_verificados) == len(lista_de_vertices) and len(v2_verificados) == len(lista_de_vertices):
-                return False
-
-    def eh_uma_ponte(self, aresta):
+    def eh_conexo_svs(self):
         """
-        Verifica se uma determinada aresta é uma ponte.
-        Uma ponte é uma aresta cuja sua remoção do grafo torna-o desconexo.
-        :param aresta: Os dois vértices conectados (aresta). Ex.: um_grafo.eh_uma_ponte('A-B')
-        :return: Valor Booleano. True se for, False caso contrário ou caso a aresta não exista.
+        Verifica se o grafo é conexo sem considerar vértices solitários, ou seja, vértices de grau 0.
+        ( s.v.s. = sem vértice solitário )
+        :return: Valor Booleano.
         """
-        grafo_aux = Grafo(self.N, self.M)
-        grafo_aux.remove_aresta(aresta)
-        return not (grafo_aux.eh_conexo())
-
-    def caminho_euleriano(self):
-        """
-        Verifica se o grafo possui um Caminho Euleriano e, em caso positivo, retorna uma lista contendo o caminho.
-        Um Caminho Euleriano é um caminho que passa exatamente uma vez por cada aresta do grafo (pode passar mais de
-        uma vez pelo mesmo vértice, mas não pela mesma aresta).
-        :return: Uma lista representando o caminho.
-        """
-        lista_de_vertices = self.N
-        listas_de_arestas = self.M
-        todas_as_arestas = []
-        for v in lista_de_vertices:
-            arestas_aux = self.arestas_sobre_vertice(v)
-            for v2 in arestas_aux:
-                if v2 not in todas_as_arestas:
-                    todas_as_arestas.append(v2)
-
-        caminho = []
-        arestas_visitadas = []
-        vertices_proibidos = []
-        aresta_temporariamente_proibida = []
-
-        import random
-        vertice_de_partida = random.choice(lista_de_vertices)
-        # vertice_de_partida = 'D'
-        vertices_proibidos.append(vertice_de_partida)
-
-        pos_v1 = lista_de_vertices.index(vertice_de_partida)
-        while True:
-            v1 = lista_de_vertices[pos_v1]
-            if len(caminho) > 0:
-                if caminho[-1] != v1:
-                    caminho.append(v1)
-            else:
-                caminho.append(v1)
-
-            # Verifica se todas as arestas já foram visitadas:
-            if len(arestas_visitadas) == len(todas_as_arestas):
-                verificadas = []
-                for x in arestas_visitadas:
-                    x_reverse = x[::-1]
-                    if x in todas_as_arestas:
-                        verificadas.append(x)
-                    if x_reverse in todas_as_arestas:
-                        verificadas.append(x_reverse)
-
-                if sorted(verificadas) == sorted(todas_as_arestas):
-                    return caminho
-
-            encontrou_caminho = False
-            for linha, lista_de_aresta in enumerate(listas_de_arestas):
-                if not encontrou_caminho:
-                    if linha <= pos_v1:
-                        for coluna, qtd_de_arestas in enumerate(lista_de_aresta):
-                            if linha < pos_v1:
-                                if coluna == pos_v1:
-                                    if qtd_de_arestas != '-':
-                                        if qtd_de_arestas > 0:
-                                            v2 = lista_de_vertices[linha]
-                                            aresta = '{}{}{}'.format(v1, self.SEPARADOR_ARESTA, v2)
-                                            aresta_reverse = '{}{}{}'.format(v2, self.SEPARADOR_ARESTA, v1)
-
-                                            if aresta in arestas_visitadas or aresta in aresta_temporariamente_proibida:
-                                                continue
-
-                                            if (aresta in caminho) or (aresta_reverse in caminho) or \
-                                                    (aresta in aresta_temporariamente_proibida) or (
-                                                    aresta_reverse in aresta_temporariamente_proibida):
-                                                continue
-                                            else:
-                                                caminho.append(aresta)
-                                                arestas_visitadas.append(aresta)
-                                                pos_v1 = lista_de_vertices.index(v2)
-                                                encontrou_caminho = True
-                                                aresta_temporariamente_proibida.clear()
-                                                break
-                                elif coluna > pos_v1:
-                                    break
-                            elif linha == pos_v1:
-                                if qtd_de_arestas != '-':
-                                    if qtd_de_arestas > 0:
-                                        v2 = lista_de_vertices[coluna]
-                                        aresta = '{}{}{}'.format(v1, self.SEPARADOR_ARESTA, v2)
-                                        aresta_reverse = '{}{}{}'.format(v2, self.SEPARADOR_ARESTA, v1)
-
-                                        if aresta in arestas_visitadas or aresta in aresta_temporariamente_proibida:
-                                            continue
-
-                                        if (aresta in caminho) or (aresta_reverse in caminho) or \
-                                                (aresta in aresta_temporariamente_proibida) or (aresta_reverse in aresta_temporariamente_proibida):
-                                            continue
-                                        else:
-                                            caminho.append(aresta)
-                                            arestas_visitadas.append(aresta)
-                                            pos_v1 = lista_de_vertices.index(v2)
-                                            encontrou_caminho = True
-                                            aresta_temporariamente_proibida.clear()
-                                            break
-                            else:
-                                break
-                    else:
-                        break
-                else:
-                    break
-
-            if not encontrou_caminho:
-                if len(caminho) > 1:
-                    caminho.pop()
-                    arestas_visitadas.pop()
-                    aresta_temporariamente_proibida.append(caminho.pop())
-                    pos_v1 = lista_de_vertices.index(caminho[-1])
-                elif len(vertices_proibidos) < len(lista_de_vertices):
-                    while True:
-                        vertice_de_partida = random.choice(lista_de_vertices)
-                        if vertice_de_partida not in vertices_proibidos:
-                            vertices_proibidos.append(vertice_de_partida)
-                            break
-                else:
+        lista_de_vertices = []
+        for vertice in self.N:
+            if self.grau(vertice) > 0:
+                lista_de_vertices.append(vertice)
+        for v1 in lista_de_vertices:
+            for v2 in lista_de_vertices:
+                if not self.existe_caminho(v1, v2):
                     return False
-
-    def ciclo_euleriano(self):
-        """
-        Verifica se o grafo possui um Ciclo Euleriano.
-        Um Ciclo Euleriano é um Caminho Euleriano fechado, ou seja, começa e termina no mesmo vértice.
-        :return: Uma Lista contendo o Ciclo, ou o valor Booleano False caso não contenha.
-        """
-
-        return list()
-
-    def eh_euleriano(self):
-        """
-        Verifica se o grafo é Euleriano, ou seja, se ele contém um Ciclo Euleriano.
-        Um Grafo é considerado Euleriano se, e somente se, ele for conexo e todos os seus vértices possuirem grau par.
-        :return: Valor Booleano. True se for, False em caso contrário.
-        """
-        if not self.eh_conexo():
-            return False
-        for vertice in self.N:
-            if self.grau(vertice) % 2 != 0:
-                return False
         return True
 
-    def eh_semi_euleriano(self):
+    def eh_uma_ponte_svs(self, v1, v2):
         """
-        Verifica se o grafo é Semi-Euleriano.
-        Um Grafo Semi-Euleriano é um grafo que não contém um ciclo euleriano, mas contém um caminho Euleriano.
-        Um Grafo também é considerado Semi-Euleriano se, e somente se, ele for conexo e possuir no máximo 2 vértices de
-        grau ímpar.
-        :return: Valor Booleano. True se for, False em caso contrário.
+        Verifica se uma aresta é uma ponte sem considerar vértices solitários.
+        ( s.v.s. = sem vértice solitário )
+        :param v1: Vértice 1.
+        :param v2: Vértice 2.
+        :return: Valor Booleano.
         """
-        if not self.eh_conexo():
-            return False
-        vertices_grau_impar = 0
-        for vertice in self.N:
-            if self.grau(vertice) % 2 != 0:
-                vertices_grau_impar += 1
-            if vertices_grau_impar > 2:
-                return False
-        return True
+        aresta = '{}{}{}'.format(v1, self.SEPARADOR_ARESTA, v2)
+        self.remove_aresta(aresta)
+        eh_uma_ponte = not self.eh_conexo_svs()
+        self.adicionaAresta(aresta)
+        return eh_uma_ponte
 
-    def caminho_hamiltoniano(self):
-        """
-        Verifica se o grafo possui um Caminho Hamiltoniano.
-        Um Caminho Hamiltoniano é um caminho que passa exatamente uma vez por cada vértice (não importando se todas as
-        arestas forem visitadas).
-        :return: Uma Lista contendo o caminho, ou o valor Booleano False caso não exista.
-        """
+    def __ha_ciclo_aux(self, v, visitado, pai):
+        visitado[self.pos(v)] = True
+        for vizinho in self.vizinhos_do_vertice(v):
+            if not visitado[self.pos(vizinho)]:
+                if self.__ha_ciclo_aux(vizinho, visitado, v):
+                    return True
+            elif pai != vizinho:
+                return True
+        return False
 
-        return list()
-
-    def ciclo_hamiltoniano(self):
-        """
-        Verifica se o grafo possui um Ciclo Hamiltoniano e em caso positivo, retorna uma lista contendo o ciclo.
-        Um Ciclo Hamiltoniano é um Caminho Hamiltoniano fechado, ou seja, começa e termina no mesmo vértice.
-        :return: Uma lista mostrando o ciclo, ou o valor Booleano False caso não exista.
-        """
-
-        return list()
-
-    def eh_hamiltoniano(self):
-        """
-        Verifica se o grafo é Hamiltoniano, ou seja, se existe um Ciclo Hamiltoniano.
-        :return: Valor Booleano. True se for, False caso contrário.
-        """
-        return self.ciclo_hamiltoniano()
+    def ha_ciclo(self):
+        vertices = self.N
+        visitado = [False] * (len(vertices))
+        for vertice in vertices:
+            if not visitado[self.pos(vertice)]:
+                if self.__ha_ciclo_aux(vertice, visitado, ''):
+                    return True
+        return False
 
     '''
-    - Soluções do Roteiro 5, Fim -
-    (Copyright © Guilherme Esdras 2019.2)
+    - Funções Auxiliares, Fim -
     '''
+
+    # ---
 
     def __str__(self):
         """

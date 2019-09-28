@@ -1,5 +1,5 @@
 import unittest
-from Roteiro3_2_1__grafo import *
+from Roteiro1.Roteiro1__funcoes import Grafo
 
 
 class TestGrafo(unittest.TestCase):
@@ -40,7 +40,7 @@ class TestGrafo(unittest.TestCase):
                         {'a1': 'A-B', 'a2': 'B-C', 'a3': 'C-D', 'a4': 'D-E', 'a5': 'E-A',
                          'a6': 'A-C', 'a7': 'A-D', 'a8': 'B-D', 'a9': 'E-C', 'a10': 'E-B'})
 
-        # Grafo's DesConexo's
+        # Grafo'v1 DesConexo'v1
         self.grafo_conexo = Grafo(['1', '2', '3', '5', '6', '7'],
                                   {'a1': '1-2', 'a2': '2-3', 'a3': '1-5', 'a4': '2-6', 'a5': '3-7'})
         self.grafo_desconexo = Grafo(['1', '2', '3', '5', '6', '7'],
@@ -56,6 +56,7 @@ class TestGrafo(unittest.TestCase):
                                          '13': 'B-C', '14': 'C-D', '15': 'E-D', '16': 'B-D', '17': 'B-E',
                                          '18': 'L-M', '19': 'M-N', '20': 'N-L'})
 
+    # \/ Testes do Roteiro 1 \/
     def test_vertices_nao_adjacentes(self):
         self.assertEqual(self.g_p.vertices_nao_adjacentes(), ['J-J', 'J-E', 'J-P', 'J-M', 'J-T', 'J-Z', 'C-C', 'C-Z',
                                                               'E-J', 'E-E', 'E-P', 'E-M', 'E-T', 'E-Z', 'P-J', 'P-E',
@@ -133,31 +134,3 @@ class TestGrafo(unittest.TestCase):
         self.assertTrue(self.k3.eh_completo())
         self.assertTrue(self.k4.eh_completo())
         self.assertTrue(self.k5.eh_completo())
-
-    def test_ha_ciclo(self):
-        self.assertTrue(self.grafo_ex_conexo.ha_ciclo())
-        self.assertTrue(self.grafo_ex_desconexo.ha_ciclo())
-        self.assertTrue(self.g_p.ha_ciclo())
-        self.assertTrue(self.g_p_sem_paralelas.ha_ciclo())
-        self.assertTrue(self.k4.ha_ciclo())
-        self.assertFalse(self.grafo_conexo.ha_ciclo())
-        self.assertFalse(self.grafo_desconexo.ha_ciclo())
-
-    def test_caminho_dois_vertices(self):
-        self.assertTrue(self.grafo_ex_conexo.caminho_dois_vertices('A', 'A'))
-        self.assertTrue(self.grafo_ex_conexo.caminho_dois_vertices('G', 'C'))
-        self.assertTrue(self.grafo_ex_conexo.caminho_dois_vertices('D', 'J'))
-        self.assertTrue(self.grafo_conexo.caminho_dois_vertices('1', '1'))
-        self.assertTrue(self.grafo_conexo.caminho_dois_vertices('5', '2'))
-        self.assertTrue(self.grafo_conexo.caminho_dois_vertices('7', '3'))
-
-        self.assertFalse(self.grafo_ex_desconexo.caminho_dois_vertices('A', 'M'))
-        self.assertFalse(self.grafo_ex_conexo.caminho_dois_vertices('A', 'X'))
-        self.assertFalse(self.grafo_ex_conexo.caminho_dois_vertices('Q', 'Z'))
-        self.assertFalse(self.grafo_desconexo.caminho_dois_vertices('2', '6'))
-
-    def test_conexo(self):
-        self.assertTrue(self.grafo_conexo.conexo())
-        self.assertTrue(self.grafo_ex_conexo.conexo())
-        self.assertFalse(self.grafo_desconexo.conexo())
-        self.assertFalse(self.grafo_ex_desconexo.conexo())

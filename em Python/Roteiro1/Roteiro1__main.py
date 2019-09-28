@@ -1,23 +1,6 @@
-from Roteiro3_2_1__grafo import Grafo
+from Roteiro1.Roteiro1__grafos import GrafosProntos
 
-paraiba = Grafo()
-paraiba.adicionaVertice('V')
-paraiba.adicionaVertice('J')
-paraiba.adicionaVertice('C')
-paraiba.adicionaVertice('E')
-paraiba.adicionaVertice('P')
-paraiba.adicionaVertice('M')
-paraiba.adicionaVertice('T')
-paraiba.adicionaVertice('Z')
-paraiba.adicionaAresta('a1', 'J-C')
-paraiba.adicionaAresta('a2', 'C-E')
-paraiba.adicionaAresta('a3', 'C-E')
-paraiba.adicionaAresta('a4', 'C-P')
-paraiba.adicionaAresta('a5', 'C-P')
-paraiba.adicionaAresta('a6', 'C-M')
-paraiba.adicionaAresta('a7', 'C-T')
-paraiba.adicionaAresta('a8', 'M-T')
-paraiba.adicionaAresta('a9', 'T-Z')
+paraiba = GrafosProntos.paraiba
 
 print("Grafo da Paraíba:")
 print('Vértices (N): ', paraiba.N)
@@ -43,9 +26,9 @@ print()
 print('2 - c) Há grafo paralelas? - {}'.format('Sim' if paraiba.ha_paralelas() else 'Não'))
 
 print()
-# Teste 2-d)
+# Teste 2-v2)
 for vertice in paraiba.N:
-    print('2 - d) Grau do vértice {}: {}'.format(vertice, paraiba.grau('{}'.format(vertice))))
+    print('2 - v2) Grau do vértice {}: {}'.format(vertice, paraiba.grau('{}'.format(vertice))))
 
 print()
 # Teste 2-e)
