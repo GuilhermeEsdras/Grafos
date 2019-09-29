@@ -3,6 +3,13 @@ from Roteiro5.Roteiro5__funcoes import Grafo
 
 class Grafos:
 
+    # --- | Bem Simples | --- #
+    euleriano_bem_simples = Grafo()
+    for v in ['A', 'B', 'C', 'D', 'E', 'F', 'G']:
+        euleriano_bem_simples.adicionaVertice(v)
+    for a in ['A-B', 'B-C', 'C-D', 'D-E', 'E-F', 'F-G']:
+        euleriano_bem_simples.adicionaAresta(a)
+
     # --- | Pontes de Königsberg | --- #
     konigsberg = Grafo()
     for v in ['M', 'T', 'B', 'R']:
@@ -45,7 +52,7 @@ class Grafos:
     euleriano_2 = Grafo()
     for v in ['A', 'B', 'C', 'D', 'E', 'F', 'G']:
         euleriano_2.adicionaVertice(v)
-    for a in ['A-B', 'A-F', 'B-F', 'B-G', 'B-C', 'F-G', 'F-E', 'G-C', 'G-E', 'C-E', 'C-D', 'E-D']:
+    for a in ['A-D', 'A-E', 'D-E', 'E-B', 'E-F', 'B-F', 'F-C', 'F-G', 'C-G']:
         euleriano_2.adicionaAresta(a)
 
     hexagono = Grafo()
@@ -56,18 +63,16 @@ class Grafos:
 
     # --- | Grafos Semi-Eulerianos | --- #
     semi_euler = Grafo()
-    for v in ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K']:
+    for v in ['A', 'B', 'C', 'D', 'E', 'F', 'G']:
         semi_euler.adicionaVertice(v)
-    for a in ['A-B', 'B-C', 'C-D', 'D-E', 'E-B', 'B-D', 'B-F', 'F-H', 'H-G', 'G-I', 'I-J', 'J-K', 'J-A', 'J-G', 'K-G',
-              'A-G', 'B-G']:
+    for a in ['A-B', 'A-C', 'B-C', 'C-D', 'D-E', 'E-F', 'E-G', 'F-G']:
         semi_euler.adicionaAresta(a)
 
-    semi_euler_com_lacos = Grafo()
-    for v in ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K']:
-        semi_euler_com_lacos.adicionaVertice(v)
-    for a in ['A-A', 'A-B', 'B-C', 'C-D', 'D-E', 'D-D', 'E-B', 'B-D', 'B-F', 'F-H', 'H-G', 'G-I', 'I-J', 'J-K', 'J-A',
-              'J-G', 'K-G', 'A-G', 'B-G']:
-        semi_euler_com_lacos.adicionaAresta(a)
+    semi_euler_com_laco = Grafo()
+    for v in ['A', 'B', 'C', 'D', 'E', 'F', 'G']:
+        semi_euler_com_laco.adicionaVertice(v)
+    for a in ['A-A', 'A-B', 'A-C', 'B-C', 'C-C', 'C-D', 'D-D', 'D-E', 'E-F', 'E-G', 'F-G']:
+        semi_euler_com_laco.adicionaAresta(a)
 
     semi_euler_2 = Grafo()
     for v in ['A', 'B', 'C', 'D', 'E']:

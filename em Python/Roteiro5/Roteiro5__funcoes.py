@@ -222,32 +222,254 @@ class Grafo:
         else:
             raise ArestaInvalidaException('A aresta {} é inválida'.format(a))
 
+    # ---
+
+    '''
+    - Funções Auxiliares, Inicio -
+    '''
+
+    def pos(self, v):
+        """
+        :param v: Vértice.
+        :return: Int. Posição/index do vértice v na lista de vértices (N) do Grafo.
+        """
+        return self.N.index(v)
+
+    def vizinhos_do_vertice(self, v):
+        """
+        :param v: Vértice.
+        :return: Uma lista contendo os vértices vizinhos de v.
+        """
+        vertices = []
+        for linha, arestas in enumerate(self.M):
+            for coluna, qtd in enumerate(arestas):
+                if qtd != '-' and qtd > 0:
+                    if linha < self.pos(v):
+                        if coluna == self.pos(v):
+                            vertices.append(self.N[linha])
+                    elif linha == self.pos(v):
+                        vertices.append(self.N[coluna])
+                    else:
+                        break
+        return vertices
+
+    def remove_vertice(self, v):
+        """
+        Remove um determinado vértice do grafo.
+        :param v: Vértice a ser excluído
+        """
+        if self.verticeValido(v):
+            for i, x in enumerate(self.M):
+                if i == self.pos(v):
+                    x.clear()
+                else:
+                    x.pop(self.pos(v))
+            self.M = [x for x in self.M if x != []]
+            self.N.remove(v)
+        else:
+            raise VerticeInvalidoException('O vértice {} é inválido'.format(v))
+
+    def aresta(self, v1, v2):
+        """
+        :param v1: Vértice 1.
+        :param v2: Vértice 2.
+        :return: Aresta devidamente formatada.
+        """
+        return '{}{}{}'.format(v1, self.SEPARADOR_ARESTA, v2)
+
+    def existe_caminho(self, v1, v2):
+        """
+        Verifica se existe um caminho entre os dois vértices (v1 e v2).
+        :param v1: Vértice 1.
+        :param v2: Vértice 2.
+        :return: Valor Booleano. True se existir, False caso contrário.
+        """
+        if not self.existeVertice(v1) or not self.existeVertice(v2) or \
+                not self.vizinhos_do_vertice(v1) or not self.vizinhos_do_vertice(v2):
+            # Caso não exista um dos vértices no Grafo  OU  um dos vértices não possuir vizinhos:
+            return False
+
+        visitado = [False] * (len(self.N))  # Marca todos os vértices como não visitados.
+        aux = []  # Lista auxiliar.
+        aux.append(v1)  # Adiciona o vértice 1 a lista auxiliar para começar procurando a partir dos vizinhos dele.
+
+        while aux:  # Enquanto houverem vértices alcançáveis a partir de v1 [vértice 1] a serem verificados:
+            # Retira o elemento adicionado da lista aux e o verifica:
+            vsv = aux.pop(0)  # vértice a ser verificado ( v.s.v )
+            if vsv == v2:  # Se o v.s.v for o vértice 2, existe um caminho entre v1 e v2.
+                return True
+            # Caso contrário, continua verificando os vizinhos e os vizinhos dos vizinhos do vértice 1:
+            for v in self.vizinhos_do_vertice(vsv):
+                # Para cada vizinho do v.s.v.:
+                if not visitado[self.pos(v)]:  # Se ainda não foi visitado:
+                    visitado[self.pos(v)] = True  # Marca-o como visitado
+                    aux.append(v)  # Coloca na lista aux para ser verificado no próximo loop
+
+        # Se todos os vértices alcançáveis a partir de v1 (vértice 1) foram visitados e não foi encontrado o vértice 2:
+        return False  # Não existe um caminho entre v1 e v2.
+
+    def eh_conexo(self):
+        """
+        Verifica se o grafo é conexo.
+        Um Grafo é dito conexo caso exista um caminho possível entre quaisquer par de vértices dele.
+        :return: Valor Booleano. True se for, False se não for.
+        """
+        for v1 in self.N:
+            for v2 in self.N:
+                if not self.existe_caminho(v1, v2):
+                    return False
+        return True
+
+    def eh_uma_ponte(self, v1, v2):
+        """
+        Verifica se uma aresta é uma ponte.
+        Uma aresta é chamada de ponte caso a sua remoção torne o grafo desconexo.
+        :param v1: Vértice 1.
+        :param v2: Vértice 2.
+        :return: Valor Booleano.
+        """
+        aresta = '{}{}{}'.format(v1, self.SEPARADOR_ARESTA, v2)
+        self.remove_aresta(aresta)
+        eh_uma_ponte = (not self.eh_conexo())
+        self.adicionaAresta(aresta)
+        return eh_uma_ponte
+
+    def __caminhos_aux(self, v1, v2, visitado, caminho, caminhos):
+        """
+        Função auxiliar de "caminhos_entre_dois_vertices" que percorre o grafo recursivamente em busca de vários
+        caminhos entre os vértices v1 e v2.
+        :param v1: Vértice 1.
+        :param v2: Vértice 2
+        :param visitado: Lista com vértices visitados
+        :param caminho: Lista com um caminho
+        :param caminhos: Lista com todos os caminhos
+        :return: None
+        """
+        visitado[self.N.index(v1)] = True
+        caminho.append(v1)
+
+        if v1 == v2:
+            caminho_aux = [x for x in caminho]
+            caminho_com_aresta = []
+            for i, v in enumerate(caminho_aux):
+                caminho_com_aresta.append(v)
+                if i != len(caminho_aux) - 1:
+                    caminho_com_aresta.append(
+                        '{}{}{}'.format(v, self.SEPARADOR_ARESTA, caminho_aux[i + 1])
+                    )
+            caminhos.append(caminho_com_aresta)
+
+        else:
+            for i in self.vizinhos_do_vertice(v1):
+                if not visitado[self.N.index(i)]:
+                    self.__caminhos_aux(i, v2, visitado, caminho, caminhos)
+
+        caminho.pop()
+        visitado[self.N.index(v1)] = False
+
+    def caminhos_entre_dois_vertices(self, v1, v2):
+        """
+        Percorre o grafo recursivamente em busca de vários caminhos entre v1 e v2.
+        :param v1: Vértice 1.
+        :param v2: Vértice 2.
+        :return: Uma lista de listas com caminhos entre v1 e v2.
+        """
+        if not self.existe_caminho(v1, v2):
+            return False
+        if self.ha_laco():
+            if v1 == v2:
+                aresta = '{}{}{}'.format(v1, self.SEPARADOR_ARESTA, v2)
+                return [v1, aresta, v2]
+
+        visitado = [False] * (len(self.N))
+        caminhos = []
+        self.__caminhos_aux(v1, v2, visitado, [], caminhos)
+        return caminhos
+
+    def menor_caminho(self, v1, v2):
+        """
+        Retorna o caminho mais curto encontrado entre v1 e v2.
+        :param v1: Vértice 1
+        :param v2: Vértice 2
+        :return: Uma lista com o menor caminho
+        """
+        return self.caminhos_entre_dois_vertices(v1, v2)[-1]
+
+    def __ha_ciclo_aux(self, v, visitado, pai):
+        visitado[self.pos(v)] = True
+        for vizinho in self.vizinhos_do_vertice(v):
+            if not visitado[self.pos(vizinho)]:
+                if self.__ha_ciclo_aux(vizinho, visitado, v):
+                    return True
+            elif pai != vizinho:
+                return True
+        return False
+
+    def ha_ciclo(self):
+        vertices = self.N
+        visitado = [False] * (len(vertices))
+        for vertice in vertices:
+            if not visitado[self.pos(vertice)]:
+                if self.__ha_ciclo_aux(vertice, visitado, ''):
+                    return True
+        return False
+
+    def vertices_grau_par(self):
+        par = []
+        for vertice in self.N:
+            if self.grau(vertice) % 2 == 0:
+                par.append(vertice)
+        return par
+
+    def vertices_grau_impar(self):
+        impar = []
+        for vertice in self.N:
+            if self.grau(vertice) % 2 != 0:
+                impar.append(vertice)
+        return impar
+
+    def vertice_de_maior_grau(self):
+        """
+        Verifica qual(is) o(s) vértice(s) de maior grau.
+        :return: Um vértice de maior grau. Caso haja mais de um, é retornado um aleatoriamente.
+        """
+        import random
+
+        maior_grau = 0
+        for vertice in self.N:
+            grau = self.grau(vertice)
+            if grau >= maior_grau:
+                maior_grau = grau
+
+        vertices_de_maior_grau = []
+        for vertice in self.N:
+            if self.grau(vertice) == maior_grau:
+                vertices_de_maior_grau.append(vertice)
+
+        return random.choice(vertices_de_maior_grau)
+
+    def todas_as_arestas_do_grafo(self):
+        """
+        :return: Uma Lista contendo todas as arestas do Grafo
+        """
+        arestas = []
+        for linha, lista_de_arestas in enumerate(self.M):
+            for coluna, qtd_de_arestas in enumerate(lista_de_arestas):
+                if qtd_de_arestas != '-' and qtd_de_arestas > 0:
+                    aresta = '{}{}{}'.format(self.N[linha], self.SEPARADOR_ARESTA, self.N[coluna])
+                    arestas.append(aresta)
+        return arestas
+
+    '''
+    - Funções Auxiliares, Fim -
+    '''
+
+    # ---
+
     '''
     - Soluções do Roteiro 5, Inicio -
     (Copyright © Guilherme Esdras 2019.2)
     '''
-
-    def __caminho_euleriano_aux(self, v, caminho):
-        """
-        Função auxiliar recursiva que segue a lógica do Algoritmo de Fleury percorrendo uma aresta válida e excluindo-a
-        do grafo.
-        :param v: Vértice atual.
-        :param caminho: Lista contendo o caminho.
-        :return:
-        """
-        vizinhos = self.vizinhos_do_vertice(v)
-        if len(vizinhos) > 0:  # Se o vértice possuir vizinhos:
-            for vizinho in vizinhos:
-                if self.grau(vizinho) > 0:  # Se o vértice não for um vértice solitário:
-                    # Seguindo a lógica do Algoritmo de Fleury, uma aresta é válida:
-                    # 1 -
-                    if len(self.vizinhos_do_vertice(vizinho)) == 1 or not self.eh_uma_ponte_svs(vizinho, v):
-                        if len(caminho) > 0 and caminho[-1] != v or len(caminho) == 0:
-                            caminho.append(v)
-                        caminho.append('{}{}{}'.format(v, self.SEPARADOR_ARESTA, vizinho))
-                        caminho.append(vizinho)
-                        self.remove_aresta('{}{}{}'.format(v, self.SEPARADOR_ARESTA, vizinho))
-                        self.__caminho_euleriano_aux(vizinho, caminho)
 
     def caminho_euleriano(self):
         """
@@ -258,16 +480,42 @@ class Grafo:
         """
         if not self.eh_semi_euleriano():  # Verifica se o grafo tem os requisitos para possuir um caminho euleriano.
             return False
+        import random
 
-        while True:  # Seleciona um vértice inicial aleatório que não seja um laço.
-            vertice_inicial = self.vertice_de_maior_grau()
-            if not self.eh_laco(vertice_inicial):
-                break
-
+        grafo_aux = Grafo(self.N, self.M)
         caminho = []
-        grafo_aux = Grafo(self.N, self.M)  # Cria uma cópia do grafo para excluir as arestas durante o processo.
-        grafo_aux.__caminho_euleriano_aux(vertice_inicial, caminho)  # Chama função recursiva para encontrar o caminho
-        return caminho
+
+        if grafo_aux.ha_laco():
+            vertice_inicial = grafo_aux.vertice_de_maior_grau()
+        elif len(grafo_aux.vertices_grau_impar()) > 0:
+            while True:
+                vertice_inicial = random.choice(grafo_aux.vertices_grau_impar())
+                if not grafo_aux.eh_laco(vertice_inicial):
+                    break
+        else:
+            vertice_inicial = grafo_aux.vertice_de_maior_grau()
+
+        pvsv = grafo_aux.pos(vertice_inicial)  # Posição do Vértice a Ser Verificado ( p.v.s.v. )
+        while True:
+            vsv = grafo_aux.N[pvsv]  # Vértice a Ser Verificado ( v.s.v. )
+            if len(caminho) > 0:
+                if caminho[-1] != vsv:
+                    caminho.append(vsv)
+            else:
+                caminho.append(vsv)
+
+            if grafo_aux.grau(vsv) == 0:
+                return caminho
+
+            vizinhos = grafo_aux.vizinhos_do_vertice(vsv)
+            for vizinho in vizinhos:
+                if grafo_aux.eh_laco(vizinho) or len(vizinhos) == 1 or not grafo_aux.eh_uma_ponte(vsv, vizinho):
+                    caminho.append(grafo_aux.aresta(vsv, vizinho))
+                    grafo_aux.remove_aresta(grafo_aux.aresta(vsv, vizinho))
+                    if grafo_aux.grau(vsv) == 0:
+                        grafo_aux.remove_vertice(vsv)
+                    pvsv = grafo_aux.pos(vizinho)
+                    break
 
     def ciclo_hamiltoniano(self):
         """
@@ -283,20 +531,7 @@ class Grafo:
     (Copyright © Guilherme Esdras 2019.2)
     '''
 
-    # Outras Funções Referentes ao Roteiro 5:
-
-    def ciclo_euleriano(self):
-        """
-        Verifica se o grafo possui um Ciclo Euleriano.
-        Um Ciclo Euleriano é um Caminho Euleriano fechado, ou seja, começa e termina no mesmo vértice.
-        :return: Uma Lista contendo o Ciclo, ou o valor Booleano False caso não contenha.
-        """
-        if not self.eh_euleriano():
-            return False
-        while True:
-            ciclo = self.caminho_euleriano()
-            if ciclo[0] == ciclo[-1]:
-                return ciclo
+    # --- | Outras Funções Referentes ao Roteiro 5 | --- #
 
     def eh_euleriano(self):
         """
@@ -310,6 +545,19 @@ class Grafo:
             if self.grau(vertice) % 2 != 0:
                 return False
         return True
+
+    def ciclo_euleriano(self):
+        """
+        Verifica se o grafo possui um Ciclo Euleriano.
+        Um Ciclo Euleriano é um Caminho Euleriano fechado, ou seja, começa e termina no mesmo vértice.
+        :return: Uma Lista contendo o Ciclo, ou o valor Booleano False caso não contenha.
+        """
+        if not self.eh_euleriano():
+            return False
+        while True:
+            ciclo = self.caminho_euleriano()
+            if ciclo[0] == ciclo[-1]:
+                return ciclo
 
     def eh_laco(self, v):
         return v in self.vizinhos_do_vertice(v)
@@ -498,244 +746,6 @@ class Grafo:
     - Soluções do Roteiro 4, Fim -
     (Copyright © Guilherme Esdras 2019.2)
     '''
-
-    # ---
-
-    '''
-    - Funções Auxiliares, Inicio -
-    '''
-
-    def vertice_de_maior_grau(self):
-        """
-        Verifica qual(is) o(v1) vértice(v1) de maior grau.
-        :return: Um vértice de maior grau. Caso haja mais de um, é retornado um aleatoriamente.
-        """
-        import random
-
-        maior_grau = 0
-        for vertice in self.N:
-            grau = self.grau(vertice)
-            if grau >= maior_grau:
-                maior_grau = grau
-
-        vertices_de_maior_grau = []
-        for vertice in self.N:
-            if self.grau(vertice) == maior_grau:
-                vertices_de_maior_grau.append(vertice)
-
-        return random.choice(vertices_de_maior_grau)
-
-    def todas_as_arestas_do_grafo(self):
-        """
-        :return: Uma Lista contendo todas as arestas do Grafo
-        """
-        arestas = []
-        for linha, lista_de_arestas in enumerate(self.M):
-            for coluna, qtd_de_arestas in enumerate(lista_de_arestas):
-                if qtd_de_arestas != '-' and qtd_de_arestas > 0:
-                    aresta = '{}{}{}'.format(self.N[linha], self.SEPARADOR_ARESTA, self.N[coluna])
-                    arestas.append(aresta)
-        return arestas
-
-    def pos(self, v):
-        """
-        :param v: Vértice.
-        :return: Int. Posição/index do vértice v na lista de vértices (N) do Grafo.
-        """
-        return self.N.index(v)
-
-    def vizinhos_do_vertice(self, v):
-        """
-        :param v: Vértice.
-        :return: Uma lista contendo os vértices vizinhos de v.
-        """
-        vertices = []
-        for linha, arestas in enumerate(self.M):
-            for coluna, qtd in enumerate(arestas):
-                if qtd != '-' and qtd > 0:
-                    if linha < self.pos(v):
-                        if coluna == self.pos(v):
-                            vertices.append(self.N[linha])
-                    elif linha == self.pos(v):
-                        vertices.append(self.N[coluna])
-                    else:
-                        break
-        return vertices
-
-    def existe_caminho(self, v1, v2):
-        """
-        Verifica se existe um caminho entre os dois vértices v1 e v2.
-        :param v1: Vértice 1.
-        :param v2: Vértice 2.
-        :return: Valor Booleano. True se existir, False caso contrário.
-        """
-        if not self.existeVertice(v1) or not self.existeVertice(v2) or \
-                not self.vizinhos_do_vertice(v1) or not self.vizinhos_do_vertice(v2):
-            # Caso não exista um dos vértices no Grafo  ou  um dos vértices não possuir vizinhos:
-            return False
-
-        visitado = [False] * (len(self.N))  # Marca todos os vértices como não visitados
-        aux = []  # Lista auxiliar
-        aux.append(v1)  # Adiciona o vértice 1 a lista auxiliar para começar procurando a partir dos vizinhos dele
-
-        # Enquanto houverem vértices alcançáveis a partir de v1 [vértice 1] a serem verificados:
-        while aux:
-            # Retira o elemento adicionado da lista aux e o verifica:
-            vsv = aux.pop(0)  # vértice a ser verificado ( v.s.v )
-
-            if vsv == v2:  # Se o v.s.v for o vértice 2, existe um caminho entre v1 e v2.
-                return True
-
-            # Caso contrário, vai verificando os vizinhos e os vizinhos dos vizinhos do vértice 1:
-            for v in self.vizinhos_do_vertice(vsv):
-                # Para cada vizinho do v.s.v.:
-                if not visitado[self.pos(v)]:  # Se ainda não foi visitado:
-                    visitado[self.pos(v)] = True  # Marca-o como visitado
-                    aux.append(v)  # Coloca na lista aux para ser verificado no próximo loop
-
-        # Se todos os vértices alcançáveis a partir de v1 [vértice 1] foram visitados e não foi encontrado o v2:
-        return False  # Não existe um caminho entre v1 e v2.
-
-    def __caminhos_aux(self, v1, v2, visitado, caminho, caminhos):
-        """
-        Função auxiliar de "caminhos_entre_dois_vertices" que percorre o grafo recursivamente em busca de vários
-        caminhos entre os vértices v1 e v2.
-        :param v1: Vértice 1.
-        :param v2: Vértice 2
-        :param visitado: Lista com vértices visitados
-        :param caminho: Lista com um caminho
-        :param caminhos: Lista com todos os caminhos
-        :return: None
-        """
-        visitado[self.N.index(v1)] = True
-        caminho.append(v1)
-
-        if v1 == v2:
-            caminho_aux = [x for x in caminho]
-            caminho_com_aresta = []
-            for i, v in enumerate(caminho_aux):
-                caminho_com_aresta.append(v)
-                if i != len(caminho_aux) - 1:
-                    caminho_com_aresta.append(
-                        '{}{}{}'.format(v, self.SEPARADOR_ARESTA, caminho_aux[i + 1])
-                    )
-            caminhos.append(caminho_com_aresta)
-
-        else:
-            for i in self.vizinhos_do_vertice(v1):
-                if not visitado[self.N.index(i)]:
-                    self.__caminhos_aux(i, v2, visitado, caminho, caminhos)
-
-        caminho.pop()
-        visitado[self.N.index(v1)] = False
-
-    def caminhos_entre_dois_vertices(self, v1, v2):
-        """
-        Percorre o grafo recursivamente em busca de vários caminhos entre v1 e v2.
-        :param v1: Vértice 1.
-        :param v2: Vértice 2.
-        :return: Uma lista de listas com caminhos entre v1 e v2.
-        """
-        if not self.existe_caminho(v1, v2):
-            return False
-        if self.ha_laco():
-            if v1 == v2:
-                aresta = '{}{}{}'.format(v1, self.SEPARADOR_ARESTA, v2)
-                return [v1, aresta, v2]
-
-        visitado = [False] * (len(self.N))
-        caminhos = []
-        self.__caminhos_aux(v1, v2, visitado, [], caminhos)
-        return caminhos
-
-    def menor_caminho(self, v1, v2):
-        """
-        Retorna o caminho mais curto entre v1 e v2.
-        :param v1: Vértice 1
-        :param v2: Vértice 2
-        :return: Uma lista com o menor caminho
-        """
-        return self.caminhos_entre_dois_vertices(v1, v2)[-1]
-
-    def eh_conexo(self):
-        """
-        Verifica se o grafo é conexo.
-        Um Grafo é dito conexo caso exista um caminho possível entre quaisquer par de vértices dele.
-        :return: Valor Booleano. True se for, False se não for.
-        """
-        for v1 in self.N:
-            for v2 in self.N:
-                if not self.existe_caminho(v1, v2):
-                    return False
-        return True
-
-    def eh_uma_ponte(self, v1, v2):
-        """
-        Verifica se uma aresta é uma ponte.
-        :param v1: Vértice 1.
-        :param v2: Vértice 2.
-        :return: Valor Booleano.
-        """
-        aresta = '{}{}{}'.format(v1, self.SEPARADOR_ARESTA, v2)
-        self.remove_aresta(aresta)
-        eh_uma_ponte = not self.eh_conexo()
-        self.adicionaAresta(aresta)
-        return eh_uma_ponte
-
-    def eh_conexo_svs(self):
-        """
-        Verifica se o grafo é conexo sem considerar vértices solitários, ou seja, vértices de grau 0.
-        ( s.v.s. = sem vértice solitário )
-        :return: Valor Booleano.
-        """
-        lista_de_vertices = []
-        for vertice in self.N:
-            if self.grau(vertice) > 0:
-                lista_de_vertices.append(vertice)
-        for v1 in lista_de_vertices:
-            for v2 in lista_de_vertices:
-                if not self.existe_caminho(v1, v2):
-                    return False
-        return True
-
-    def eh_uma_ponte_svs(self, v1, v2):
-        """
-        Verifica se uma aresta é uma ponte sem considerar vértices solitários.
-        ( s.v.s. = sem vértice solitário )
-        :param v1: Vértice 1.
-        :param v2: Vértice 2.
-        :return: Valor Booleano.
-        """
-        aresta = '{}{}{}'.format(v1, self.SEPARADOR_ARESTA, v2)
-        self.remove_aresta(aresta)
-        eh_uma_ponte = not self.eh_conexo_svs()
-        self.adicionaAresta(aresta)
-        return eh_uma_ponte
-
-    def __ha_ciclo_aux(self, v, visitado, pai):
-        visitado[self.pos(v)] = True
-        for vizinho in self.vizinhos_do_vertice(v):
-            if not visitado[self.pos(vizinho)]:
-                if self.__ha_ciclo_aux(vizinho, visitado, v):
-                    return True
-            elif pai != vizinho:
-                return True
-        return False
-
-    def ha_ciclo(self):
-        vertices = self.N
-        visitado = [False] * (len(vertices))
-        for vertice in vertices:
-            if not visitado[self.pos(vertice)]:
-                if self.__ha_ciclo_aux(vertice, visitado, ''):
-                    return True
-        return False
-
-    '''
-    - Funções Auxiliares, Fim -
-    '''
-
-    # ---
 
     def __str__(self):
         """
