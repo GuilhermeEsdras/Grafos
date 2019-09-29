@@ -414,7 +414,18 @@ class Grafo:
                     return True
         return False
 
+    def eh_laco(self, v):
+        """
+        Verifica se o vértice é/possui um laço.
+        :param v: Vértice.
+        :return: Valor Booleano. True se o vértice possuir ele mesmo como vizinho, ou False caso contrário.
+        """
+        return v in self.vizinhos_do_vertice(v)
+
     def vertices_grau_par(self):
+        """
+        :return: Lista com os vértices de grau par.
+        """
         par = []
         for vertice in self.N:
             if self.grau(vertice) % 2 == 0:
@@ -422,6 +433,9 @@ class Grafo:
         return par
 
     def vertices_grau_impar(self):
+        """
+        :return: Lista com os vértices de grau ímpar.
+        """
         impar = []
         for vertice in self.N:
             if self.grau(vertice) % 2 != 0:
@@ -450,7 +464,7 @@ class Grafo:
 
     def todas_as_arestas_do_grafo(self):
         """
-        :return: Uma Lista contendo todas as arestas do Grafo
+        :return: Uma Lista contendo todas as arestas do Grafo.
         """
         arestas = []
         for linha, lista_de_arestas in enumerate(self.M):
@@ -559,9 +573,6 @@ class Grafo:
             if ciclo[0] == ciclo[-1]:
                 return ciclo
 
-    def eh_laco(self, v):
-        return v in self.vizinhos_do_vertice(v)
-
     def eh_semi_euleriano(self):
         """
         Verifica se o grafo é Semi-Euleriano.
@@ -587,6 +598,14 @@ class Grafo:
         arestas forem visitadas).
         :return: Uma Lista contendo o caminho, ou o valor Booleano False caso não exista.
         """
+        caminho = []
+        visitado = [False] * len(self.N)
+        for vertice in self.N:
+            if not visitado[self.pos(vertice)]:
+                caminho.append(vertice)
+                for vizinho in self.vizinhos_do_vertice(vertice):
+                    if not visitado[self.pos(vizinho)]:
+                        prox = vizinho
 
         return list()
 
@@ -746,6 +765,24 @@ class Grafo:
     - Soluções do Roteiro 4, Fim -
     (Copyright © Guilherme Esdras 2019.2)
     '''
+
+    def grafoParaPNG(self, nome):
+        """
+        Função que usa as bibliotecas NetworkX em conjunto com Matplotlib para gerar uma imagem do grafo.
+        :param nome: Nome do arquivo de imagem do grafo que será salva.
+        """
+        try:
+            import networkx as nx
+            from matplotlib import pyplot as plt
+        except Exception:
+            raise
+
+        grafo = nx.Graph()
+        grafo.add_nodes_from(self.N)
+        for aresta in self.todas_as_arestas_do_grafo():
+            grafo.add_edge(aresta[0], aresta[2])
+        nx.draw(grafo, with_labels=True)
+        plt.savefig("{}.png".format(nome))
 
     def __str__(self):
         """
