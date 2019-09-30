@@ -328,7 +328,7 @@ class Grafo:
         :param v2: Vértice 2.
         :return: Valor Booleano.
         """
-        aresta = '{}{}{}'.format(v1, self.SEPARADOR_ARESTA, v2)
+        aresta = self.aresta(v1, v2)
         self.remove_aresta(aresta)
         eh_uma_ponte = (not self.eh_conexo())
         self.adicionaAresta(aresta)
@@ -345,7 +345,7 @@ class Grafo:
         :param caminhos: Lista com todos os caminhos
         :return: None
         """
-        visitado[self.N.index(v1)] = True
+        visitado[self.pos(v1)] = True
         caminho.append(v1)
 
         if v1 == v2:
@@ -354,18 +354,16 @@ class Grafo:
             for i, v in enumerate(caminho_aux):
                 caminho_com_aresta.append(v)
                 if i != len(caminho_aux) - 1:
-                    caminho_com_aresta.append(
-                        '{}{}{}'.format(v, self.SEPARADOR_ARESTA, caminho_aux[i + 1])
-                    )
+                    caminho_com_aresta.append(self.aresta(v, caminho_aux[i+1]))
             caminhos.append(caminho_com_aresta)
 
         else:
             for i in self.vizinhos_do_vertice(v1):
-                if not visitado[self.N.index(i)]:
+                if not visitado[self.pos(i)]:
                     self.__caminhos_aux(i, v2, visitado, caminho, caminhos)
 
         caminho.pop()
-        visitado[self.N.index(v1)] = False
+        visitado[self.pos(v1)] = False
 
     def caminhos_entre_dois_vertices(self, v1, v2):
         """
@@ -378,8 +376,7 @@ class Grafo:
             return False
         if self.ha_laco():
             if v1 == v2:
-                aresta = '{}{}{}'.format(v1, self.SEPARADOR_ARESTA, v2)
-                return [v1, aresta, v2]
+                return [v1, self.aresta(v1, v2), v2]
 
         visitado = [False] * (len(self.N))
         caminhos = []
@@ -470,8 +467,7 @@ class Grafo:
         for linha, lista_de_arestas in enumerate(self.M):
             for coluna, qtd_de_arestas in enumerate(lista_de_arestas):
                 if qtd_de_arestas != '-' and qtd_de_arestas > 0:
-                    aresta = '{}{}{}'.format(self.N[linha], self.SEPARADOR_ARESTA, self.N[coluna])
-                    arestas.append(aresta)
+                    arestas.append(self.aresta(self.N[linha], self.N[coluna]))
         return arestas
 
     '''
@@ -537,8 +533,14 @@ class Grafo:
         Um Ciclo Hamiltoniano é um Caminho Hamiltoniano fechado, ou seja, começa e termina no mesmo vértice.
         :return: Uma lista mostrando o ciclo, ou o valor Booleano False caso não exista.
         """
-
-        return list()
+        if not self.eh_conexo():
+            return False
+        for vertice in self.N:
+            ciclo = self.caminho_hamiltoniano(vertice)
+            if ciclo:
+                if ciclo[0] == ciclo[-1]:
+                    return ciclo
+        return False
 
     '''
     - Soluções do Roteiro 5, Fim -
@@ -591,23 +593,39 @@ class Grafo:
                 return False
         return True
 
-    def caminho_hamiltoniano(self):
+    def caminho_hamiltoniano(self, v):
         """
         Verifica se o grafo possui um Caminho Hamiltoniano.
         Um Caminho Hamiltoniano é um caminho que passa exatamente uma vez por cada vértice (não importando se todas as
         arestas forem visitadas).
+        :param: v: Vértice inicial.
         :return: Uma Lista contendo o caminho, ou o valor Booleano False caso não exista.
         """
+        if not self.eh_conexo():
+            return False
+
         caminho = []
         visitado = [False] * len(self.N)
-        for vertice in self.N:
-            if not visitado[self.pos(vertice)]:
-                caminho.append(vertice)
-                for vizinho in self.vizinhos_do_vertice(vertice):
-                    if not visitado[self.pos(vizinho)]:
-                        prox = vizinho
 
-        return list()
+        pvsv = self.pos(v)  # Posição do Vértice a Ser Verificado ( p.v.s.v. )
+        while True:
+            vsv = self.N[pvsv]  # Vértice a Ser Verificado ( v.s.v. )
+            caminho.append(vsv)
+            visitado[pvsv] = True
+
+            if visitado.count(True) == len(visitado):
+                return caminho
+
+            encontrou = False
+            for vizinho in self.vizinhos_do_vertice(vsv):
+                if not visitado[self.pos(vizinho)]:
+                    caminho.append(self.aresta(vsv, vizinho))
+                    pvsv = self.pos(vizinho)
+                    encontrou = True
+                    break
+
+            if not encontrou:
+                return False
 
     def eh_hamiltoniano(self):
         """
@@ -637,7 +655,7 @@ class Grafo:
         for x, lista_de_arestas in enumerate(self.M):
             for y, arestas in enumerate(lista_de_arestas):
                 if arestas == 0:
-                    vertices_nao_adjacentes.append('{}{}{}'.format(self.N[x], self.SEPARADOR_ARESTA, self.N[y]))
+                    vertices_nao_adjacentes.append(self.aresta(self.N[x], self.N[y]))
         return vertices_nao_adjacentes
 
     def ha_laco(self):
@@ -670,7 +688,7 @@ class Grafo:
         # Então, soma o valor/quantidade das arestas conectadas aquele vértice, e adiciona-o a variável grau para depois
         # retorná-la.
 
-        pos = self.N.index(v)
+        pos = self.pos(v)
         grau = 0
         for x, lista_de_arestas in enumerate(self.M):
             if x <= pos:
@@ -717,16 +735,12 @@ class Grafo:
                         if y == pos:
                             if arestas > 0:
                                 for z in range(arestas):
-                                    vertices_incidentes.append(
-                                        '{}{}{}'.format(self.N[x], self.SEPARADOR_ARESTA, self.N[y])
-                                    )
+                                    vertices_incidentes.append(self.aresta(self.N[x], self.N[y]))
                     else:
                         if arestas != '-':
                             if arestas > 0:
                                 for z in range(arestas):
-                                    vertices_incidentes.append(
-                                        '{}{}{}'.format(self.N[x], self.SEPARADOR_ARESTA, self.N[y])
-                                    )
+                                    vertices_incidentes.append(self.aresta(self.N[x], self.N[y]))
         return vertices_incidentes
 
     def eh_completo(self):

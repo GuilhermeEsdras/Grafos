@@ -42,7 +42,7 @@ class Grafos:
     for a in ['J-C', 'C-E', 'C-E', 'C-P', 'C-P', 'C-M', 'M-T', 'T-Z']:
         paraiba_euler.adicionaAresta(a)
 
-    # --- | Grafos Eulerianos | --- #
+    # --- | Grafos Eulerianos / Hamiltonianos | --- #
     euleriano = Grafo()
     for v in ['A', 'B', 'C', 'D', 'E', 'F', 'G']:
         euleriano.adicionaVertice(v)
@@ -85,8 +85,6 @@ class Grafos:
         semi_euler_3.adicionaVertice(v)
     for a in ['1-2', '2-3', '3-4', '4-5', '5-3', '3-6', '6-7', '7-3']:
         semi_euler_3.adicionaAresta(a)
-
-    # --- | Grafos Hamiltonianos | --- #
 
     # --- | Outros | --- #
     ex_graph = Grafo()
