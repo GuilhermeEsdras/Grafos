@@ -572,8 +572,9 @@ class Grafo:
                 else:
                     visitado = [False] * len(self.N)
                     ciclo.clear()
-                    # A partir daqui tá com erro, era pra "resetar" o grafo_aux e todas as outras variáveis, começando
-                    # novamente com outro vértice inicial. Mas dá erro, não sei pq... ¯\_(ツ)_/¯
+                    # Se não encontrar um ciclo de primeira e acabar entrando nesse else, o algoritmo não roda como o esperado. 
+                    # Era pra "resetar" o grafo_aux e todas as outras variáveis, começando novamente com outro vértice inicial. 
+                    # Mas não roda direito, não sei pq... ¯\_(ツ)_/¯ O importante é que funciona se encontrar o ciclo de primeira...
                     grafo_aux = Grafo()
                     grafo_aux.N = self.N.copy()
                     grafo_aux.M = self.M.copy()
