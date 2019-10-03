@@ -61,6 +61,13 @@ class Grafos:
     for a in ['A-B', 'B-C', 'C-D', 'D-E', 'E-F', 'F-A']:
         hexagono.adicionaAresta(a)
 
+    # --- | Com Ciclo Hamiltoniano | --- #
+    com_ciclo_hamiltoniano = Grafo()
+    for v in ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']:
+        com_ciclo_hamiltoniano.adicionaVertice(v)
+    for a in ['A-B', 'A-F', 'A-D', 'B-C', 'B-G', 'C-D', 'C-H', 'D-E', 'E-F', 'E-H', 'F-G', 'G-H']:
+        com_ciclo_hamiltoniano.adicionaAresta(a)
+
     # --- | Grafos Semi-Eulerianos | --- #
     semi_euler = Grafo()
     for v in ['A', 'B', 'C', 'D', 'E', 'F', 'G']:

@@ -6,11 +6,6 @@
       <change beforePath="$PROJECT_DIR$/Roteiro5/Roteiro5__funcoes.py" beforeDir="false" afterPath="$PROJECT_DIR$/Roteiro5/Roteiro5__funcoes.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Roteiro5/Roteiro5__grafos.py" beforeDir="false" afterPath="$PROJECT_DIR$/Roteiro5/Roteiro5__grafos.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Roteiro5/Roteiro5__main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Roteiro5/Roteiro5__main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Roteiro5/paraiba.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Roteiro5/semi_euler.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Roteiro5/semi_euler_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Roteiro5/semi_euler_3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Roteiro5/simples.png" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -223,6 +218,11 @@
       <workItem from="1569691811818" duration="5816000" />
       <workItem from="1569705211476" duration="21279000" />
       <workItem from="1569882750672" duration="3020000" />
+      <workItem from="1569964916349" duration="588000" />
+      <workItem from="1570018864521" duration="2546000" />
+      <workItem from="1570047715648" duration="3000000" />
+      <workItem from="1570111714770" duration="14180000" />
+      <workItem from="1570128919312" duration="1324000" />
     </task>
     <servers />
   </component>
@@ -265,7 +265,7 @@
     <SUITE FILE_PATH="coverage/em_Python$Roteiro5__funcoes.coverage" NAME="Roteiro5__funcoes Coverage Results" MODIFIED="1569886115143" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Roteiro5" />
     <SUITE FILE_PATH="coverage/em_Python$Unittests_for_grafo_test_TestGrafo_test_conexo.coverage" NAME="Unittests for grafo_test.TestGrafo.test_conexo Coverage Results" MODIFIED="1567714349538" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/em_Python$Unittests_for_grafo_test_roteiro_4_TestGrafo_test_ha_laco.coverage" NAME="Unittests for grafo_test_roteiro_4.TestGrafo.test_ha_laco Coverage Results" MODIFIED="1568334284728" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/em_Python$Roteiro5__main.coverage" NAME="Roteiro5__main Coverage Results" MODIFIED="1569886119361" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Roteiro5" />
+    <SUITE FILE_PATH="coverage/em_Python$Roteiro5__main.coverage" NAME="Roteiro5__main Coverage Results" MODIFIED="1570130206050" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Roteiro5" />
     <SUITE FILE_PATH="coverage/em_Python$Roteiro4.coverage" NAME="Roteiro4 Coverage Results" MODIFIED="1568306492683" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/em_Python$Unittests_for_grafo_test_roteiro_4_TestGrafo_test_vertices_nao_adjacentes.coverage" NAME="Unittests for grafo_test_roteiro_4.TestGrafo.test_vertices_nao_adjacentes Coverage Results" MODIFIED="1568336846002" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/em_Python$Roteiro3__main.coverage" NAME="Roteiro3__main Coverage Results" MODIFIED="1569516121891" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Roteiro 3" />

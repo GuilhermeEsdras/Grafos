@@ -354,7 +354,7 @@ class Grafo:
             for i, v in enumerate(caminho_aux):
                 caminho_com_aresta.append(v)
                 if i != len(caminho_aux) - 1:
-                    caminho_com_aresta.append(self.aresta(v, caminho_aux[i+1]))
+                    caminho_com_aresta.append(self.aresta(v, caminho_aux[i + 1]))
             caminhos.append(caminho_com_aresta)
 
         else:
@@ -470,6 +470,15 @@ class Grafo:
                     arestas.append(self.aresta(self.N[linha], self.N[coluna]))
         return arestas
 
+    def remove_arestas_do_vertice(self, v):
+        """
+        Remove do grafo todas as arestas conectadas ao vértice v.
+        :param v: Vértice.
+        :return:
+        """
+        for vizinho in self.vizinhos_do_vertice(v):
+            self.remove_aresta(self.aresta(v, vizinho))
+
     '''
     - Funções Auxiliares, Fim -
     '''
@@ -529,18 +538,86 @@ class Grafo:
 
     def ciclo_hamiltoniano(self):
         """
-        Verifica se o grafo possui um Ciclo Hamiltoniano e em caso positivo, retorna uma lista contendo o ciclo.
+        Retorna o caminho do ciclo de um Grafo com Ciclo Hamiltoniano.
         Um Ciclo Hamiltoniano é um Caminho Hamiltoniano fechado, ou seja, começa e termina no mesmo vértice.
         :return: Uma lista mostrando o ciclo, ou o valor Booleano False caso não exista.
         """
-        if not self.eh_conexo():
-            return False
-        for vertice in self.N:
-            ciclo = self.caminho_hamiltoniano(vertice)
-            if ciclo:
-                if ciclo[0] == ciclo[-1]:
+        import random
+
+        grafo_aux = Grafo()
+        grafo_aux.N = self.N.copy()
+        grafo_aux.M = self.M.copy()
+
+        vertices_iniciais_verificados = []
+        ciclo = []
+        visitado = [False] * len(self.N)
+
+        vsv = random.choice(grafo_aux.N)  # Vértice a Ser Verificado ( v.s.v. )
+        vertice_inicial = vsv
+        vizinhos_do_inicial = grafo_aux.vizinhos_do_vertice(vsv)
+        vertices_iniciais_verificados.append(vsv)
+        tenta_outro_vertice = False
+        while True:
+            if not grafo_aux.eh_conexo():
+                return False
+            ciclo.append(vsv)
+            visitado[self.pos(vsv)] = True
+            vizinhos_de_vsv = grafo_aux.vizinhos_do_vertice(vsv)
+
+            if visitado.count(True) == len(visitado) or tenta_outro_vertice:
+                if not tenta_outro_vertice and vertice_inicial in vizinhos_de_vsv:
+                    ciclo.append(grafo_aux.aresta(vsv, vertice_inicial))
+                    ciclo.append(vertice_inicial)
                     return ciclo
-        return False
+                else:
+                    visitado = [False] * len(self.N)
+                    ciclo.clear()
+                    # A partir daqui tá com erro, era pra "resetar" o grafo_aux e todas as outras variáveis, começando
+                    # novamente com outro vértice inicial. Mas dá erro, não sei pq... ¯\_(ツ)_/¯
+                    grafo_aux = Grafo()
+                    grafo_aux.N = self.N.copy()
+                    grafo_aux.M = self.M.copy()
+
+                    while True:
+                        vsv = random.choice(grafo_aux.N)
+                        if vsv not in vertices_iniciais_verificados:
+                            vertice_inicial = vsv
+                            vizinhos_do_inicial = grafo_aux.vizinhos_do_vertice(vsv)
+                            vertices_iniciais_verificados.append(vsv)
+                            tenta_outro_vertice = False
+                            break
+                        elif len(vertices_iniciais_verificados) == len(grafo_aux.N):
+                            return False
+
+            else:
+                encontrou = True
+                ultima_chance = False
+                menos_vizinhos = 0
+                while True:
+                    for i, vizinho in enumerate(vizinhos_de_vsv):
+                        if vizinho not in ciclo:
+                            grau_desse_vizinho = grafo_aux.grau(vizinho)
+                            if grau_desse_vizinho < menos_vizinhos or menos_vizinhos == 0:
+                                menos_vizinhos = grau_desse_vizinho
+                            if ((vizinho not in vizinhos_do_inicial) or (not encontrou)) and \
+                                    (grau_desse_vizinho <= menos_vizinhos):
+                                ciclo.append(grafo_aux.aresta(vsv, vizinho))
+                                if vsv != vertice_inicial:
+                                    grafo_aux.remove_vertice(vsv)
+                                vsv = vizinho
+                                encontrou = True
+                                break
+                        if i == len(grafo_aux.vizinhos_do_vertice(vsv)) - 1:
+                            encontrou = False
+                    if encontrou:
+                        break
+                    else:
+                        if not ultima_chance:
+                            ultima_chance = True
+                        else:
+                            tenta_outro_vertice = True
+                            return False
+                            # break
 
     '''
     - Soluções do Roteiro 5, Fim -
