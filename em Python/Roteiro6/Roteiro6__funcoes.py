@@ -191,9 +191,9 @@ class Grafo:
         :raise: lança uma exceção caso a aresta não estiver em um formato válido
         """
         if self.arestaValida(a):
-            pos_v1 = self.__indice_primeiro_vertice_aresta(a)
-            pos_v2 = self.__indice_segundo_vertice_aresta(a)
-            self.M[pos_v1][pos_v2] += 1
+            i_a1 = self.__indice_primeiro_vertice_aresta(a)
+            i_a2 = self.__indice_segundo_vertice_aresta(a)
+            self.M[i_a1][i_a2] += 1
         else:
             raise ArestaInvalidaException('A aresta {} é inválida'.format(a))
 
@@ -218,6 +218,9 @@ class Grafo:
     '''
 
     def warshall(self):
+        """
+        :return: Uma matriz indicando quais vértices são alcançáveis a partir de cada vértice.
+        """
         E = copy.deepcopy(self.M)
         for coluna in range(len(self.N)):
             for linha in range(len(self.N)):
@@ -226,6 +229,11 @@ class Grafo:
                         E[linha][k] = max(E[linha][k], E[coluna][k])
         return E
 
+    def grafo_warshall(self):
+        """
+        :return: Um grafo com a Matriz de alcançabilidade.
+        """
+        return Grafo(copy.deepcopy(self.N), self.warshall())
 
     '''
     - Roteiro 6 - Warshall, Fim -
