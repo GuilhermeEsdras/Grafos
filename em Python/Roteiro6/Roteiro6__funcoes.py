@@ -222,11 +222,19 @@ class Grafo:
         :return: Uma matriz indicando quais vértices são alcançáveis a partir de cada vértice.
         """
         E = copy.deepcopy(self.M)
-        for coluna in range(len(self.N)):
-            for linha in range(len(self.N)):
-                if E[linha][coluna] > 0:
+
+        # Elimina arestas paralelas e laços:
+        for linha in range(len(self.N)):
+            for coluna in range(len(self.N)):
+                if (linha == coluna and E[coluna][linha] > 0) or (E[coluna][linha] > 1):
+                    E[coluna][linha] -= 1
+
+        # Algoritmo de Warshall:
+        for linha in range(len(self.N)):
+            for coluna in range(len(self.N)):
+                if E[coluna][linha] > 0:
                     for k in range(len(self.N)):
-                        E[linha][k] = max(E[linha][k], E[coluna][k])
+                        E[coluna][k] = max(E[coluna][k], E[linha][k])
         return E
 
     def grafo_warshall(self):
