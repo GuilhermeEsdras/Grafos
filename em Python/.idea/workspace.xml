@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="352eeb84-7cec-4625-a9e4-dd861069e1db" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Roteiro6/Roteiro6__funcoes.py" beforeDir="false" afterPath="$PROJECT_DIR$/Roteiro6/Roteiro6__funcoes.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -173,7 +172,7 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" BundledDictionaries="0" Folders="4" Folder0="C:\Users\Guilherme\.PyCharm2019.2\config\ptbr_dict" Folder1="C:\Users\Guilherme\.PyCharm2019.2\config\ptbr_dict" Folder2="C:\Users\Guilherme\.PyCharm2019.2\config\ptbr_dict" Folder3="C:\Users\Guilherme\.PyCharm2019.2\config\ptbr_dict" CustomDictionaries="4" CustomDictionary0="C:\Users\Guilherme\.PyCharm2019.2\config\ptbr_dict\portuguese-brazil.dic" CustomDictionary1="C:\Users\Guilherme\.PyCharm2019.2\config\ptbr_dict\portuguese-brazil_technical-terms.dic" CustomDictionary2="C:\Users\Guilherme\.PyCharm2019.2\config\ptbr_dict\portuguese-brazil_technical-terms_without-accents.dic" CustomDictionary3="C:\Users\Guilherme\.PyCharm2019.2\config\ptbr_dict\portuguese-brazil_without-accents.dic" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="project-level" UseSingleDictionary="true" />
+  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="4" Folder0="C:\Users\Guilherme\.PyCharm2019.2\config\ptbr_dict" Folder1="C:\Users\Guilherme\.PyCharm2019.2\config\ptbr_dict" Folder2="C:\Users\Guilherme\.PyCharm2019.2\config\ptbr_dict" Folder3="C:\Users\Guilherme\.PyCharm2019.2\config\ptbr_dict" CustomDictionaries="4" CustomDictionary0="C:\Users\Guilherme\.PyCharm2019.2\config\ptbr_dict\portuguese-brazil.dic" CustomDictionary1="C:\Users\Guilherme\.PyCharm2019.2\config\ptbr_dict\portuguese-brazil_technical-terms.dic" CustomDictionary2="C:\Users\Guilherme\.PyCharm2019.2\config\ptbr_dict\portuguese-brazil_technical-terms_without-accents.dic" CustomDictionary3="C:\Users\Guilherme\.PyCharm2019.2\config\ptbr_dict\portuguese-brazil_without-accents.dic" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="project-level" UseSingleDictionary="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -229,6 +228,10 @@
       <workItem from="1570111714770" duration="14180000" />
       <workItem from="1570128919312" duration="1324000" />
       <workItem from="1570747616264" duration="7512000" />
+      <workItem from="1572562162035" duration="973000" />
+      <workItem from="1573308028718" duration="847000" />
+      <workItem from="1573309356399" duration="1818000" />
+      <workItem from="1573477686940" duration="187000" />
     </task>
     <servers />
   </component>
