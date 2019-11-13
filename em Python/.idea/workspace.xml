@@ -2,28 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="352eeb84-7cec-4625-a9e4-dd861069e1db" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Roteiro1/Roteiro1__funcoes.py" beforeDir="false" afterPath="$PROJECT_DIR$/Roteiro1/Roteiro1__funcoes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Roteiro1/Roteiro1__grafos.py" beforeDir="false" afterPath="$PROJECT_DIR$/Roteiro1/Roteiro1__grafos.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Roteiro1/Roteiro1__main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Roteiro1/Roteiro1__main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Roteiro1/Roteiro1__tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/Roteiro1/Roteiro1__tests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Roteiro2/Roteiro2__funcoes.py" beforeDir="false" afterPath="$PROJECT_DIR$/Roteiro2/Roteiro2__funcoes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Roteiro2/Roteiro2__grafos.py" beforeDir="false" afterPath="$PROJECT_DIR$/Roteiro2/Roteiro2__grafos.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Roteiro2/Roteiro2__tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/Roteiro2/Roteiro2__tests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Roteiro3/Roteiro3__funcoes.py" beforeDir="false" afterPath="$PROJECT_DIR$/Roteiro3/Roteiro3__funcoes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Roteiro3/Roteiro3__grafos.py" beforeDir="false" afterPath="$PROJECT_DIR$/Roteiro3/Roteiro3__grafos.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Roteiro3/Roteiro3__tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/Roteiro3/Roteiro3__tests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Roteiro4/Roteiro4__funcoes.py" beforeDir="false" afterPath="$PROJECT_DIR$/Roteiro4/Roteiro4__funcoes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Roteiro4/Roteiro4__grafos.py" beforeDir="false" afterPath="$PROJECT_DIR$/Roteiro4/Roteiro4__grafos.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Roteiro4/Roteiro4__main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Roteiro4/Roteiro4__main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Roteiro4/Roteiro4__tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/Roteiro4/Roteiro4__tests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Roteiro5/Roteiro5__funcoes.py" beforeDir="false" afterPath="$PROJECT_DIR$/Roteiro5/Roteiro5__funcoes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Roteiro5/Roteiro5__main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Roteiro5/Roteiro5__main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Roteiro5/Roteiro5__tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/Roteiro5/Roteiro5__tests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Roteiro6/Roteiro6__funcoes.py" beforeDir="false" afterPath="$PROJECT_DIR$/Roteiro6/Roteiro6__funcoes.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Roteiro7/Roteiro7__funcoes.py" beforeDir="false" afterPath="$PROJECT_DIR$/Roteiro7/Roteiro7__funcoes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Roteiro7/Roteiro7__main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Roteiro7/Roteiro7__main.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -255,6 +234,7 @@
       <workItem from="1573477686940" duration="409000" />
       <workItem from="1573510324639" duration="1342000" />
       <workItem from="1573590868039" duration="15823000" />
+      <workItem from="1573621425346" duration="457000" />
     </task>
     <servers />
   </component>

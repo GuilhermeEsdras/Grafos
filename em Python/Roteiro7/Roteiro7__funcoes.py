@@ -39,10 +39,6 @@ class GrafoComPesos:
         if not V:
             V = list()
 
-        # Cria o dicionário de arestas vazio caso não seja passado um como argumento:
-        if not A:
-            A = dict()
-
         # Para cada vértice passado como argumento, verifica se são válidos:
         for v in V:
             if not (GrafoComPesos.verticeValido(v)):
@@ -76,61 +72,6 @@ class GrafoComPesos:
                 else:
                     raise ArestaInvalidaException('A aresta ' + aresta + ' é inválida!')
 
-    def pesoValido(self, peso):
-        """
-        Verifica se o peso passado como parâmetro é válido (verifica se o peso é maior que zero).
-        :param peso: Valor inteiro.
-        :return: Valo booleano.
-        """
-        return peso > 0
-
-    def arestaValida(self, aresta=''):
-        """
-        Verifica se uma aresta passada como parâmetro está dentro do padrão estabelecido.
-        Uma aresta é representada por um string com o formato a-b, onde:
-        a é um substring de aresta que é o nome de um vértice adjacente à aresta.
-        - é um caractere separador. Uma aresta só pode ter um único caractere como esse.
-        b é um substring de aresta que é o nome do outro vértice adjacente à aresta.
-        Além disso, uma aresta só é válida se conectar dois vértices existentes no grafo.
-        :param aresta: A aresta que se quer verificar se está no formato correto.
-        :return: Um valor booleano que indica se a aresta está no formato correto.
-        """
-
-        # Não pode haver mais de um caractere separador
-        if aresta.count(GrafoComPesos.SEPARADOR_ARESTA) != GrafoComPesos.QTDE_MAX_SEPARADOR:
-            return False
-
-        # Índice do elemento separador
-        i_traco = aresta.index(GrafoComPesos.SEPARADOR_ARESTA)
-
-        # O caractere separador não pode ser o primeiro ou o último caractere da aresta
-        if i_traco == 0 or aresta[-1] == GrafoComPesos.SEPARADOR_ARESTA:
-            return False
-
-        if not (self.existeVertice(aresta[:i_traco])) or not (self.existeVertice(aresta[i_traco + 1:])):
-            return False
-
-        return True
-
-    @classmethod
-    def verticeValido(self, vertice: str):
-        """
-        Verifica se um vértice passado como parâmetro está dentro do padrão estabelecido.
-        Um vértice é um string qualquer que não pode ser vazio e nem conter o caractere separador.
-        Um vértice também não pode conter mais que 6 caracteres.
-        :param vertice: Um string que representa o vértice a ser analisado.
-        :return: Um valor booleano que indica se o vértice está no formato correto.
-        """
-        return vertice != '' and vertice.count(GrafoComPesos.SEPARADOR_ARESTA) == 0 and len(vertice) <= 6
-
-    def existeVertice(self, vertice: str):
-        """
-        Verifica se um vértice passado como parâmetro pertence ao grafo.
-        :param vertice: O vértice que deve ser verificado.
-        :return: Um valor booleano que indica se o vértice existe no grafo.
-        """
-        return GrafoComPesos.verticeValido(vertice) and self.N.count(vertice) > 0
-
     def __primeiro_vertice_aresta(self, a: str):
         """
         Dada uma aresta no formato X-Y, retorna o vértice X
@@ -162,6 +103,61 @@ class GrafoComPesos:
         :return: O índice do segundo vértice da aresta na lista de vértices
         """
         return self.N.index(self.__segundo_vertice_aresta(a))
+
+    @classmethod
+    def verticeValido(self, vertice: str):
+        """
+        Verifica se um vértice passado como parâmetro está dentro do padrão estabelecido.
+        Um vértice é um string qualquer que não pode ser vazio e nem conter o caractere separador.
+        Um vértice também não pode conter mais que 6 caracteres.
+        :param vertice: Um string que representa o vértice a ser analisado.
+        :return: Um valor booleano que indica se o vértice está no formato correto.
+        """
+        return vertice != '' and vertice.count(GrafoComPesos.SEPARADOR_ARESTA) == 0 and len(vertice) <= 6
+
+    def arestaValida(self, aresta=''):
+        """
+        Verifica se uma aresta passada como parâmetro está dentro do padrão estabelecido.
+        Uma aresta é representada por um string com o formato a-b, onde:
+        a é um substring de aresta que é o nome de um vértice adjacente à aresta.
+        - é um caractere separador. Uma aresta só pode ter um único caractere como esse.
+        b é um substring de aresta que é o nome do outro vértice adjacente à aresta.
+        Além disso, uma aresta só é válida se conectar dois vértices existentes no grafo.
+        :param aresta: A aresta que se quer verificar se está no formato correto.
+        :return: Um valor booleano que indica se a aresta está no formato correto.
+        """
+
+        # Não pode haver mais de um caractere separador
+        if aresta.count(GrafoComPesos.SEPARADOR_ARESTA) != GrafoComPesos.QTDE_MAX_SEPARADOR:
+            return False
+
+        # Índice do elemento separador
+        i_traco = aresta.index(GrafoComPesos.SEPARADOR_ARESTA)
+
+        # O caractere separador não pode ser o primeiro ou o último caractere da aresta
+        if i_traco == 0 or aresta[-1] == GrafoComPesos.SEPARADOR_ARESTA:
+            return False
+
+        if not (self.existeVertice(aresta[:i_traco])) or not (self.existeVertice(aresta[i_traco + 1:])):
+            return False
+
+        return True
+
+    def pesoValido(self, peso):
+        """
+        Verifica se o peso passado como parâmetro é válido (verifica se o peso é maior que zero).
+        :param peso: Valor inteiro.
+        :return: Valo booleano.
+        """
+        return peso > 0
+
+    def existeVertice(self, vertice: str):
+        """
+        Verifica se um vértice passado como parâmetro pertence ao grafo.
+        :param vertice: O vértice que deve ser verificado.
+        :return: Um valor booleano que indica se o vértice existe no grafo.
+        """
+        return GrafoComPesos.verticeValido(vertice) and self.N.count(vertice) > 0
 
     def existeAresta(self, a: str):
         """
@@ -221,7 +217,7 @@ class GrafoComPesos:
         """
         Remove uma aresta ao grafo no formato X-Y, onde X é o primeiro vértice e Y é o segundo vértice
         :param a: a aresta no formato correto
-        :raise: lança uma exceção caso a aresta não estiver em um formato válido
+        :raise: lança uma exceção caso a aresta não esteja em um formato válido
         """
         if self.arestaValida(a):
             if self.existeAresta(a):
