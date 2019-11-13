@@ -77,9 +77,9 @@ print()  # ----------------------- #
 
 time.sleep(0.5)
 
-# |Grafo da Paraíba|
+# |GrafoComPesos da Paraíba|
 paraiba = Grafos.paraiba
-printaGrafoComNome("Grafo da Paraíba", paraiba)
+printaGrafoComNome("GrafoComPesos da Paraíba", paraiba)
 # paraiba.grafoParaPNG("paraiba")
 printaPerguntaComResposta("Possui Caminho Euleriano?", paraiba.caminho_euleriano())
 
@@ -87,9 +87,9 @@ print()  # ----------------------- #
 
 time.sleep(0.5)
 
-# |Grafo da Paraíba Modificado|
+# |GrafoComPesos da Paraíba Modificado|
 pb_mod = Grafos.paraiba_euler
-printaGrafoComNome("Grafo da Paraíba Modificado", pb_mod)
+printaGrafoComNome("GrafoComPesos da Paraíba Modificado", pb_mod)
 # pb_mod.grafoParaPNG("paraiba_mod")
 printaPerguntaComResposta("Possui Caminho Euleriano?", pb_mod.caminho_euleriano())
 
@@ -99,20 +99,20 @@ time.sleep(0.5)
 
 # |Testes de Ciclo Hamiltoniano|
 com_ciclo_hamiltoniano = Grafos.com_ciclo_hamiltoniano
-printaGrafoComNome("Grafo com Ciclo Hamiltoniano", com_ciclo_hamiltoniano)
+printaGrafoComNome("GrafoComPesos com Ciclo Hamiltoniano", com_ciclo_hamiltoniano)
 printaPerguntaComResposta("Possui Ciclo Hamiltoniano?", com_ciclo_hamiltoniano.ciclo_hamiltoniano())
 
 time.sleep(0.5)
 
 euleriano_hamiltoniano = Grafos.euleriano
-printaGrafoComNome("Outro Grafo com Ciclo Hamiltoniano", euleriano_hamiltoniano)
+printaGrafoComNome("Outro GrafoComPesos com Ciclo Hamiltoniano", euleriano_hamiltoniano)
 printaPerguntaComResposta("Possui Ciclo Hamiltoniano?", euleriano_hamiltoniano.ciclo_hamiltoniano())
 
 time.sleep(0.5)
 
 
 euleriano_nao_hamiltoniano = Grafos.euleriano_2
-printaGrafoComNome("Grafo Euleriano Sem Ciclo Hamiltoniano", euleriano_nao_hamiltoniano)
+printaGrafoComNome("GrafoComPesos Euleriano Sem Ciclo Hamiltoniano", euleriano_nao_hamiltoniano)
 printaPerguntaComResposta("Possui Ciclo Hamiltoniano?", euleriano_nao_hamiltoniano.ciclo_hamiltoniano())
 
 time.sleep(0.5)

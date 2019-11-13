@@ -3,7 +3,7 @@ from Roteiro1.Roteiro1__funcoes import Grafo
 
 class GrafosProntos:
 
-    # Grafo da Paraíba
+    # GrafoComPesos da Paraíba
     paraiba = Grafo()
     paraiba.adicionaVertice('V')
     paraiba.adicionaVertice('J')

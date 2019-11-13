@@ -2,7 +2,7 @@ from Roteiro1.Roteiro1__grafos import GrafosProntos
 
 paraiba = GrafosProntos.paraiba
 
-print("Grafo da Paraíba:")
+print("GrafoComPesos da Paraíba:")
 print('Vértices (N): ', paraiba.N)
 print('Arestas (An): ', paraiba.A)
 print()

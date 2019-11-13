@@ -3,7 +3,7 @@ from Roteiro2.Roteiro2__funcoes import Grafo
 
 class GrafosProntos:
     
-    # Grafo da Paraíba
+    # GrafoComPesos da Paraíba
     PB_vertices = ['J', 'C', 'E', 'P', 'M', 'T', 'Z']
     PB_arestas = {
         'a1': 'J-C', 'a2': 'C-E', 'a3': 'C-E',
@@ -14,7 +14,7 @@ class GrafosProntos:
     
     # --- #
     
-    # Grafo do Exemplo
+    # GrafoComPesos do Exemplo
     ex_vertices = ['A', 'B', 'C', 'D', 'E',
                    'F', 'G', 'H', 'I', 'J',
                    'K']

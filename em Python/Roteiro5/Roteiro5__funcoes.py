@@ -20,7 +20,7 @@ class Grafo:
 
     def __init__(self, V=None, M=None):
         """
-        Constrói um objeto do tipo Grafo. Se nenhum parâmetro for passado, cria um Grafo vazio.
+        Constrói um objeto do tipo GrafoComPesos. Se nenhum parâmetro for passado, cria um GrafoComPesos vazio.
         Se houver alguma aresta ou algum vértice inválido, uma exceção é lançada.
         :param V: Uma lista dos vértices (ou nodos) do grafo.
         :param M: Uma matriz de adjacência que guarda as arestas do grafo.
@@ -231,7 +231,7 @@ class Grafo:
     def pos(self, v):
         """
         :param v: Vértice.
-        :return: Int. Posição/index do vértice v na lista de vértices (N) do Grafo.
+        :return: Int. Posição/index do vértice v na lista de vértices (N) do GrafoComPesos.
         """
         return self.N.index(v)
 
@@ -286,7 +286,7 @@ class Grafo:
         """
         if not self.existeVertice(v1) or not self.existeVertice(v2) or \
                 not self.vizinhos_do_vertice(v1) or not self.vizinhos_do_vertice(v2):
-            # Caso não exista um dos vértices no Grafo  OU  um dos vértices não possuir vizinhos:
+            # Caso não exista um dos vértices no GrafoComPesos  OU  um dos vértices não possuir vizinhos:
             return False
 
         visitado = [False] * (len(self.N))  # Marca todos os vértices como não visitados.
@@ -311,7 +311,7 @@ class Grafo:
     def eh_conexo(self):
         """
         Verifica se o grafo é conexo.
-        Um Grafo é dito conexo caso exista um caminho possível entre quaisquer par de vértices dele.
+        Um GrafoComPesos é dito conexo caso exista um caminho possível entre quaisquer par de vértices dele.
         :return: Valor Booleano. True se for, False se não for.
         """
         for v1 in self.N:
@@ -461,7 +461,7 @@ class Grafo:
 
     def todas_as_arestas_do_grafo(self):
         """
-        :return: Uma Lista contendo todas as arestas do Grafo.
+        :return: Uma Lista contendo todas as arestas do GrafoComPesos.
         """
         arestas = []
         for linha, lista_de_arestas in enumerate(self.M):
@@ -538,7 +538,7 @@ class Grafo:
 
     def ciclo_hamiltoniano(self):
         """
-        Retorna o caminho do ciclo de um Grafo com Ciclo Hamiltoniano.
+        Retorna o caminho do ciclo de um GrafoComPesos com Ciclo Hamiltoniano.
         Um Ciclo Hamiltoniano é um Caminho Hamiltoniano fechado, ou seja, começa e termina no mesmo vértice.
         :return: Uma lista mostrando o ciclo, ou o valor Booleano False caso não exista.
         """
@@ -630,7 +630,7 @@ class Grafo:
     def eh_euleriano(self):
         """
         Verifica se o grafo é Euleriano, ou seja, se ele contém um Ciclo Euleriano.
-        Um Grafo é considerado Euleriano se, e somente se, ele for conexo e todos os seus vértices possuirem grau par.
+        Um GrafoComPesos é considerado Euleriano se, e somente se, ele for conexo e todos os seus vértices possuirem grau par.
         :return: Valor Booleano. True se for, False em caso contrário.
         """
         if not self.eh_conexo():
@@ -656,8 +656,8 @@ class Grafo:
     def eh_semi_euleriano(self):
         """
         Verifica se o grafo é Semi-Euleriano.
-        Um Grafo Semi-Euleriano é um grafo que não contém um ciclo euleriano, mas contém um caminho Euleriano.
-        Um Grafo é considerado Semi-Euleriano se, e somente se, ele for conexo e possuir no máximo 2 vértices de
+        Um GrafoComPesos Semi-Euleriano é um grafo que não contém um ciclo euleriano, mas contém um caminho Euleriano.
+        Um GrafoComPesos é considerado Semi-Euleriano se, e somente se, ele for conexo e possuir no máximo 2 vértices de
         grau ímpar.
         :return: Valor Booleano. True se for, False em caso contrário.
         """
