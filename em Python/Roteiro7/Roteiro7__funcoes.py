@@ -297,7 +297,7 @@ class GrafoComPesos:
 
         # Dicionários representando os rótulos do algoritmo para cada vértice
         Beta = {}  # Peso do menor caminho entre u e r
-        Phi  = {}  # Marca cada vértice como permanente (1, visitado) ou temporário (0, não-visitado)
+        Phi  = {}  # Marca cada vértice como permanente (1) ou temporário (0)
         Pi   = {}  # Predecessor de r no caminho u-r, se esse caminho existir, ou 0 se não existir
 
         # Inicializa os dicionários com os valores iniciais
