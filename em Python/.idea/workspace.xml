@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="352eeb84-7cec-4625-a9e4-dd861069e1db" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Roteiro7/Roteiro7__funcoes.py" beforeDir="false" afterPath="$PROJECT_DIR$/Roteiro7/Roteiro7__funcoes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Roteiro7/Roteiro7__testes.py" beforeDir="false" afterPath="$PROJECT_DIR$/Roteiro7/Roteiro7__testes.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -51,29 +53,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.Roteiro7__testes">
-    <configuration name="Roteiro5__main" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="em Python" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Roteiro5" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Roteiro5/Roteiro5__main.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Python.Roteiro7__drone">
     <configuration name="Roteiro6__main" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="em Python" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -88,6 +68,28 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Roteiro6/Roteiro6__main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Roteiro7__drone" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="em Python" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Roteiro7" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Roteiro7/Roteiro7__drone.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -164,11 +166,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.Roteiro7__drone" />
         <item itemvalue="Python.Roteiro7__testes" />
         <item itemvalue="Python.Roteiro7__main" />
         <item itemvalue="Python.testes" />
         <item itemvalue="Python.Roteiro6__main" />
-        <item itemvalue="Python.Roteiro5__main" />
       </list>
     </recent_temporary>
   </component>
@@ -236,7 +238,8 @@
       <workItem from="1573590868039" duration="15823000" />
       <workItem from="1573621425346" duration="457000" />
       <workItem from="1573683570402" duration="17988000" />
-      <workItem from="1573703496797" duration="563000" />
+      <workItem from="1573703496797" duration="811000" />
+      <workItem from="1573738861338" duration="5047000" />
     </task>
     <servers />
   </component>
@@ -257,8 +260,9 @@
     </option>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/em_Python$Roteiro7__drone.coverage" NAME="Roteiro7__drone Coverage Results" MODIFIED="1573749779906" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Roteiro7" />
     <SUITE FILE_PATH="coverage/em_Python$Roteiro1__main.coverage" NAME="Roteiro1__main Coverage Results" MODIFIED="1569515488829" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Roteiro 1" />
-    <SUITE FILE_PATH="coverage/em_Python$Roteiro7__testes.coverage" NAME="Roteiro7__testes Coverage Results" MODIFIED="1573703114336" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Roteiro7" />
+    <SUITE FILE_PATH="coverage/em_Python$Roteiro7__testes.coverage" NAME="Roteiro7__testes Coverage Results" MODIFIED="1573749752226" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Roteiro7" />
     <SUITE FILE_PATH="coverage/em_Python$Unittests_for_Roteiro3__tests_TestGrafo.coverage" NAME="Unittests for Roteiro3__tests.TestGrafo Coverage Results" MODIFIED="1569516131128" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Roteiro 3" />
     <SUITE FILE_PATH="coverage/em_Python$tests2.coverage" NAME="tests2 Coverage Results" MODIFIED="1566520163349" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/em_Python$Roteiro7__main.coverage" NAME="Roteiro7__main Coverage Results" MODIFIED="1573703010406" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Roteiro7" />

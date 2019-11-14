@@ -393,6 +393,34 @@ class GrafoComPesos:
     - Roteiro 7 - Dijkstra, Fim -
     '''
 
+    def matriz_sem_pesos(self):
+        # Dá o espaçamento correto de acordo com o tamanho do string do maior vértice
+        espaco = ' ' * self.__maior_vertice
+
+        grafo_str = espaco
+
+        for v in range(len(self.N)):
+            grafo_str += ' '
+            grafo_str += '{}'.format(self.N[v]).center(len(self.N[v]))
+
+        grafo_str += '\n'
+
+        for l in range(len(self.M)):
+            # Printa e ajusta o espaçamento do nome do vértice de cada linha
+            grafo_str += '{}'.format(self.N[l]).rjust(self.__maior_vertice) + ' '
+
+            # Printa cada número de aresta
+            for c in range(len(self.M)):
+                grafo_str += '{}'.format(str(self.M[l][c][0])).center(len(self.N[c]))
+
+                # Dá o espaçamento entre cada lista, apenas se não for o último da linha
+                if c != len(self.M) - 1:
+                    grafo_str += ' '
+
+            grafo_str += '\n'
+
+        return grafo_str
+
     def __str__(self):
         """
         Fornece uma representação do tipo String (como Matriz de Adjacência contendo Pesos) do grafo.
