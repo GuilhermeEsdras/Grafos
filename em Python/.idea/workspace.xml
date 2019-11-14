@@ -4,7 +4,6 @@
     <list default="true" id="352eeb84-7cec-4625-a9e4-dd861069e1db" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Roteiro7/Roteiro7__funcoes.py" beforeDir="false" afterPath="$PROJECT_DIR$/Roteiro7/Roteiro7__funcoes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Roteiro7/Roteiro7__testes.py" beforeDir="false" afterPath="$PROJECT_DIR$/Roteiro7/Roteiro7__testes.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -239,7 +238,7 @@
       <workItem from="1573621425346" duration="457000" />
       <workItem from="1573683570402" duration="17988000" />
       <workItem from="1573703496797" duration="811000" />
-      <workItem from="1573738861338" duration="5047000" />
+      <workItem from="1573738861338" duration="6037000" />
     </task>
     <servers />
   </component>

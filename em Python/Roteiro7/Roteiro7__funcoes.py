@@ -394,17 +394,23 @@ class GrafoComPesos:
     '''
 
     def matriz_sem_pesos(self):
-        # Dá o espaçamento correto de acordo com o tamanho do string do maior vértice
+        """
+        Fornece uma representação do tipo String (como Matriz de Adjacência sem Pesos) do grafo.
+        :return: Uma string que representa o grafo
+        """
+        # Dá o espaçamento inicial do canto da borda superior esquerda
         espaco = ' ' * self.__maior_vertice
 
         grafo_str = espaco
 
+        # Printa e ajusta o cabeçalho:
         for v in range(len(self.N)):
             grafo_str += ' '
             grafo_str += '{}'.format(self.N[v]).center(len(self.N[v]))
 
         grafo_str += '\n'
 
+        # Printa e ajusta as linhas:
         for l in range(len(self.M)):
             # Printa e ajusta o espaçamento do nome do vértice de cada linha
             grafo_str += '{}'.format(self.N[l]).rjust(self.__maior_vertice) + ' '
@@ -413,7 +419,7 @@ class GrafoComPesos:
             for c in range(len(self.M)):
                 grafo_str += '{}'.format(str(self.M[l][c][0])).center(len(self.N[c]))
 
-                # Dá o espaçamento entre cada lista, apenas se não for o último da linha
+                # Dá o espaçamento entre cada número, apenas se não for o último da linha
                 if c != len(self.M) - 1:
                     grafo_str += ' '
 
@@ -429,7 +435,7 @@ class GrafoComPesos:
         # Dá o espaçamento inicial do canto da borda superior esquerda
         grafo_str = ' ' * self.__maior_vertice
 
-        # Dá o espaçamento correto entre os nomes dos vértices no cabeçalho da matriz
+        # Printa e ajusta o cabeçalho:
         for i, v in enumerate(self.N):
             grafo_str += ' '
             grafo_str += '{}'.format(v).center(6)
@@ -444,6 +450,7 @@ class GrafoComPesos:
             # Printa cada lista contendo a aresta e seu peso
             for c in range(len(self.M)):
                 grafo_str += str(self.M[l][c])
+
                 # Dá o espaçamento entre cada lista, apenas se não for o último da linha
                 if c != len(self.M) - 1:
                     grafo_str += ' '
