@@ -11,7 +11,7 @@ grafo_aula = GrafoComPesos(
     }
 )
 print(grafo_aula)
-print('Menor caminho por Dijkstra: ', grafo_aula.Dijkstra('E', 'D'))
+print('Menor caminho por Dijkstra: ', grafo_aula.dijkstra('E', 'D'))
 
 print("-------------------------")
 
@@ -29,4 +29,4 @@ grafo_aula2 = GrafoComPesos(
     }
 )
 print(grafo_aula2)
-print('Menor caminho por Dijkstra: ', grafo_aula2.Dijkstra('A', 'E'))
+print('Menor caminho por Dijkstra: ', grafo_aula2.dijkstra('A', 'E'))

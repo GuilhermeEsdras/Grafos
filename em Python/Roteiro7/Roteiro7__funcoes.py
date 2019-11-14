@@ -227,6 +227,22 @@ class GrafoComPesos:
         else:
             raise ArestaInvalidaException('A aresta {} é inválida'.format(a))
 
+    def aresta(self, v1, v2):
+        """
+        :param v1: Vértice 1.
+        :param v2: Vértice 2.
+        :return: Aresta devidamente formatada.
+        """
+        return '{}{}{}'.format(v1, self.SEPARADOR_ARESTA, v2)
+
+    def alpha(self, a):
+        """
+        Retorna o Peso da aresta passada como parâmetro.
+        :param a: Aresta
+        :return: Inteiro
+        """
+        return self.M[self.__indice_primeiro_vertice_aresta(a)][self.__indice_segundo_vertice_aresta(a)][1]
+
     def modifica_peso(self, a, p):
         """
         Modifica o Peso de uma determinada Aresta.
@@ -257,29 +273,13 @@ class GrafoComPesos:
         """
         return self.N.index(v)
 
-    def aresta(self, v1, v2):
-        """
-        :param v1: Vértice 1.
-        :param v2: Vértice 2.
-        :return: Aresta devidamente formatada.
-        """
-        return '{}{}{}'.format(v1, self.SEPARADOR_ARESTA, v2)
-
     # ---
 
     '''
     - Roteiro 7 - Dijkstra, Inicio -
     '''
 
-    def alpha(self, a):
-        """
-        Retorna o Peso da aresta passada como parâmetro.
-        :param a: Aresta
-        :return: Inteiro
-        """
-        return self.M[self.__indice_primeiro_vertice_aresta(a)][self.__indice_segundo_vertice_aresta(a)][1]
-
-    def Dijkstra(self, u, v):
+    def dijkstra(self, u, v):
         """
         Algoritmo de Dijkstra que encontra o caminho mais curto (considerando os pesos das arestas) entre u e v.
         :param u: Vértice de partida
@@ -325,7 +325,7 @@ class GrafoComPesos:
                             aresta = self.aresta(w, r)  # arco(w, r)
                             if Phi[r] == 0:
                                 beta_do_antecessor_mais_arco = Beta[w] + self.alpha(aresta)
-                                # Se: Beta(r) for maior que Beta(w) + PesoDaAresta(w-r)  (𝞫(r) > 𝞫(w) + 𝞪(w,r))
+                                # Se: Beta(r) for maior que Beta(w) + PesoDaAresta(w, r)  (𝞫(r) > 𝞫(w) + 𝞪(w,r))
                                 if Beta[r] > beta_do_antecessor_mais_arco:
                                     # Então: 𝞫(r) ⇽ 𝞫(w) + 𝞪(w,r) e 𝞹(r) ⇽ w
                                     Beta[r] = beta_do_antecessor_mais_arco
@@ -368,6 +368,26 @@ class GrafoComPesos:
 
         menor_caminho.reverse()
         return menor_caminho
+
+    # TODO - Incompleto -
+    def dijkstra_mod(self, u, v, carga_inicial, carga_maxima, pontos_de_recarga=None):
+        """
+        Algoritmo de Dijkstra modificado para encontrar a melhor rota para um drone, baseando-se em pontos de recarga
+        e seu nível de bateria.
+        :param u: O vértice de onde o drone deve partir
+        :param v: O vértice onde o drone deve chegar
+        :param carga_inicial: A carga inicial da bateria
+        :param carga_maxima: A carga máxima da bateria
+        :param pontos_de_recarga: Uma lista de vértices que indicam os pontos de recarga
+        :return: Uma Lista com as arestas indicando o melhor caminho
+        """
+
+        if pontos_de_recarga is None:
+            pontos_de_recarga = []
+
+        melhor_caminho = []
+
+        return melhor_caminho
 
     '''
     - Roteiro 7 - Dijkstra, Fim -
