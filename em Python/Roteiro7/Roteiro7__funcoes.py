@@ -247,14 +247,127 @@ class GrafoComPesos:
         else:
             raise ArestaInvalidaException('A aresta {} é inválida'.format(a))
 
+    '''
+    Funções auxiliares para um Grafo do tipo Matriz de Adjacência
+    '''
+    def pos(self, v):
+        """
+        :param v: Vértice.
+        :return: Int. Posição/index do vértice v na lista de vértices (N) do GrafoComPesos.
+        """
+        return self.N.index(v)
+
+    def aresta(self, v1, v2):
+        """
+        :param v1: Vértice 1.
+        :param v2: Vértice 2.
+        :return: Aresta devidamente formatada.
+        """
+        return '{}{}{}'.format(v1, self.SEPARADOR_ARESTA, v2)
+
     # ---
 
     '''
     - Roteiro 7 - Dijkstra, Inicio -
     '''
 
+    def alpha(self, a):
+        """
+        Retorna o Peso da aresta passada como parâmetro.
+        :param a: Aresta
+        :return: Inteiro
+        """
+        return self.M[self.__indice_primeiro_vertice_aresta(a)][self.__indice_segundo_vertice_aresta(a)][1]
+
     def Dijkstra(self, u, v):
-        return True
+        """
+        Algoritmo de Dijkstra que encontra o caminho mais curto (considerando os pesos das arestas) entre u e v.
+        :param u: Vértice de partida
+        :param v: Vértice final
+        :return: Uma Lista com o caminho
+        """
+        # Biblioteca(s) auxiliar(es)
+        import math
+
+        # Variável(is) auxiliar(es)
+        vertices = self.N
+
+        # Lista que armazenará as arestas indicando o menor caminho
+        menor_caminho = []
+
+        # Dicionários representando os rótulos do algoritmo para cada vértice
+        Beta = {}  # Peso do menor caminho entre u e r
+        Phi  = {}  # Marca cada vértice como permanente (1, visitado) ou temporário (0, não-visitado)
+        Pi   = {}  # Predecessor de r no caminho u-r, se esse caminho existir, ou 0 se não existir
+
+        # Inicializa os dicionários com os valores iniciais
+        for r in vertices:
+            if r != u:
+                Beta[r] = math.inf  # 𝞫(r) ⇽ ∞
+                Phi[r]  = 0         # 𝞿(r) ⇽ 0
+            else:
+                Beta[r] = 0  # 𝞫(u) ⇽ 0
+                Phi[r]  = 1  # 𝞿(u) ⇽ 1
+
+            Pi[r] = 0  # 𝞹(r) ⇽ 0
+
+        w  = u
+        r_ = 0  # r*
+        while w != v:
+
+            # Analisa os vértices de destino cuja aresta parte de w e atualiza seus beta's e pi's:
+            for linha in range(len(vertices)):
+                if linha == self.pos(w):
+                    for coluna in range(len(vertices)):
+                        # Para cada aresta partindo de w:
+                        if self.M[linha][coluna][0] > 0:
+                            r = vertices[coluna]        # Vértice vizinho de W a ser analisado / Vértice de destino
+                            aresta = self.aresta(w, r)  # arco(w, r)
+                            if Phi[r] == 0:
+                                beta_do_antecessor_mais_arco = Beta[w] + self.alpha(aresta)
+                                # Se: Beta(r) for maior que Beta(w) + PesoDaAresta(w-r)  (𝞫(r) > 𝞫(w) + 𝞪(w,r))
+                                if Beta[r] > beta_do_antecessor_mais_arco:
+                                    # Então: 𝞫(r) ⇽ 𝞫(w) + 𝞪(w,r) e 𝞹(r) ⇽ w
+                                    Beta[r] = beta_do_antecessor_mais_arco
+                                    Pi[r] = w
+
+            # Encontra o vértice r* tal que: 𝞿(r*) = 0, 𝞫(r*) < ∞ e 𝞫(r*) = menor beta dos betas:
+            menor_beta = math.inf  # menor_beta inicia valendo infinito
+            r_de_menor_beta = ''
+
+            # Para cada r (vértice) e seu respectivo Beta no Dicionário de Beta's:
+            for r, beta in Beta.items():
+                # Se: 𝞿(r) = 0
+                if Phi[r] == 0:
+                    # Se 𝞫(r) < ∞ e 𝞫(r) = menor beta dos betas
+                    if beta < menor_beta:
+                        menor_beta = beta    # Passa a ser o menor beta
+                        r_de_menor_beta = r  # Passa a ser o r com menor beta
+
+            if menor_beta == math.inf:  # Se sair do loop e menor_beta ainda estiver valendo infinito...
+                # r* não existe, então não há caminho u-v e o algoritmo deve parar
+                return False
+
+            # Caso contrário, r* se torna o r de menor beta com phi = 0:
+            r_ = r_de_menor_beta
+
+            # Atualiza as variáveis:
+            Phi[r_] = 1  # 𝞿(r*) = 1 (torna o vértice permanente)
+            w = r_       # w = r* (vértice a ser analisado no próximo loop)
+
+        # Percorre o Dicionário de Pi's mostrando o menor caminho
+        atual = v
+        prox = Pi[atual]
+        while True:
+            menor_caminho.append(self.aresta(prox, atual))
+            if prox == u:
+                break
+            else:
+                atual = prox
+                prox = Pi[atual]
+
+        menor_caminho.reverse()
+        return menor_caminho
 
     '''
     - Roteiro 7 - Dijkstra, Fim -

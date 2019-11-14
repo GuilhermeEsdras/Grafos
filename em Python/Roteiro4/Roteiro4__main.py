@@ -6,7 +6,7 @@ print(k3)
 
 ###
 
-print('GrafoComPesos da Paraíba:')
+print('Grafo da Paraíba:')
 paraiba = Grafos.paraiba
 print(paraiba)
 
@@ -20,7 +20,7 @@ print('eh_completo?', paraiba.eh_completo(), '\n')
 
 ###
 
-print('GrafoComPesos completo:')
+print('Grafo completo:')
 
 grafo_completo = Grafos.grafo_completo
 print(grafo_completo)

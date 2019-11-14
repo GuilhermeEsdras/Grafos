@@ -3,7 +3,7 @@ from Roteiro3.Roteiro3__funcoes import Grafo
 
 class Grafos:
 
-    # GrafoComPesos da Paraíba
+    # Grafo da Paraíba
     paraiba = Grafo(['J', 'C', 'E', 'P', 'M', 'T', 'Z'], {
         'a1': 'J-C', 'a2': 'C-E', 'a3': 'C-E',
         'a4': 'C-P', 'a5': 'C-P', 'a6': 'C-M',
@@ -12,7 +12,7 @@ class Grafos:
 
     # --- #
 
-    # GrafoComPesos da Paraíba Sem Paralelas
+    # Grafo da Paraíba Sem Paralelas
     paraiba_sem_paralelas = Grafo(['J', 'C', 'E', 'P', 'M', 'T', 'Z'], {
         'a1': 'J-C', 'a3': 'C-E', 'a4': 'C-P',
         'a6': 'C-M', 'a7': 'C-T', 'a8': 'M-T',
@@ -20,7 +20,7 @@ class Grafos:
 
     # --- #
 
-    # GrafoComPesos do Exemplo
+    # Grafo do Exemplo
     ex_vertices = ['A', 'B', 'C', 'D', 'E',
                    'F', 'G', 'H', 'I', 'J',
                    'K']
@@ -35,7 +35,7 @@ class Grafos:
 
     # --- #
 
-    # GrafoComPesos Conexo
+    # Grafo Conexo
     grafo_conexo = Grafo([
         '1', '2', '3', '5', '6', '7'
     ], {
@@ -45,7 +45,7 @@ class Grafos:
 
     # --- #
 
-    # GrafoComPesos Desconexo
+    # Grafo Desconexo
     grafo_desconexo = Grafo([
         '1', '2', '3', '5', '6', '7'
     ], {

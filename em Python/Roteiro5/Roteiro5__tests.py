@@ -26,14 +26,14 @@ class TestEuler(unittest.TestCase):
         for i in ['A-B', 'B-C']:
             self.g_c_e.adicionaAresta(i)
 
-        # GrafoComPesos da Paraíba
+        # Grafo da Paraíba
         self.g_p = Grafo([], [])
         for i in ['J', 'C', 'E', 'P', 'M', 'T', 'Z']:
             self.g_p.adicionaVertice(i)
         for i in ['J-C', 'C-E', 'C-E', 'C-P', 'C-P', 'C-M', 'C-T', 'M-T', 'T-Z']:
             self.g_p.adicionaAresta(i)
 
-        # GrafoComPesos da Paraíba sem arestas paralelas
+        # Grafo da Paraíba sem arestas paralelas
         self.g_p_sem_paralelas = Grafo([], [])
         for i in ['J', 'C', 'E', 'P', 'M', 'T', 'Z']:
             self.g_p_sem_paralelas.adicionaVertice(i)

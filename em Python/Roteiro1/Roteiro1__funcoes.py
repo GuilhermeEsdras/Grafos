@@ -13,7 +13,7 @@ class Grafo:
 
     def __init__(self, N=None, A=None):
         """
-        Constrói um objeto do tipo GrafoComPesos. Se nenhum parâmetro for passado, cria um GrafoComPesos vazio.
+        Constrói um objeto do tipo Grafo. Se nenhum parâmetro for passado, cria um Grafo vazio.
         Se houver alguma aresta ou algum vértice inválido, uma exceção é lançada.
         :param N: Uma lista dos vértices (ou nodos) do grafo.
         :param A: Uma dicionário que guarda as grafo do grafo. A chave representa o nome da aresta e o valor é uma string que contém dois vértices separados por um traço.
@@ -58,7 +58,7 @@ class Grafo:
         if i_traco == 0 or aresta[-1] == Grafo.SEPARADOR_ARESTA:
             return False
 
-        # Verifica se as grafo antes de depois do elemento separador existem no GrafoComPesos
+        # Verifica se as grafo antes de depois do elemento separador existem no Grafo
         if not(self.existeVertice(aresta[:i_traco])) or not(self.existeVertice(aresta[i_traco+1:])):
             return False
 
@@ -98,7 +98,7 @@ class Grafo:
 
     def adicionaVertice(self, v):
         """
-        Adiciona um vértice no GrafoComPesos caso o vértice seja válido e não exista outro vértice com o mesmo nome
+        Adiciona um vértice no Grafo caso o vértice seja válido e não exista outro vértice com o mesmo nome
         :param v: O vértice a ser adicionado
         :raises: VerticeInvalidoException se o vértice passado como parâmetro não puder ser adicionado
         """
@@ -109,7 +109,7 @@ class Grafo:
 
     def adicionaAresta(self, nome, a):
         """
-        Adiciona uma aresta no GrafoComPesos caso a aresta seja válida e não exista outra aresta com o mesmo nome
+        Adiciona uma aresta no Grafo caso a aresta seja válida e não exista outra aresta com o mesmo nome
         :param nome: O nome da aresta a ser adicionada
         :param a: Os vértices que a aresta interliga separados pelo separador de arestas
         :raises: ArestaInvalidaException se a aresta passada como parâmetro não puder ser adicionada

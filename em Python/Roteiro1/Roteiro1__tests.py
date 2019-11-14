@@ -5,12 +5,12 @@ from Roteiro1.Roteiro1__funcoes import Grafo
 class TestGrafo(unittest.TestCase):
 
     def setUp(self):
-        # GrafoComPesos da Paraíba
+        # Grafo da Paraíba
         self.g_p = Grafo(['J', 'C', 'E', 'P', 'M', 'T', 'Z'],
                          {'a1': 'J-C', 'a2': 'C-E', 'a3': 'C-E', 'a4': 'C-P', 'a5': 'C-P', 'a6': 'C-M', 'a7': 'C-T',
                           'a8': 'M-T', 'a9': 'T-Z'})
 
-        # GrafoComPesos da Paraíba sem arestas paralelas
+        # Grafo da Paraíba sem arestas paralelas
         self.g_p_sem_paralelas = Grafo(['J', 'C', 'E', 'P', 'M', 'T', 'Z'],
                                        {'a1': 'J-C', 'a3': 'C-E', 'a4': 'C-P', 'a6': 'C-M', 'a7': 'C-T', 'a8': 'M-T',
                                         'a9': 'T-Z'})
@@ -40,7 +40,7 @@ class TestGrafo(unittest.TestCase):
                         {'a1': 'A-B', 'a2': 'B-C', 'a3': 'C-D', 'a4': 'D-E', 'a5': 'E-A',
                          'a6': 'A-C', 'a7': 'A-D', 'a8': 'B-D', 'a9': 'E-C', 'a10': 'E-B'})
 
-        # GrafoComPesos'v1 DesConexo'v1
+        # Grafo'v1 DesConexo'v1
         self.grafo_conexo = Grafo(['1', '2', '3', '5', '6', '7'],
                                   {'a1': '1-2', 'a2': '2-3', 'a3': '1-5', 'a4': '2-6', 'a5': '3-7'})
         self.grafo_desconexo = Grafo(['1', '2', '3', '5', '6', '7'],

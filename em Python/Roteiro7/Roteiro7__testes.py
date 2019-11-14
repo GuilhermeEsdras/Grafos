@@ -1,5 +1,15 @@
 from Roteiro7.Roteiro7__funcoes import GrafoComPesos
 
+teste_basico = GrafoComPesos(
+    ['A', 'B', 'C'],
+    {
+        'A-B': 2,
+        'B-C': 5
+    }
+)
+print(teste_basico)
+
+
 testando = GrafoComPesos()
 testando.adicionaVertice('A')
 testando.adicionaVertice('B')
@@ -12,9 +22,9 @@ print(testando)
 
 
 testando_com_dict = GrafoComPesos(
-    ['A', 'B', 'CC', 'D', 'EEEEEE'],  # <- Lista com os Vértices
+    ['A', 'BBB', 'CC', 'D', 'EEE'],  # <- Lista com os Vértices
     {  # Dicionário com as Arestas e seus Pesos:
-        'A-B': 2,
+        'A-BBB': 2,
         'CC-A': 1
     }
 )

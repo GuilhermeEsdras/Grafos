@@ -20,7 +20,7 @@ class Grafo:
 
     def __init__(self, V=None, M=None):
         """
-        Constrói um objeto do tipo GrafoComPesos. Se nenhum parâmetro for passado, cria um GrafoComPesos vazio.
+        Constrói um objeto do tipo Grafo. Se nenhum parâmetro for passado, cria um Grafo vazio.
         Se houver alguma aresta ou algum vértice inválido, uma exceção é lançada.
         :param V: Uma lista dos vértices (ou nodos) do grafo.
         :param M: Uma matriz de adjacência que guarda as arestas do grafo.
