@@ -147,7 +147,7 @@ mapa_pronto = GrafoComPesos(
 )
 # --------------------------------------------------------------------------- #
 # Variável auxiliar:
-testando = False  # TODO: Alterar para "False" se não estiver testando!!!
+testando = False  # TODO: Alterar para "True" se não estiver testando!!!
 
 # --------------------------------------------------------------------------- #
 # Main #
@@ -277,6 +277,8 @@ while True:
                                                                                                                      v_)
                       )
 
+        print("---")
+
         if testando or qual_dijkstra == 0 or qual_dijkstra == 2:
             # --- .:: DADOS PRONTOS Dijkstra Modificado ::. --- #
             carga_inicial_ = 3
@@ -293,3 +295,6 @@ while True:
 
         print("---")
         # -
+
+        if testando:
+            break

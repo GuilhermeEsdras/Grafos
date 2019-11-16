@@ -1,5 +1,5 @@
 import unittest
-from Roteiro5__funcoes import Grafo
+from Roteiro5.Roteiro5__funcoes import Grafo
 
 
 class TestEuler(unittest.TestCase):
