@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="352eeb84-7cec-4625-a9e4-dd861069e1db" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Roteiro5/Roteiro5__tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/Roteiro5/Roteiro5__tests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Roteiro7/Roteiro7__main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Roteiro7/Roteiro7__main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Roteiro7/Roteiro7__funcoes.py" beforeDir="false" afterPath="$PROJECT_DIR$/Roteiro7/Roteiro7__funcoes.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -244,7 +243,7 @@
       <workItem from="1573821855535" duration="4208000" />
       <workItem from="1573845202254" duration="31585000" />
       <workItem from="1573879325998" duration="1807000" />
-      <workItem from="1573910888455" duration="267000" />
+      <workItem from="1573910888455" duration="536000" />
     </task>
     <servers />
   </component>

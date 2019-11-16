@@ -10,8 +10,6 @@ from Roteiro7.Roteiro7__exceptions import *
 # Funciona normal nos dois... :)
 # Para rodar o algoritmo usando apenas o Grafo normal, ver arquivo: Roteiro7__testes_grafo.py
 
-# GrafoComPesos -> Linha  12 ~ Linha 543   | dijkstra: Linha 268 | dijkstra modificado: Linha 360
-# Grafo         -> Linha 546 ~ Linha 997   | dijkstra: Linha 770 | dijkstra modificado: Linha 862
 # --------------------------------------------------------------------------- #
 class GrafoComPesos:
     QTDE_MAX_SEPARADOR = 1
