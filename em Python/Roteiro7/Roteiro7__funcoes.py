@@ -795,10 +795,10 @@ class Grafo:
         for r in vertices:
             if r != u:
                 Beta[r] = math.inf  # 𝞫(r) ⇽ ∞
-                Fi[r] = 0  # 𝞿(r) ⇽ 0
+                Fi[r] = 0           # 𝞿(r) ⇽ 0
             else:
                 Beta[r] = 0  # 𝞫(u) ⇽ 0
-                Fi[r] = 1  # 𝞿(u) ⇽ 1
+                Fi[r] = 1    # 𝞿(u) ⇽ 1
 
             Pi[r] = 0  # 𝞹(r) ⇽ 0
 
@@ -844,7 +844,7 @@ class Grafo:
 
             # Atualiza as variáveis:
             Fi[r_] = 1  # 𝞿(r*) = 1 (torna o vértice permanente)
-            w = r_  # w = r* (vértice a ser analisado no próximo loop)
+            w = r_      # w = r* (vértice a ser analisado no próximo loop)
 
         # Percorre o Dicionário de Pi's mostrando o menor caminho
         atual = v
@@ -895,11 +895,11 @@ class Grafo:
         for r in vertices:
             if r != u:
                 Beta[r] = math.inf  # 𝞫(r) ⇽ ∞
-                Fi[r] = 0  # 𝞿(r) ⇽ 0
+                Fi[r] = 0           # 𝞿(r) ⇽ 0
                 Gama[r] = math.inf  # γ(r) ⇽ ∞
             else:
-                Beta[r] = 0  # 𝞫(u) ⇽ 0
-                Fi[r] = 1  # 𝞿(u) ⇽ 1
+                Beta[r] = 0              # 𝞫(u) ⇽ 0
+                Fi[r] = 1                # 𝞿(u) ⇽ 1
                 Gama[r] = carga_inicial  # γ(r) ⇽ Carga Inicial
 
             Pi[r] = 0  # 𝞹(r) ⇽ 0
@@ -944,7 +944,7 @@ class Grafo:
                 if Fi[r] == 0:
                     # Se 𝞫(r) < ∞ e 𝞫(r) = menor beta dos betas
                     if beta < menor_beta:
-                        menor_beta = beta  # Passa a ser o menor beta
+                        menor_beta = beta    # Passa a ser o menor beta
                         r_de_menor_beta = r  # Passa a ser o r com menor beta
 
             if menor_beta == math.inf:  # Se sair do loop e menor_beta ainda estiver valendo infinito...
@@ -956,7 +956,7 @@ class Grafo:
 
             # Atualiza as variáveis:
             Fi[r_] = 1  # 𝞿(r*) = 1 (torna o vértice permanente)
-            w = r_  # w = r* (vértice a ser analisado no próximo loop)
+            w = r_      # w = r* (vértice a ser analisado no próximo loop)
 
         # Percorre o Dicionário de Pi's mostrando o melhor caminho
         atual = v
