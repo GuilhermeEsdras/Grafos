@@ -415,6 +415,7 @@ class GrafoComPesos:
                                 PesoDaAresta = self.alpha(aresta)
                                 beta_do_antecessor_mais_arco = Beta[w] + PesoDaAresta
                                 # Se: Beta(r) for maior que Beta(w) + PesoDaAresta(w, r)  (𝞫(r) > 𝞫(w) + 𝞪(w,r))
+                                # e Gama(w) for maior ou igual ao peso da aresta, ou seja, se tiver carga suficiente
                                 if Beta[r] > beta_do_antecessor_mais_arco and Gama[w] >= PesoDaAresta:
                                     # Então: 𝞫(r) ⇽ 𝞫(w) + 𝞪(w,r) e 𝞹(r) ⇽ w
                                     Beta[r] = beta_do_antecessor_mais_arco
@@ -917,6 +918,7 @@ class Grafo:
                                 PesoDaAresta = self.alpha(aresta)
                                 beta_do_antecessor_mais_arco = Beta[w] + PesoDaAresta
                                 # Se: Beta(r) for maior que Beta(w) + PesoDaAresta(w, r)  (𝞫(r) > 𝞫(w) + 𝞪(w,r))
+                                # e Gama(w) for maior ou igual ao peso da aresta, ou seja, se tiver carga suficiente
                                 if Beta[r] > beta_do_antecessor_mais_arco and Gama[w] >= PesoDaAresta:
                                     # Então: 𝞫(r) ⇽ 𝞫(w) + 𝞪(w,r) e 𝞹(r) ⇽ w
                                     Beta[r] = beta_do_antecessor_mais_arco
