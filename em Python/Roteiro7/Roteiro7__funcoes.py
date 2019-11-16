@@ -420,11 +420,13 @@ class GrafoComPesos:
                                     # Então: 𝞫(r) ⇽ 𝞫(w) + 𝞪(w,r) e 𝞹(r) ⇽ w
                                     Beta[r] = beta_do_antecessor_mais_arco
                                     Pi[r] = w
-                                    # E se r for um ponto de recarga: γ(r) ⇽ Carga Máxima
+                                    # Se r for um ponto de recarga:
                                     if r in pontos_de_recarga:
+                                        # Então: γ(r) ⇽ Carga Máxima (recarrega o drone)
                                         Gama[r] = carga_maxima
-                                    # senão: γ(r) ⇽ Carga no ponto anterior - 1 (perde 1 ponto de carga)
+                                    # caso contrário:
                                     else:
+                                        # γ(r) ⇽ Carga no ponto anterior - 1 (perde 1 ponto de carga)
                                         Gama[r] = Gama[w] - 1
 
             # Encontra o vértice r* tal que: 𝞿(r*) = 0, 𝞫(r*) < ∞ e 𝞫(r*) = menor beta dos betas:
@@ -923,11 +925,13 @@ class Grafo:
                                     # Então: 𝞫(r) ⇽ 𝞫(w) + 𝞪(w,r) e 𝞹(r) ⇽ w
                                     Beta[r] = beta_do_antecessor_mais_arco
                                     Pi[r] = w
-                                    # E se r for um ponto de recarga: γ(r) ⇽ Carga Máxima
+                                    # Se r for um ponto de recarga:
                                     if r in pontos_de_recarga:
+                                        # Então: γ(r) ⇽ Carga Máxima (recarrega o drone)
                                         Gama[r] = carga_maxima
-                                    # senão: γ(r) ⇽ Carga no ponto anterior - 1 (perde 1 ponto de carga)
+                                    # caso contrário:
                                     else:
+                                        # γ(r) ⇽ Carga no ponto anterior - 1 (perde 1 ponto de carga)
                                         Gama[r] = Gama[w] - 1
 
             # Encontra o vértice r* tal que: 𝞿(r*) = 0, 𝞫(r*) < ∞ e 𝞫(r*) = menor beta dos betas:
