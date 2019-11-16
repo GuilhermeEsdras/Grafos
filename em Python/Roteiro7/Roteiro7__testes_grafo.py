@@ -1,5 +1,8 @@
 from Roteiro7.Roteiro7__funcoes import GrafoComPesos
 
+
+# Arquivo de Testes da classe "GrafoComPesos" #
+# --------------------------------------------------------------------------- #
 teste_basico = GrafoComPesos(
     ['A', 'B', 'C', 'D', 'E'],
     {

@@ -1,27 +1,8 @@
-class VerticeInvalidoException(Exception):
-    pass
+from Roteiro7.Roteiro7__exceptions import *
 
 
-class ArestaInvalidaException(Exception):
-    pass
-
-
-class ArestaExistenteException(Exception):
-    pass
-
-
-class ArestaNaoExistenteException(Exception):
-    pass
-
-
-class PesoInvalidoException(Exception):
-    pass
-
-
-class MatrizInvalidaException(Exception):
-    pass
-
-
+# .:: Arquivo principal onde se encontram as funções referentes ao Roteiro 7 ::. #
+# --------------------------------------------------------------------------- #
 class GrafoComPesos:
     QTDE_MAX_SEPARADOR = 1
     SEPARADOR_ARESTA = '-'
@@ -435,7 +416,7 @@ class GrafoComPesos:
                                     # E se r for um ponto de recarga: γ(r) ⇽ Carga Máxima
                                     if r in pontos_de_recarga:
                                         Gama[r] = carga_maxima
-                                    # senão: γ(r) ⇽ Carga no anterior - 1 (perde 1 ponto de recarga)
+                                    # senão: γ(r) ⇽ Carga no ponto anterior - 1 (perde 1 ponto de carga)
                                     else:
                                         Gama[r] = Gama[w] - 1
 

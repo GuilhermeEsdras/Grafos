@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="352eeb84-7cec-4625-a9e4-dd861069e1db" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Roteiro7/Roteiro7__dijkstra.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Roteiro7/Roteiro7__drone.py" beforeDir="false" afterPath="$PROJECT_DIR$/Roteiro7/Roteiro7__drone.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Roteiro7/Roteiro7__drone.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Roteiro7/Roteiro7__funcoes.py" beforeDir="false" afterPath="$PROJECT_DIR$/Roteiro7/Roteiro7__funcoes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Roteiro7/Roteiro7__main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Roteiro7/Roteiro7__main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Roteiro7/Roteiro7__testes.py" beforeDir="false" afterPath="$PROJECT_DIR$/Roteiro7/Roteiro7__testes.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -90,7 +93,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Roteiro7/Roteiro7__drone.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\Guilherme\Documents\Engenharia de Computação\Grafos\em Python\Roteiro7\Roteiro7__main.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -112,7 +115,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Roteiro7/Roteiro7__main.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\Guilherme\Documents\Engenharia de Computação\Grafos\em Python\Roteiro7\Roteiro7__testes_dijkstra.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -134,7 +137,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Roteiro7/Roteiro7__testes.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\Guilherme\Documents\Engenharia de Computação\Grafos\em Python\Roteiro7\Roteiro7__testes_grafo.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -156,7 +159,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="C:\Users\Guilherme\Documents\Engenharia de Computação\Grafos\em Python\Roteiro7\Roteiro7__testes.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\Guilherme\Documents\Engenharia de Computação\Grafos\em Python\Roteiro7\Roteiro7__testes_grafo.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -243,7 +246,7 @@
       <workItem from="1573738861338" duration="6037000" />
       <workItem from="1573769073160" duration="3314000" />
       <workItem from="1573821855535" duration="4208000" />
-      <workItem from="1573845202254" duration="15638000" />
+      <workItem from="1573845202254" duration="16826000" />
     </task>
     <servers />
   </component>
@@ -268,87 +271,87 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Roteiro7/Roteiro7__funcoes.py</url>
-          <line>371</line>
+          <line>352</line>
           <option name="timeStamp" value="18" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Roteiro7/Roteiro7__funcoes.py</url>
-          <line>402</line>
+          <line>383</line>
           <option name="timeStamp" value="19" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Roteiro7/Roteiro7__funcoes.py</url>
-          <line>416</line>
+          <line>397</line>
           <option name="timeStamp" value="20" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Roteiro7/Roteiro7__funcoes.py</url>
-          <line>420</line>
+          <line>401</line>
           <option name="timeStamp" value="21" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Roteiro7/Roteiro7__funcoes.py</url>
-          <line>423</line>
+          <line>404</line>
           <option name="timeStamp" value="22" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Roteiro7/Roteiro7__funcoes.py</url>
-          <line>426</line>
+          <line>407</line>
           <option name="timeStamp" value="23" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Roteiro7/Roteiro7__funcoes.py</url>
-          <line>430</line>
+          <line>411</line>
           <option name="timeStamp" value="24" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Roteiro7/Roteiro7__funcoes.py</url>
-          <line>432</line>
+          <line>413</line>
           <option name="timeStamp" value="25" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Roteiro7/Roteiro7__funcoes.py</url>
-          <line>433</line>
+          <line>414</line>
           <option name="timeStamp" value="26" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Roteiro7/Roteiro7__funcoes.py</url>
-          <line>435</line>
+          <line>416</line>
           <option name="timeStamp" value="27" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Roteiro7/Roteiro7__funcoes.py</url>
-          <line>436</line>
+          <line>417</line>
           <option name="timeStamp" value="28" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Roteiro7/Roteiro7__funcoes.py</url>
-          <line>438</line>
+          <line>419</line>
           <option name="timeStamp" value="29" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Roteiro7/Roteiro7__funcoes.py</url>
-          <line>439</line>
+          <line>420</line>
           <option name="timeStamp" value="30" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Roteiro7/Roteiro7__funcoes.py</url>
-          <line>446</line>
+          <line>427</line>
           <option name="timeStamp" value="31" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Roteiro7/Roteiro7__funcoes.py</url>
-          <line>454</line>
+          <line>435</line>
           <option name="timeStamp" value="32" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Roteiro7/Roteiro7__drone.py</url>
+          <url>file://$PROJECT_DIR$/Roteiro7/Roteiro7__main.py</url>
           <line>115</line>
           <option name="timeStamp" value="33" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Roteiro7/Roteiro7__funcoes.py</url>
-          <line>390</line>
+          <line>371</line>
           <option name="timeStamp" value="34" />
         </line-breakpoint>
       </breakpoints>
