@@ -1,4 +1,5 @@
 from Roteiro7.Roteiro7__funcoes import GrafoComPesos
+from Roteiro7.Roteiro7__exceptions import *
 
 
 # .:: Arquivo que coloca em prática as funções referentes ao Roteiro 7 ::. #
@@ -19,9 +20,97 @@ def melhor_caminho(c_i, c_m):
           if c_i < c_m else '{} ({})'.format('Máxima', c_m))
 
 
+def separador():
+    return "------------------------"
+
+
+def executa(mapa, tipo_dijkstra):
+    # ----
+    print("|Matriz de Adjacência do Mapa|")
+    # -
+    print(mapa.matriz_sem_pesos())
+    print("---")
+
+    # ----
+    print("|Atributos adicionais do Mapa|\n---")
+    # -
+    while True:
+        mapa.ponto_partida = input("> Digite o Ponto de Partida (u): ")
+        if not mapa.existeVertice(mapa.ponto_partida):
+            print("> O vértice \"{}\" não existe no mapa! Tente novamente...".format(mapa.ponto_partida))
+        else:
+            break
+    # -
+    while True:
+        mapa.ponto_destino = input("> Digite o Ponto de Destino (v): ")
+        if not mapa.existeVertice(mapa.ponto_destino):
+            print("> O vértice \"{}\" não existe no mapa! Tente novamente...".format(mapa.ponto_destino))
+        else:
+            break
+    print("---")
+
+    # ----
+    if tipo_dijkstra == 1:
+        caminho_mapa = mapa.dijkstra(mapa.ponto_partida, mapa.ponto_destino)
+        if caminho_mapa:
+            print('> Menor caminho entre {} e {} no Mapa usando Dijkstra: '.format(mapa.ponto_partida,
+                                                                                   mapa.ponto_destino), caminho_mapa)
+        else:
+            print("> Não foi possível encontrar um caminho de {} a {} "
+                  "para este Mapa usando Dijkstra! :(".format(mapa.ponto_partida, mapa.ponto_destino))
+        print("---")
+
+    # ----
+    elif qual_dijkstra == 2:
+        # ----
+        quantidade = int(input("> Digite a quantidade de Pontos de Recarga: "))
+        # -
+        for x in range(quantidade):
+            while True:
+                vertice = input("> Digite o Ponto de Recarga nº {} (ou \"sair\" quando terminar): ".format(x))
+                if vertice != "sair":
+                    if not mapa.existeVertice(vertice):
+                        print("> O vértice \"{}\" não existe no mapa! Tente novamente...".format(vertice))
+                    else:
+                        mapa.pontos_de_recarga[x] = vertice
+                        break
+                else:
+                    break
+            if vertice == "sair":
+                break
+        print("---")
+
+        # ----
+        print("|Atributos do Drone|\n---")
+        # -
+        mapa.carga_maxima = int(input("> Digite a Capacidade Máxima de Carga do Drone: "))
+        # -
+        mapa.carga_inicial = int(input("> Digite Carga Inicial: "))
+        print("---")
+
+        # ----
+        dados_iniciais(carga_maxima, carga_inicial, ponto_inicial, ponto_final, pontos_de_recarga)
+
+        # ----
+        melhor__caminho = mapa.dijkstra_mod(ponto_inicial, ponto_final, carga_inicial, carga_maxima,
+                                            pontos_de_recarga)
+        if melhor__caminho:
+            melhor_caminho(carga_inicial, carga_maxima)
+            print('>', melhor__caminho)
+        else:
+            print("> Não foi possível encontrar um caminho com os dados informados! :(")
+            
+    exit(0)
+
+
+def sair():
+    print("Saindo...")
+    exit(0)
+
+
 # --------------------------------------------------------------------------- #
 # Grafos:
-mapa = GrafoComPesos()
+mapa_novo = GrafoComPesos()
 # -
 mapa_pronto = GrafoComPesos(
     ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10',
@@ -64,120 +153,144 @@ mapa_pronto = GrafoComPesos(
 # Variável auxiliar:
 testando = False  # TODO: Alterar para "False" se não estiver testando!!!
 
-
 # --------------------------------------------------------------------------- #
 # Main #
 
-Testing = testando
-if not Testing:
-    Testing = int(input("> Digite qualquer valor para usar o Mapa Pronto (ou \'0\' para criar um novo Mapa): "))
-# ---
-if not Testing:
-    print("|Dados do novo Mapa|\n---")
-    # -
-    vertices = [str(x) for x in input("> Insira o nome dos vértices (separados por espaço): ")]
-    for v in vertices:
-        mapa.adicionaVertice(v)
-    # -
-    print("Insira as arestas e seus pesos:")
-    arestas = {}
-    cont = 1
-    while True:
-        aresta = input('> Digite a aresta nº {} (ou 0 para terminar): '.format(cont))
-        if aresta == 0:
-            for a, p in arestas.items():
-                mapa.adicionaAresta(a, p)
-            break
-        peso = int(input('> Digite o peso da aresta nº {}: '.format(cont)))
-        arestas[aresta] = peso
-        cont += 1
-
-# ----
-Testing = testando
-if not Testing:
-    Testing = int(
-        input("> Digite qualquer número para usar os Dados Prontos (ou \'0\' para inserir novos dados): ")
-    )
-# ---
-print("---")
-
-# ----
-print("Matriz de Adjacência do Mapa:")
-# -
-if Testing:
-    print(mapa_pronto.matriz_sem_pesos())
-    print("---")
-    # -
-    print('> Menor caminho do Mapa usando Dijkstra: ', mapa_pronto.dijkstra('1', '32'))
-    print("---")
-
-    # --- .:: DADOS PRONTOS ::. --- #
-    carga_inicial = 3
-    carga_maxima = 5
-    ponto_inicial = '1'
-    ponto_final = '32'
-    pontos_de_recarga = ['12', '19', '21', '30']
-    # -
-    print(dados_iniciais(carga_maxima, carga_inicial, ponto_inicial, ponto_final, pontos_de_recarga))
-    # -
-    print(melhor_caminho(carga_inicial, carga_maxima))
-    print('>', mapa_pronto.dijkstra_mod(ponto_inicial, ponto_final, carga_inicial, carga_maxima, pontos_de_recarga))
-    # -
-    exit(0)
-
-# ----
-print(mapa.matriz_sem_pesos())
-print("---")
-# -
-print('> Menor caminho do Mapa usando Dijkstra: ', mapa.dijkstra('1', '32'))
-print("---")
-
-# ----
-print("|Atributos Iniciais do Drone|\n---")
-# -
-carga_maxima = int(input("> Digite a Capacidade Máxima de Carga do Drone: "))
-# -
-carga_inicial = int(input("> Digite Carga Inicial: "))
-print("---")
-
-# ----
-print("|Atributos iniciais do Mapa|\n---")
-# -
 while True:
-    ponto_inicial = input("> Digite o Ponto de Partida: ")
-    if not mapa.existeVertice(ponto_inicial):
-        print("O vértice \"{}\" não existe no mapa! Tente novamente...".format(ponto_inicial))
-    else:
-        break
-# -
-while True:
-    ponto_final = input("> Digite o Ponto de Destino: ")
-    if not mapa.existeVertice(ponto_final):
-        print("O vértice \"{}\" não existe no mapa! Tente novamente...".format(ponto_final))
-    else:
-        break
-# -
-quantidade = int(input("> Digite a quantidade de Pontos de Recarga: "))
-# -
-pontos_de_recarga = []
-for x in range(quantidade):
-    while True:
-        vertice = input("> Digite o Ponto de Recarga nº {} (ou \"sair\" quando terminar): ".format(x))
-        if vertice != "sair":
-            if not mapa.existeVertice(vertice):
-                print("O vértice \"{}\" não existe no mapa! Tente novamente...".format(vertice))
-            else:
-                pontos_de_recarga[x] = vertice
+    dados = 1
+    if not testando:
+        qual_mapa = 0
+        while True:
+            op = int(input(
+                "> Qual mapa/grafo deseja utilizar?"
+                "\n\t 1- Mapa pronto do Roteiro 7"
+                "\n\t 2- Criar um novo mapa"
+                "\n\t 3- Sair"
+                "\n\t\t Digite a opção: ")
+            )
+            if op == 1 or op == 2:
+                qual_mapa = op
                 break
+            elif op == 3:
+                sair()
+            else:
+                print("Opção inválida! Tente novamente...")
+        # -
+        print(separador())
+        # -
+        qual_dijkstra = 0
+        while True:
+            op = int(input(
+                "> Qual algoritmo desejar utilizar nesse mapa?"
+                "\n\t 1- Dijkstra Comum (Menor caminho entre u e v)"
+                "\n\t 2- Dijkstra Modificado para um Drone (Melhor caminho considerando bateria e pontos de recarga)"
+                "\n\t 3- Sair"
+                "\n\t\t Digite a opção: ")
+            )
+            if op == 1 or op == 2:
+                qual_dijkstra = op
+                break
+            elif op == 3:
+                sair()
+            else:
+                print("Opção inválida! Tente novamente...")
+        # -
+        print(separador())
+        # -
+        if qual_mapa == 1:
+            dados = 0
+            while True:
+                op = int(input(
+                    "> E o que deseja fazer em relação aos dados desse mapa (u, v, carga inicial, carga máxima, etc)?"
+                    "\n\t 1- Utilizar os dados prontos do arquivo"
+                    "\n\t 2- Inserir novos dados"
+                    "\n\t 3- Sair"
+                    "\n\t\t Digite a opção: ")
+                )
+                if op == 1 or op == 2:
+                    dados = op
+                    break
+                elif op == 3:
+                    sair()
+                else:
+                    print("Opção inválida! Tente novamente...")
+            # -
+            print(separador())
+            # -
+            if dados == 2:
+                executa(mapa_pronto, qual_dijkstra)
+
         else:
-            break
-    if vertice == "sair":
-        break
-print("---")
+            print("|Dados do novo Mapa|\n---")
+            # -
+            print("|Insira o nome dos vértices do mapa.|")
+            print("> Lembrando que o nome não pode exceder o limite de 6 caracteres!")
+            cont = 1
+            while True:
+                print("-")
+                v = input("> Digite o nome do vértice nº {} (ou \"sair\" para terminar): ".format(cont))
+                if v == "sair":
+                    break
+                try:
+                    mapa_novo.adicionaVertice(v)
+                    cont += 1
+                except VerticeInvalidoException:
+                    print("> Ops! O vértice \'{}\' é inválido! "
+                          "Lembre-se da regra da quantidade de caracteres... :)".format(v))
+            # -
+            print(separador())
+            # -
+            print("|Insira as arestas e seus pesos.|")
+            print("> Lembrando que as arestas devem interligar dois vértices EXISTENTES no mapa "
+                  "e deve ter o formato: \"X-Y\"!")
+            cont = 1
+            while True:
+                print("-")
+                aresta = input('> Digite a aresta nº {} (ou \'sair\' para terminar): '.format(cont))
+                if aresta == "sair":
+                    print("---")
+                    print("Mapa criado!")
+                    print(separador())
+                    break
+                peso = int(input('> Digite o peso da aresta nº {}: '.format(cont)))
+                try:
+                    mapa_novo.adicionaAresta(aresta, peso)
+                    cont += 1
+                except ArestaInvalidaException:
+                    print("> Ops! A aresta \'{}\' é inválida! Lembre-se das regras... :)".format(aresta))
 
-# ----
-print(dados_iniciais(carga_maxima, carga_inicial, ponto_inicial, ponto_final, pontos_de_recarga))
+            executa(mapa_novo, qual_dijkstra)
 
-# ----
-print(melhor_caminho(carga_inicial, carga_maxima))
-print('>', mapa.dijkstra_mod(ponto_inicial, ponto_final, carga_inicial, carga_maxima, pontos_de_recarga))
+    if dados:
+        # ------------- DADOS PRONTOS ------------- #
+        print("|Matriz de Adjacência do Mapa|")
+        print(mapa_pronto.matriz_sem_pesos())
+        print("---")
+
+        # --- .:: DADOS PRONTOS Dijkstra ::. --- #
+        u = '1'
+        v = '32'
+        caminho_mapa_pronto = mapa_pronto.dijkstra(u, v)
+        if caminho_mapa_pronto:
+            print('> Menor caminho entre {} e {} no Mapa usando Dijkstra: '.format(u, v), caminho_mapa_pronto)
+        else:
+            print("> Não foi possível encontrar um caminho de {} a {} para este Mapa usando Dijkstra! :(".format(u, v))
+
+        # -
+        print("---")
+        # -
+
+        # --- .:: DADOS PRONTOS Dijkstra Modificado ::. --- #
+        carga_inicial = 3
+        carga_maxima = 5
+        ponto_inicial = '1'
+        ponto_final = '32'
+        pontos_de_recarga = ['12', '19', '21', '30']
+        # -
+        dados_iniciais(carga_maxima, carga_inicial, ponto_inicial, ponto_final, pontos_de_recarga)
+        # -
+        melhor_caminho(carga_inicial, carga_maxima)
+        print('>', mapa_pronto.dijkstra_mod(ponto_inicial, ponto_final, carga_inicial, carga_maxima, pontos_de_recarga))
+        # -
+        exit(0)
+        # ------------- DADOS PRONTOS ------------- #

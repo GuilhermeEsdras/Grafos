@@ -4,6 +4,15 @@ from Roteiro7.Roteiro7__exceptions import *
 # .:: Arquivo principal onde se encontram as funções referentes ao Roteiro 7 ::. #
 # --------------------------------------------------------------------------- #
 class GrafoComPesos:
+    # Variáveis referentes ao Mapa:
+    ponto_partida = ''
+    ponto_destino = ''
+    pontos_de_recarga = []
+
+    # Variáveis referentes ao Drone:
+    carga_inicial = 0
+    carga_maxima = 0
+
     QTDE_MAX_SEPARADOR = 1
     SEPARADOR_ARESTA = '-'
     __maior_vertice = 0
@@ -462,6 +471,12 @@ class GrafoComPesos:
     - Roteiro 7 - Dijkstra, Fim -
     '''
 
+    # ---
+
+    '''
+    - Funções Adicionais para o GrafoComPesos do Roteiro 7, Inicio -
+    '''
+
     def matriz_sem_pesos(self):
         """
         Fornece uma representação do tipo String (como Matriz de Adjacência sem Pesos) do grafo.
@@ -499,6 +514,10 @@ class GrafoComPesos:
     def testando(self, err):
         if err:
             raise IncompletoException("A FUNÇÃO ESTÁ INCOMPLETA '-' -> EU AVISEI NA LINHA 391 QUE IA DAR ERRO!!!! :)")
+
+    '''
+    - Funções Adicionais para o GrafoComPesos do Roteiro 7, Fim -
+    '''
 
     def __str__(self):
         """
