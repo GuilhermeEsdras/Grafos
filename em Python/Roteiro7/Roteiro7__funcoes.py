@@ -8,6 +8,7 @@ from Roteiro7.Roteiro7__exceptions import *
 # A diferença é que em GrafoComPesos você pode criar um grafo utilizando Pesos personalizados nas arestas,
 # já em Grafos o algoritmo leva em consideração que todas as arestas possuem Peso 1.
 # Funciona normal nos dois... :)
+# Para rodar o algoritmo usando apenas o Grafo normal, ver arquivo: Roteiro7__testes_grafo.py
 
 # GrafoComPesos -> Linha  12 ~ Linha 543   | dijkstra: Linha 268 | dijkstra modificado: Linha 360
 # Grafo         -> Linha 546 ~ Linha 997   | dijkstra: Linha 770 | dijkstra modificado: Linha 862
@@ -809,7 +810,7 @@ class Grafo:
                 if linha == self.pos(w):
                     for coluna in range(len(vertices)):
                         # Para cada aresta partindo de w:
-                        if self.M[linha][coluna][0] > 0:
+                        if self.M[linha][coluna] > 0:
                             r = vertices[coluna]  # Vértice vizinho de W a ser analisado / Vértice de destino
                             aresta = self.aresta(w, r)  # arco(w, r)
                             if Fi[r] == 0:
@@ -911,7 +912,7 @@ class Grafo:
                 if linha == self.pos(w):
                     for coluna in range(len(vertices)):
                         # Para cada aresta partindo de w:
-                        if self.M[linha][coluna][0] > 0:
+                        if self.M[linha][coluna] > 0:
                             r = vertices[coluna]  # Vértice vizinho de W a ser analisado / Vértice de destino
                             aresta = self.aresta(w, r)  # arco(w, r)
                             if Fi[r] == 0:
