@@ -4,6 +4,7 @@
     <list default="true" id="352eeb84-7cec-4625-a9e4-dd861069e1db" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Roteiro7/Roteiro7__funcoes.py" beforeDir="false" afterPath="$PROJECT_DIR$/Roteiro7/Roteiro7__funcoes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Roteiro7/Roteiro7__testes_grafo.py" beforeDir="false" afterPath="$PROJECT_DIR$/Roteiro7/Roteiro7__testes_grafocompesos.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -133,7 +134,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="C:\Users\Guilherme\Documents\Engenharia de Computação\Grafos\em Python\Roteiro7\Roteiro7__testes_grafo.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\Guilherme\Documents\Engenharia de Computação\Grafos\em Python\Roteiro7\Roteiro7__testes_grafocompesos.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -155,7 +156,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Roteiro7/Roteiro7__testes_grafo.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\Guilherme\Documents\Engenharia de Computação\Grafos\em Python\Roteiro7\Roteiro7__testes_grafocompesos.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -243,7 +244,7 @@
       <workItem from="1573769073160" duration="3314000" />
       <workItem from="1573821855535" duration="4208000" />
       <workItem from="1573845202254" duration="31585000" />
-      <workItem from="1573879325998" duration="146000" />
+      <workItem from="1573879325998" duration="999000" />
     </task>
     <servers />
   </component>
