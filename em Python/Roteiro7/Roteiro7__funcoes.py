@@ -3,7 +3,7 @@ from Roteiro7.Roteiro7__exceptions import *
 
 # .:: Arquivo principal onde se encontram as funções referentes ao Roteiro 7 ::. #
 
-# |Observações|
+# |Observações para o Prof.|
 # Escrevi o Algoritmo de Dijkstra nas duas classes (GrafoComPesos e Grafo)
 # A diferença é que em GrafoComPesos você pode criar um grafo utilizando Pesos personalizados nas arestas,
 # já em Grafos o algoritmo leva em consideração que todas as arestas possuem Peso 1.
