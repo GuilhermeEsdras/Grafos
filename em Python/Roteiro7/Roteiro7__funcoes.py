@@ -369,7 +369,7 @@ class GrafoComPesos:
 
         # Variável(is) auxiliar(es)
         vertices = self.N
-        self.testando(False)  # TODO: FUNÇÃO INCOMPLETA/EM CONSTRUÇÃO/VAI DAR ERRO SE FOR TENTAR RODAR! :) #
+        self.testando(False)  # TODO: Caso esteja "True": FUNÇÃO INCOMPLETA/EM CONSTRUÇÃO/VAI DAR ERRO SE RODAR! :) #
 
         # Lista que armazenará as arestas indicando o melhor caminho
         melhor_caminho = []
@@ -497,7 +497,6 @@ class GrafoComPesos:
         return grafo_str
 
     def testando(self, err):
-        err = True
         if err:
             raise IncompletoException("A FUNÇÃO ESTÁ INCOMPLETA '-' -> EU AVISEI NA LINHA 391 QUE IA DAR ERRO!!!! :)")
 

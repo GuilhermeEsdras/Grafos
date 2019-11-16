@@ -4,8 +4,8 @@ from Roteiro7.Roteiro7__funcoes import GrafoComPesos
 # .:: Arquivo que coloca em prática as funções referentes ao Roteiro 7 ::. #
 # --------------------------------------------------------------------------- #
 # Funções Auxiliares:
-def atributos_finais(c_m, c_i, p_i, p_f, p_de_r):
-    print("|Atributos Finais|\n---"
+def dados_iniciais(c_m, c_i, p_i, p_f, p_de_r):
+    print("|Dados Iniciais|\n---"
           "\n• Carga Máxima:", c_m,
           "\n• Carga Inicial:", c_i,
           "\n• Ponto Inicial:", p_i,
@@ -62,10 +62,12 @@ mapa_pronto = GrafoComPesos(
 )
 # --------------------------------------------------------------------------- #
 # Variável auxiliar:
-testando = False  # TODO: Alterar para "False" para poder inserir novos dados durante a execução do programa!!!
+testando = False  # TODO: Alterar para "False" se não estiver testando!!!
+
 
 # --------------------------------------------------------------------------- #
-# Main:
+# Main #
+
 Testing = testando
 if not Testing:
     Testing = int(input("> Digite qualquer valor para usar o Mapa Pronto (ou \'0\' para criar um novo Mapa): "))
@@ -116,7 +118,7 @@ if Testing:
     ponto_final = '32'
     pontos_de_recarga = ['12', '19', '21', '30']
     # -
-    print(atributos_finais(carga_maxima, carga_inicial, ponto_inicial, ponto_final, pontos_de_recarga))
+    print(dados_iniciais(carga_maxima, carga_inicial, ponto_inicial, ponto_final, pontos_de_recarga))
     # -
     print(melhor_caminho(carga_inicial, carga_maxima))
     print('>', mapa_pronto.dijkstra_mod(ponto_inicial, ponto_final, carga_inicial, carga_maxima, pontos_de_recarga))
@@ -174,7 +176,7 @@ for x in range(quantidade):
 print("---")
 
 # ----
-print(atributos_finais(carga_maxima, carga_inicial, ponto_inicial, ponto_final, pontos_de_recarga))
+print(dados_iniciais(carga_maxima, carga_inicial, ponto_inicial, ponto_final, pontos_de_recarga))
 
 # ----
 print(melhor_caminho(carga_inicial, carga_maxima))
