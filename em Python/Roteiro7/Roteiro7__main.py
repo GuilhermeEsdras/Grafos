@@ -147,7 +147,7 @@ mapa_pronto = GrafoComPesos(
 )
 # --------------------------------------------------------------------------- #
 # Variável auxiliar:
-testando = False  # TODO: Alterar para "True" se não estiver testando!!!
+testando = False  # TODO: Alterar para "True" se estiver testando!!!
 
 # --------------------------------------------------------------------------- #
 # Main #
