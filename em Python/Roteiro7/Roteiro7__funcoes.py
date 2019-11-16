@@ -244,9 +244,6 @@ class GrafoComPesos:
         else:
             raise ArestaInvalidaException('A aresta {} é inválida'.format(a))
 
-    '''
-    Funções auxiliares para um Grafo do tipo Matriz de Adjacência
-    '''
     def pos(self, v):
         """
         :param v: Vértice.
@@ -350,6 +347,8 @@ class GrafoComPesos:
         menor_caminho.reverse()
         return menor_caminho
 
+    # ---
+
     def dijkstra_mod(self, u, v, carga_inicial, carga_maxima, pontos_de_recarga=None):
         """
         Algoritmo de Dijkstra modificado para encontrar a melhor rota para um drone, baseando-se em pontos de recarga
@@ -369,7 +368,6 @@ class GrafoComPesos:
 
         # Variável(is) auxiliar(es)
         vertices = self.N
-        self.testando(False)  # TODO: Caso esteja "True": FUNÇÃO INCOMPLETA/EM CONSTRUÇÃO/VAI DAR ERRO SE RODAR! :) #
 
         # Lista que armazenará as arestas indicando o melhor caminho
         melhor_caminho = []
@@ -444,7 +442,7 @@ class GrafoComPesos:
             Fi[r_] = 1  # 𝞿(r*) = 1 (torna o vértice permanente)
             w = r_      # w = r* (vértice a ser analisado no próximo loop)
 
-        # Percorre o Dicionário de Pi's mostrando o menor caminho
+        # Percorre o Dicionário de Pi's mostrando o melhor caminho
         atual = v
         prox = Pi[atual]
         while True:
@@ -501,10 +499,6 @@ class GrafoComPesos:
             grafo_str += '\n'
 
         return grafo_str
-
-    def testando(self, err):
-        if err:
-            raise IncompletoException("A FUNÇÃO ESTÁ INCOMPLETA '-' -> EU AVISEI NA LINHA 391 QUE IA DAR ERRO!!!! :)")
 
     '''
     - Funções Adicionais para o GrafoComPesos do Roteiro 7, Fim -
