@@ -4,15 +4,6 @@ from Roteiro7.Roteiro7__exceptions import *
 # .:: Arquivo principal onde se encontram as funções referentes ao Roteiro 7 ::. #
 # --------------------------------------------------------------------------- #
 class GrafoComPesos:
-    # Variáveis referentes ao Mapa:
-    ponto_partida = ''
-    ponto_destino = ''
-    pontos_de_recarga = []
-
-    # Variáveis referentes ao Drone:
-    carga_inicial = 0
-    carga_maxima = 0
-
     QTDE_MAX_SEPARADOR = 1
     SEPARADOR_ARESTA = '-'
     __maior_vertice = 0
