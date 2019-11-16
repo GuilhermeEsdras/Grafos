@@ -369,7 +369,6 @@ class GrafoComPesos:
         menor_caminho.reverse()
         return menor_caminho
 
-    # TODO: INCOMPLETO/EM CONSTRUÇÃO/VAI DAR ERRO SE FOR TESTAR! :) #
     def dijkstra_mod(self, u, v, carga_inicial, carga_maxima, pontos_de_recarga=None):
         """
         Algoritmo de Dijkstra modificado para encontrar a melhor rota para um drone, baseando-se em pontos de recarga
@@ -389,6 +388,7 @@ class GrafoComPesos:
 
         # Variável(is) auxiliar(es)
         vertices = self.N
+        self.testando(False)  # TODO: FUNÇÃO INCOMPLETA/EM CONSTRUÇÃO/VAI DAR ERRO SE FOR TENTAR RODAR! :) #
 
         # Lista que armazenará as arestas indicando o melhor caminho
         melhor_caminho = []
@@ -397,25 +397,25 @@ class GrafoComPesos:
         Beta = {}  # Peso do menor caminho entre u e r
         Fi   = {}  # Marca cada vértice como permanente (1) ou temporário (0)
         Pi   = {}  # Predecessor de r no caminho u-r, se esse caminho existir, ou 0 se não existir
-        Gama = {}  # Última carga de r
+        Gama = {}  # Armazena a carga do drone em vértice
 
         # Inicializa os dicionários com os valores iniciais
         for r in vertices:
             if r != u:
                 Beta[r] = math.inf  # 𝞫(r) ⇽ ∞
                 Fi[r] = 0           # 𝞿(r) ⇽ 0
+                Gama[r] = math.inf  # γ(r) ⇽ ∞
             else:
-                Beta[r] = 0  # 𝞫(u) ⇽ 0
-                Fi[r] = 1    # 𝞿(u) ⇽ 1
+                Beta[r] = 0              # 𝞫(u) ⇽ 0
+                Fi[r]   = 1              # 𝞿(u) ⇽ 1
+                Gama[r] = carga_inicial  # γ(r) ⇽ Carga Inicial
 
-            Pi[r] = 0  # 𝞹(r) ⇽ 0
+            Pi[r]   = 0         # 𝞹(r) ⇽ 0
 
         w = u
         r_ = 0  # r*
-        carga_atual = carga_inicial
         while w != v:
 
-            self.temp(True)
             # Analisa os vértices de destino cuja aresta parte de w e atualiza seus beta's e pi's:
             for linha in range(len(vertices)):
                 if linha == self.pos(w):
@@ -428,13 +428,16 @@ class GrafoComPesos:
                                 PesoDaAresta = self.alpha(aresta)
                                 beta_do_antecessor_mais_arco = Beta[w] + PesoDaAresta
                                 # Se: Beta(r) for maior que Beta(w) + PesoDaAresta(w, r)  (𝞫(r) > 𝞫(w) + 𝞪(w,r))
-                                if Beta[r] > beta_do_antecessor_mais_arco and carga_atual >= PesoDaAresta:
+                                if Beta[r] > beta_do_antecessor_mais_arco and Gama[w] >= PesoDaAresta:
                                     # Então: 𝞫(r) ⇽ 𝞫(w) + 𝞪(w,r) e 𝞹(r) ⇽ w
                                     Beta[r] = beta_do_antecessor_mais_arco
                                     Pi[r] = w
-
-
-            # ??????
+                                    # E se r for um ponto de recarga: γ(r) ⇽ Carga Máxima
+                                    if r in pontos_de_recarga:
+                                        Gama[r] = carga_maxima
+                                    # senão: γ(r) ⇽ Carga no anterior - 1 (perde 1 ponto de recarga)
+                                    else:
+                                        Gama[r] = Gama[w] - 1
 
             # Encontra o vértice r* tal que: 𝞿(r*) = 0, 𝞫(r*) < ∞ e 𝞫(r*) = menor beta dos betas:
             menor_beta = math.inf  # menor_beta inicia valendo infinito
@@ -458,7 +461,7 @@ class GrafoComPesos:
 
             # Atualiza as variáveis:
             Fi[r_] = 1  # 𝞿(r*) = 1 (torna o vértice permanente)
-            w = r_  # w = r* (vértice a ser analisado no próximo loop)
+            w = r_      # w = r* (vértice a ser analisado no próximo loop)
 
         # Percorre o Dicionário de Pi's mostrando o menor caminho
         atual = v
@@ -512,10 +515,10 @@ class GrafoComPesos:
 
         return grafo_str
 
-    def temp(self, err):
+    def testando(self, err):
         err = True
         if err:
-            raise IncompletoException("-> EU AVISEI QUE IA DAR ERRO!!!! :)")
+            raise IncompletoException("A FUNÇÃO ESTÁ INCOMPLETA '-' -> EU AVISEI NA LINHA 391 QUE IA DAR ERRO!!!! :)")
 
     def __str__(self):
         """

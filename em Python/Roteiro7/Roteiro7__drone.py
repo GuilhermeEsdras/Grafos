@@ -58,11 +58,13 @@ mapa_pronto = GrafoComPesos(
     }
 )
 # --------------------------------------------------------------------------- #
+testando = False  # TODO: Alterar para "False" para poder inserir novos dados durante a execução do programa!!!
 
-
-opt = int(input("> Digite \'1\' para usar o Mapa Pronto (ou qualquer outro número para criar um novo Mapa): "))
+Testing = testando
+if not Testing:
+    Testing = int(input("> Digite qualquer valor para usar o Mapa Pronto (ou \'0\' para criar um novo Mapa): "))
 # ---
-if opt != 1:
+if not Testing:
     print("|Dados do novo Mapa|\n---")
     # -
     vertices = [str(x) for x in input("> Insira o nome dos vértices (separados por espaço): ")]
@@ -83,13 +85,18 @@ if opt != 1:
         cont += 1
 
 # ----
-teste = int(input("> Digite \'1\' para usar os Dados Prontos (ou qualquer outro número para inserir novos dados): "))
+Testing = testando
+if not Testing:
+    Testing = int(
+        input("> Digite qualquer número para usar os Dados Prontos (ou \'0\' para inserir novos dados): ")
+    )
+# ---
 print("---")
 
 # ----
 print("Matriz de Adjacência do Mapa:")
 # -
-if teste:
+if Testing:
     print(mapa_pronto.matriz_sem_pesos())
     print("---")
     # -
