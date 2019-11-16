@@ -5,25 +5,6 @@ from Roteiro7.Roteiro7__exceptions import *
 # .:: Arquivo que coloca em prática as funções referentes ao Roteiro 7 ::. #
 # --------------------------------------------------------------------------- #
 # Funções Auxiliares:
-def dados_iniciais(c_m, c_i, p_i, p_f, p_de_r):
-    print("|Dados Iniciais|\n---"
-          "\n• Carga Máxima:", c_m,
-          "\n• Carga Inicial:", c_i,
-          "\n• Ponto Inicial:", p_i,
-          "\n• Ponto Final:", p_f,
-          "\n• Pontos de Recarga:", p_de_r)
-    print("---")
-
-
-def melhor_caminho(c_i, c_m):
-    print('> Melhor caminho neste Mapa para o Drone com Carga Inicial {}: '.format('de {}'.format(c_i))
-          if c_i < c_m else '{} ({})'.format('Máxima', c_m))
-
-
-def separador():
-    return "------------------------"
-
-
 def executa(mapa, tipo_dijkstra):
     # ----
     print("|Matriz de Adjacência do Mapa|")
@@ -99,8 +80,23 @@ def executa(mapa, tipo_dijkstra):
             print('>', melhor__caminho)
         else:
             print("> Não foi possível encontrar um caminho com os dados informados! :(")
-            
-    exit(0)
+
+    print(separador())
+
+
+def dados_iniciais(c_m, c_i, p_i, p_f, p_de_r):
+    print("|Dados Iniciais|\n---"
+          "\n• Carga Máxima:", c_m,
+          "\n• Carga Inicial:", c_i,
+          "\n• Ponto Inicial:", p_i,
+          "\n• Ponto Final:", p_f,
+          "\n• Pontos de Recarga:", p_de_r)
+    print("---")
+
+
+def melhor_caminho(c_i, c_m):
+    print('> Melhor caminho neste Mapa para o Drone com Carga Inicial {}: '.format('de {}'.format(c_i))
+          if c_i < c_m else '{} ({})'.format('Máxima', c_m))
 
 
 def sair():
@@ -108,9 +104,13 @@ def sair():
     exit(0)
 
 
+def separador():
+    return "------------------------"
+
+
 # --------------------------------------------------------------------------- #
 # Grafos:
-mapa_novo = GrafoComPesos()
+mapa_novo   = GrafoComPesos()
 # -
 mapa_pronto = GrafoComPesos(
     ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10',
@@ -157,7 +157,7 @@ testando = False  # TODO: Alterar para "False" se não estiver testando!!!
 # Main #
 
 while True:
-    dados = 1
+    dados = 0
     if not testando:
         qual_mapa = 0
         while True:
@@ -261,7 +261,7 @@ while True:
 
             executa(mapa_novo, qual_dijkstra)
 
-    if dados:
+    if testando or dados == 1:
         # ------------- DADOS PRONTOS ------------- #
         print("|Matriz de Adjacência do Mapa|")
         print(mapa_pronto.matriz_sem_pesos())
@@ -293,4 +293,3 @@ while True:
         print('>', mapa_pronto.dijkstra_mod(ponto_inicial, ponto_final, carga_inicial, carga_maxima, pontos_de_recarga))
         # -
         exit(0)
-        # ------------- DADOS PRONTOS ------------- #
