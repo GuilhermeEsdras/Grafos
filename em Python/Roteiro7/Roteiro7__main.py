@@ -66,7 +66,7 @@ def executa(mapa, tipo_dijkstra):
         # -
         carga_maxima = int(input("> Digite a Capacidade Máxima de Carga do Drone: "))
         # -
-        carga_inicial = int(input("> Digite Carga Inicial: "))
+        carga_inicial = int(input("> Digite a Carga Inicial: "))
         print("---")
 
         # ----
