@@ -384,7 +384,7 @@ class GrafoComPesos:
         Beta = {}  # Peso do menor caminho entre u e r
         Fi   = {}  # Marca cada vértice como permanente (1) ou temporário (0)
         Pi   = {}  # Predecessor de r no caminho u-r, se esse caminho existir, ou 0 se não existir
-        Gama = {}  # Armazena a carga do drone em vértice
+        Gama = {}  # Armazena a carga atual do drone em cada vértice r
 
         # Inicializa os dicionários com os valores iniciais
         for r in vertices:
@@ -884,9 +884,9 @@ class Grafo:
 
         # Dicionários representando os rótulos do algoritmo para cada vértice
         Beta = {}  # Peso do menor caminho entre u e r
-        Fi = {}  # Marca cada vértice como permanente (1) ou temporário (0)
-        Pi = {}  # Predecessor de r no caminho u-r, se esse caminho existir, ou 0 se não existir
-        Gama = {}  # Armazena a carga do drone em vértice
+        Fi = {}    # Marca cada vértice como permanente (1) ou temporário (0)
+        Pi = {}    # Predecessor de r no caminho u-r, se esse caminho existir, ou 0 se não existir
+        Gama = {}  # Armazena a carga atual do drone em cada vértice r
 
         # Inicializa os dicionários com os valores iniciais
         for r in vertices:
