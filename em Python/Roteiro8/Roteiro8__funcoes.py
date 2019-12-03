@@ -28,8 +28,8 @@ class Grafo:
             if len(v) > self.__maior_vertice:
                 self.__maior_vertice = len(v)
 
-        self.N   = list(V)
-        self.__P = {}  # Dicionário que armazena os Pesos de cada aresta
+        self.N    = list(V)
+        self.__AP = {}  # Dicionário que armazena as Arestas e seus respectivos Pesos
 
         if not M:
             for k in range(len(V)):
@@ -195,7 +195,7 @@ class Grafo:
         :raise: lança uma exceção caso a aresta não estiver em um formato válido
         """
         if self.arestaValida(a):
-            self.__P[a] = 1
+            self.__AP[a] = 1
             i_a1 = self.__indice_primeiro_vertice_aresta(a)
             i_a2 = self.__indice_segundo_vertice_aresta(a)
             if i_a1 < i_a2:
@@ -214,7 +214,7 @@ class Grafo:
         """
         if self.arestaValida(a):
             if self.pesoValido(p):
-                self.__P[a] = p
+                self.__AP[a] = p
                 i_a1 = self.__indice_primeiro_vertice_aresta(a)
                 i_a2 = self.__indice_segundo_vertice_aresta(a)
                 if i_a1 < i_a2:
@@ -236,7 +236,7 @@ class Grafo:
             if self.existeAresta(a):
                 i_a1 = self.__indice_primeiro_vertice_aresta(a)
                 i_a2 = self.__indice_segundo_vertice_aresta(a)
-                self.__P.pop(a)
+                self.__AP.pop(a)
                 if i_a1 < i_a2:
                     self.M[i_a1][i_a2] -= 1
                 else:
@@ -261,11 +261,11 @@ class Grafo:
         if self.arestaValida(a):
             if self.existeAresta(a):
                 try:
-                    return self.__P[a]
+                    return self.__AP[a]
                 except KeyError:
                     a_inv = self.aresta(self.N[self.__indice_segundo_vertice_aresta(a)],
                                         self.N[self.__indice_primeiro_vertice_aresta(a)])
-                    return self.__P[a_inv]
+                    return self.__AP[a_inv]
             else:
                 raise ArestaNaoExistenteException('A aresta {} não existe'.format(a))
         else:
@@ -281,7 +281,7 @@ class Grafo:
         if self.arestaValida(a):
             if self.existeAresta(a):
                 if self.pesoValido(p):
-                    self.__P[a] = p
+                    self.__AP[a] = p
                 else:
                     raise PesoInvalidoException('O peso {} é inválido'.format(p))
             else:
@@ -298,17 +298,17 @@ class Grafo:
         """
         if self.existeAresta(self.aresta(v1, v2)):
             try:
-                return self.__P[self.aresta(v1, v2)]
+                return self.__AP[self.aresta(v1, v2)]
             except KeyError:
-                return self.__P[self.aresta(v2, v1)]
+                return self.__AP[self.aresta(v2, v1)]
         else:
-            return False
+            raise ArestaNaoExistenteException('A aresta {} não existe'.format(self.aresta(v1, v2)))
 
     def pesos(self):
         """
         :return: Retorna o dicionário de pesos das arestas do Grafo.
         """
-        return self.__P
+        return self.__AP
 
     def pos(self, v):
         """
@@ -324,7 +324,7 @@ class Grafo:
         """
         menor_aresta = ''
         menor_peso   = 0
-        for aresta, peso in self.__P.items():
+        for aresta, peso in self.__AP.items():
             if peso > menor_peso:
                 menor_peso   = peso
                 menor_aresta = aresta
@@ -337,7 +337,7 @@ class Grafo:
         """
         maior_aresta = ''
         maior_peso   = 0
-        for aresta, peso in self.__P.items():
+        for aresta, peso in self.__AP.items():
             if peso > maior_peso:
                 maior_peso   = peso
                 maior_aresta = aresta
@@ -350,11 +350,16 @@ class Grafo:
         :return: Lista contendo todos os vértices de destino em relação a v
         """
         adjacentes = []
-        for v1 in range(len(self.N)):
-            for v2 in range(len(self.N)):
-                if v1 == self.pos(v) and v2 >= self.pos(v):
-                    if self.M[v1][v2] > 0:
-                        adjacentes.append(self.N[v2])
+        for linha in range(len(self.M)):
+            if linha < self.pos(v):
+                if self.M[linha][self.pos(v)]:
+                    adjacentes.append(self.N[linha])
+            elif linha == self.pos(v):
+                for coluna in range(self.pos(v), len(self.M[linha])):
+                    if self.M[linha][coluna]:
+                        adjacentes.append(self.N[coluna])
+            else:
+                break
         return adjacentes
 
     # ---
@@ -371,6 +376,10 @@ class Grafo:
         return False
 
     def ha_ciclo(self):
+        """
+        Verifica se há algum ciclo no Grafo
+        :return: Valor booleano. True se houver, False caso contrário
+        """
         for v in self.N:
             if self.ha_ciclo_aux(v):
                 return True
@@ -378,40 +387,49 @@ class Grafo:
 
     # ---
 
-    def eh_aresta_segura(self, a):
-        """
-        Uma Aresta Segura, ou Safe Edge, é uma aresta na qual não cria um loop/ciclo no grafo.
-        :param a: Aresta
-        :return: Valor booleano. True se não criar um ciclo, ou False caso contrário.
-        """
-        return
-
     '''
     - Roteiro 8 - Minimum Spanning Tree, Inicio -
     '''
 
     def kruskal(self):
+        """
+        Algoritmo original de Kruskal para encontrar a Árvore de Extensão Mínima (Minimum Spanning Tree) do Grafo.
+        :return: Um Grafo/Árvore representando a MST.
+        """
+        # Importa as bibliotecas/funções auxiliares:
         from copy import deepcopy
         from math import inf
 
+        # Cria o Grafo/Árvore que representará a MST
         T = Grafo()
+
+        # Adiciona todos os vértices a árvore:
         for v in self.N:
             T.adicionaVertice(v)
 
-        E = deepcopy(self.__P)
+        # E = Todas as arestas do grafo original
+        E = deepcopy(self.__AP)
 
+        # Enquanto houver arestas a serem verificadas:
         while E:
+
+            # Seleciona a menor aresta (aresta de menor peso) de E:
             menor_aresta = ''
             menor_peso   = inf
             for aresta, peso in E.items():
                 if peso < menor_peso:
                     menor_peso   = peso
                     menor_aresta = aresta
+
+            # Exclui esta aresta de E e adiciona a MST:
             E.pop(menor_aresta)
             T.adicionaArestaComPeso(menor_aresta, menor_peso)
+
             if T.ha_ciclo():
+                # Se por acaso a adição desta aresta torna a árvore cíclica, remove-a:
                 T.remove_aresta(menor_aresta)
 
+        # Retorna a MST
         return T
 
     def kruskal_mod(self):
@@ -419,48 +437,74 @@ class Grafo:
 
     # ---
 
-    def prim(self):
-
-        return
-
     def prim_mod(self):
+        """
+        Algoritmo de Prim (Modificado) para encontrar a Árvore de Extensão Mínima (Minimum Spanning Tree) do Grafo.
+        :return: Um Grafo/Árvore representando a MST.
+        """
+        # Importa as bibliotecas/funções auxiliares:
         from copy import deepcopy
         from math import inf
 
-        V = deepcopy(self.N)
-        E = deepcopy(self.__P)
-        Jet = {}
-        P   = {}
+        V = deepcopy(self.N)     # Todos os vértices do grafo
+        E = deepcopy(self.__AP)  # Todas as arestas e pesos do grafo
+        Jet = {}                 # Dicionário que armazenará os pesos de cada vértice
+        P   = {}                 # Dicionário que indicará o pai final de cada vértice
 
+        # Inicia os dicionários com seus valores iniciais:
         for x in V:
             Jet[x] = inf
             P[x]   = None
 
+        # Processo de escolha do vértice raiz, que é o vértice de menor peso:
         menor_aresta = ''
         menor_peso   = inf
-        for aresta, peso in E:
+        for aresta, peso in E.items():
             if peso < menor_peso:
                 menor_peso   = peso
                 menor_aresta = aresta
 
-        Jet[menor_aresta] = 0
+        # Marca o Jet/peso do vértice raiz como 0:
+        Jet[self.N[self.__indice_primeiro_vertice_aresta(menor_aresta)]] = 0
 
-        Q = deepcopy(V)
+        Q = deepcopy(V)  # Pilha auxiliar contendo todos os vértices do grafo a serem analisados
         while Q:
+            # Seleciona o vértice de menor peso em Q:
             menor_vertice = ''
             menor_valor   = inf
-            for vertice, value in Jet.items():
-                if value < menor_valor:
-                    menor_valor   = value
+            for vertice in Q:
+                if Jet[vertice] < menor_valor:
+                    menor_valor   = Jet[vertice]
                     menor_vertice = vertice
-            x = Q.pop(menor_vertice)
 
+            # Atribui este vértice a variável 'x' e o remove da pilha Q:
+            x = Q.pop(Q.index(menor_vertice))
+
+            # Para cada um dos vértices adjacentes/vizinhos de 'x' (vértice de menor peso a ser verificado)...
             for vizinho in self.vertices_adjacentes(x):
-                Jet[vizinho] = self.peso(x, vizinho)
-        return
+                # Se este vizinho ainda não foi verificado (ainda está na pilha), e o Jet/peso dele é menor que o peso
+                # anteriormente atribuído:
+                if vizinho in Q and self.peso(x, vizinho) < Jet[vizinho]:
+                    # Atualiza o seu pai e o seu peso para melhores resultados:
+                    P[vizinho] = x
+                    Jet[vizinho] = self.peso(x, vizinho)
+
+        # Cria a árvore:
+        MST = Grafo()
+        # Adiciona todos os vértices:
+        for vertice in V:
+            MST.adicionaVertice(vertice)
+        # Percorre o dicionário P (onde armazena o vértice como chave e seu melhor pai como valor formando uma aresta
+        # de menor peso), e adiciona as respectivas arestas (vértice-pai) a árvore:
+        for v, p in P.items():
+            if p:  # Verifica se não é o vértice raiz que está sendo analisado, pois seu pai no final é 'None'
+                MST.adicionaArestaComPeso(self.aresta(v, p), self.peso(v, p))
+
+        # Retorna a MST
+        return MST
 
     '''
-    - Roteiro 8 - Minimum Spanning Tree,, Fim -
+    - Roteiro 8 - Minimum Spanning Tree, Fim -
     '''
 
     def __str__(self):

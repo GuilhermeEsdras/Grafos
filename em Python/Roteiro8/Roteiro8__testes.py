@@ -17,4 +17,3 @@ grafo_wiki.adicionaArestaComPeso('F-G', 11)
 
 print(grafo_wiki)
 print(grafo_wiki.alpha('E-C'))
-
