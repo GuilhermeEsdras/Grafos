@@ -364,15 +364,14 @@ class Grafo:
 
     # ---
 
-    def ha_ciclo_aux(self, v):
-        visitado = {v: False for v in self.N}
-        pilha = [v]
-        while pilha:
-            vertice = pilha.pop()
-            if visitado[vertice]:
+    def __ha_ciclo_aux(self, v, visitado, pai):
+        visitado[self.pos(v)] = True
+        for adj in self.vertices_adjacentes(v):
+            if not visitado[self.pos(adj)]:
+                if self.__ha_ciclo_aux(adj, visitado, v):
+                    return True
+            elif pai != adj:
                 return True
-            visitado[vertice] = True
-            pilha.extend(self.vertices_adjacentes(vertice))
         return False
 
     def ha_ciclo(self):
@@ -380,9 +379,11 @@ class Grafo:
         Verifica se há algum ciclo no Grafo
         :return: Valor booleano. True se houver, False caso contrário
         """
+        visitado = [False] * len(self.N)
         for v in self.N:
-            if self.ha_ciclo_aux(v):
-                return True
+            if not visitado[self.pos(v)]:
+                if self.__ha_ciclo_aux(v, visitado, ''):
+                    return True
         return False
 
     # ---
@@ -400,14 +401,14 @@ class Grafo:
         from copy import deepcopy
         from math import inf
 
-        # Cria o Grafo/Árvore que representará a MST
+        # Cria o Grafo que representará a MST
         T = Grafo()
 
         # Adiciona todos os vértices a árvore:
         for v in self.N:
             T.adicionaVertice(v)
 
-        # E = Todas as arestas do grafo original
+        # E = Todas as arestas e pesos do grafo
         E = deepcopy(self.__AP)
 
         # Enquanto houver arestas a serem verificadas:
@@ -431,9 +432,6 @@ class Grafo:
 
         # Retorna a MST
         return T
-
-    def kruskal_mod(self):
-        return
 
     # ---
 
